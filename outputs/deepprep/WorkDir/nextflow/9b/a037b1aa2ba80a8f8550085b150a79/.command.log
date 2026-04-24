@@ -1,0 +1,13 @@
+260424-02:32:33,399 nipype.workflow INFO:
+	 [Node] Setting-up "sub-101_T1w_Reports_run_node" in "/output/WorkDir/anat_create_summary/sub-101/sub-101_T1w_Reports_run_node".
+260424-02:32:33,400 nipype.workflow INFO:
+	 [Node] Executing "sub-101_T1w_Reports_run_node" <reports.reports_node.TemplateDimensions>
+260424-02:32:33,825 nipype.workflow INFO:
+	 [Node] Finished "sub-101_T1w_Reports_run_node", elapsed time 0.390143s.
+/output/WorkDir/anat_create_summary/sub-101/sub-101_T1w_Reports_run_node/report.html
+260424-02:32:33,827 nipype.workflow INFO:
+	 [Node] Setting-up "AboutSummary_Reports_run_node" in "/output/WorkDir/nextflow/9b/a037b1aa2ba80a8f8550085b150a79/AboutSummary_Reports_run_node".
+260424-02:32:33,828 nipype.workflow INFO:
+	 [Node] Executing "AboutSummary_Reports_run_node" <reports.reports_node.AboutSummary>
+260424-02:32:33,829 nipype.workflow INFO:
+	 [Node] Finished "AboutSummary_Reports_run_node", elapsed time 0.000153s.

@@ -1,0 +1,253 @@
+computing statistics for each annotation in /output/Recon/sub-101/label/lh.aparc.annot.
+reading volume /output/Recon/sub-101/mri/wm.mgz...
+reading input surface /output/Recon/sub-101/surf/lh.pial...
+reading input pial surface /output/Recon/sub-101/surf/lh.pial...
+reading input white surface /output/Recon/sub-101/surf/lh.white...
+INFO: using TH3 volume calc
+INFO: assuming MGZ format for volumes.
+INFO: using /output/Recon/sub-101/label/lh.cortex.label as mask to calc cortex NumVert, SurfArea and MeanThickness.
+Using TH3 vertex volume calc
+Total face volume 227312
+Total vertex volume 227136 (mask=0)
+Saving annotation colortable /output/Recon/sub-101/label/aparc.annot.ctab
+
+table columns are:
+    number of vertices
+    total surface area (mm^2)
+    total gray matter volume (mm^3)
+    average cortical thickness +- standard deviation (mm)
+    integrated rectified mean curvature
+    integrated rectified Gaussian curvature
+    folding index
+    intrinsic curvature index
+    structure name
+
+atlas_icv (eTIV) = 1262270 mm^3    (det: 1.543335 )
+computing (and caching) brain volume statistics
+warning: /output/Recon/sub-101/mri/ribbon.mgz does not exist - ribbon based measurements will be inaccurate
+ComputeBrainVolumeStats using version with fixed volume (VoxelVol=1)
+lhCtxGM: 228100.985 (205708.000)  diff=22393.0  pctdiff= 9.817
+rhCtxGM: 218555.076 (203108.000)  diff=15447.1  pctdiff= 7.068
+lhCtxWM: 249901.367 (210383.500)  diff=39517.9  pctdiff=15.813
+rhCtxWM: 247976.189 (210089.500)  diff=37886.7  pctdiff=15.278
+SubCortGMVol  54557.000
+SupraTentVol: 944533.617 (896321.000)  diff=48212.6  pctdiff= 5.104
+SupraTentVolNotVent: 932058.617 (883846.000)  diff=48212.6  pctdiff= 5.173
+BrainSegVol: 1031233.000 (1028538.000)  diff= 2695.0  pctdiff= 0.261
+BrainSegVolNotVent: 1014876.000 (1130120.617)  diff=-115244.6  pctdiff=-11.356
+CerebellumVol 131030.000
+VentChorVol   12475.000
+3rd4th5thCSF   3882.000
+CSFVol  1187.000, OptChiasmVol     0.000
+MaskVol 1358950.000
+ 1064    963   2277  2.517 0.440     0.145     0.029       17     1.3  bankssts
+  797    834   1959  2.756 0.588     0.239     0.133       65     2.7  caudalanteriorcingulate
+ 2806   2251   4667  2.195 0.420     0.138     0.031       43     3.4  caudalmiddlefrontal
+ 1804   1701   2924  1.980 0.434     0.163     0.038       69     2.5  cuneus
+  470    699   1807  3.430 0.717     0.345     0.084       26     2.3  entorhinal
+ 4185   4054  10378  2.842 0.550     0.161     0.040       82     6.8  fusiform
+ 5816   5179  10837  2.283 0.480     0.155     0.032       96     7.6  inferiorparietal
+ 3654   3743   9472  2.934 0.653     0.171     0.041       68     5.8  inferiortemporal
+ 1245   1164   2608  2.589 0.767     0.171     0.059       34     1.9  isthmuscingulate
+ 7305   6732  12950  2.147 0.519     0.156     0.034      171     9.9  lateraloccipital
+ 3733   3303   8763  2.925 0.656     0.157     0.043       96     6.0  lateralorbitofrontal
+ 3895   3734   7247  2.236 0.617     0.164     0.043      106     6.4  lingual
+ 2280   2259   5145  2.618 0.650     0.193     0.051       60     4.6  medialorbitofrontal
+ 3583   3976   9534  2.814 0.649     0.176     0.038       56     5.6  middletemporal
+  793    964   2541  3.384 0.711     0.258     0.074       28     2.7  parahippocampal
+ 1881   1666   3445  2.314 0.544     0.139     0.031       31     2.2  paracentral
+ 2260   2271   5081  2.563 0.499     0.155     0.030       29     2.8  parsopercularis
+  909   1034   2300  2.739 0.529     0.161     0.031        9     1.2  parsorbitalis
+ 1876   1725   3772  2.463 0.439     0.145     0.029       26     2.4  parstriangularis
+ 1799   1098   1787  1.558 0.322     0.129     0.044       54     2.4  pericalcarine
+ 4628   4553   8347  2.062 0.616     0.162     0.033       79     6.6  postcentral
+ 1457   1350   3061  2.559 0.689     0.180     0.051       70     2.7  posteriorcingulate
+ 6410   5491  12800  2.506 0.567     0.130     0.027       80     6.5  precentral
+ 5568   4626  10214  2.362 0.518     0.149     0.039      123     7.4  precuneus
+ 1175   1332   3254  2.943 0.673     0.205     0.055       21     2.6  rostralanteriorcingulate
+ 7354   7721  13912  2.096 0.487     0.189     0.042      214    13.2  rostralmiddlefrontal
+ 9113   9076  19955  2.457 0.612     0.169     0.037      140    13.1  superiorfrontal
+ 7914   6888  12545  1.979 0.440     0.137     0.025      101     7.8  superiorparietal
+ 4981   4388  11404  2.815 0.569     0.143     0.032      105     6.0  superiortemporal
+ 5478   5450  11350  2.346 0.514     0.165     0.038       95     7.9  supramarginal
+  334    526    828  2.201 0.590     0.258     0.051        6     0.9  frontalpole
+  594    927   2543  3.372 0.868     0.234     0.043       16     1.1  temporalpole
+  653    592   1280  2.470 0.361     0.138     0.035        6     0.9  transversetemporal
+ 2471   1809   6147  3.219 0.756     0.149     0.042       79     3.5  insula
+computing statistics for each annotation in /output/Recon/sub-101/label/lh.aparc.annot.
+reading volume /output/Recon/sub-101/mri/wm.mgz...
+reading input surface /output/Recon/sub-101/surf/lh.white...
+reading input pial surface /output/Recon/sub-101/surf/lh.pial...
+reading input white surface /output/Recon/sub-101/surf/lh.white...
+INFO: using TH3 volume calc
+INFO: assuming MGZ format for volumes.
+INFO: using /output/Recon/sub-101/label/lh.cortex.label as mask to calc cortex NumVert, SurfArea and MeanThickness.
+Using TH3 vertex volume calc
+Total face volume 227312
+Total vertex volume 227136 (mask=0)
+Saving annotation colortable /output/Recon/sub-101/label/aparc.annot.ctab
+
+table columns are:
+    number of vertices
+    total surface area (mm^2)
+    total gray matter volume (mm^3)
+    average cortical thickness +- standard deviation (mm)
+    integrated rectified mean curvature
+    integrated rectified Gaussian curvature
+    folding index
+    intrinsic curvature index
+    structure name
+
+atlas_icv (eTIV) = 1262270 mm^3    (det: 1.543335 )
+ 1064    865   2277  2.517 0.440     0.127     0.021       13     1.0  bankssts
+  797    638   1959  2.756 0.588     0.142     0.024       11     0.9  caudalanteriorcingulate
+ 2806   2092   4667  2.195 0.420     0.123     0.021       28     2.5  caudalmiddlefrontal
+ 1804   1470   2924  1.980 0.434     0.176     0.036       29     2.9  cuneus
+  470    358   1807  3.430 0.717     0.130     0.024        5     0.4  entorhinal
+ 4185   3223  10378  2.842 0.550     0.140     0.027       58     4.4  fusiform
+ 5816   4391  10837  2.283 0.480     0.135     0.027       78     6.5  inferiorparietal
+ 3654   2756   9472  2.934 0.653     0.132     0.024       47     3.8  inferiortemporal
+ 1245    908   2608  2.589 0.767     0.130     0.025       16     1.2  isthmuscingulate
+ 7305   5573  12950  2.147 0.519     0.148     0.029      101     8.5  lateraloccipital
+ 3733   2827   8763  2.925 0.656     0.140     0.030       46     5.0  lateralorbitofrontal
+ 3895   3179   7247  2.236 0.617     0.164     0.037       61     6.0  lingual
+ 2280   1782   5145  2.618 0.650     0.133     0.029       32     2.3  medialorbitofrontal
+ 3583   2749   9534  2.814 0.649     0.129     0.025       45     4.0  middletemporal
+  793    627   2541  3.384 0.711     0.138     0.030        8     0.9  parahippocampal
+ 1881   1385   3445  2.314 0.544     0.122     0.021       16     1.6  paracentral
+ 2260   1812   5081  2.563 0.499     0.130     0.024       27     2.3  parsopercularis
+  909    669   2300  2.739 0.529     0.139     0.022       16     0.8  parsorbitalis
+ 1876   1408   3772  2.463 0.439     0.120     0.020       22     1.6  parstriangularis
+ 1799   1362   1787  1.558 0.322     0.155     0.034       23     2.6  pericalcarine
+ 4628   3627   8347  2.062 0.616     0.143     0.029       58     6.4  postcentral
+ 1457   1094   3061  2.559 0.689     0.136     0.025       20     1.6  posteriorcingulate
+ 6410   4642  12800  2.506 0.567     0.117     0.019       53     5.0  precentral
+ 5568   4137  10214  2.362 0.518     0.139     0.027       69     6.4  precuneus
+ 1175    893   3254  2.943 0.673     0.139     0.034       23     1.8  rostralanteriorcingulate
+ 7354   5941  13912  2.096 0.487     0.156     0.036      129    12.4  rostralmiddlefrontal
+ 9113   7159  19955  2.457 0.612     0.140     0.029      114    11.8  superiorfrontal
+ 7914   5813  12545  1.979 0.440     0.120     0.020       87     6.8  superiorparietal
+ 4981   3610  11404  2.815 0.569     0.115     0.019       48     3.9  superiortemporal
+ 5478   4291  11350  2.346 0.514     0.144     0.030       79     7.4  supramarginal
+  334    280    828  2.201 0.590     0.182     0.053        7     0.8  frontalpole
+  594    523   2543  3.372 0.868     0.161     0.035       11     1.0  temporalpole
+  653    477   1280  2.470 0.361     0.132     0.021        8     0.5  transversetemporal
+ 2471   1843   6147  3.219 0.756     0.117     0.025       23     2.4  insula
+computing statistics for each annotation in /output/Recon/sub-101/label/rh.aparc.annot.
+reading volume /output/Recon/sub-101/mri/wm.mgz...
+reading input surface /output/Recon/sub-101/surf/lh.pial...
+reading input pial surface /output/Recon/sub-101/surf/lh.pial...
+reading input white surface /output/Recon/sub-101/surf/lh.white...
+INFO: using TH3 volume calc
+INFO: assuming MGZ format for volumes.
+INFO: using /output/Recon/sub-101/label/rh.cortex.label as mask to calc cortex NumVert, SurfArea and MeanThickness.
+Using TH3 vertex volume calc
+Total face volume 227312
+Total vertex volume 227136 (mask=0)
+Saving annotation colortable /output/Recon/sub-101/label/aparc.annot.ctab
+
+table columns are:
+    number of vertices
+    total surface area (mm^2)
+    total gray matter volume (mm^3)
+    average cortical thickness +- standard deviation (mm)
+    integrated rectified mean curvature
+    integrated rectified Gaussian curvature
+    folding index
+    intrinsic curvature index
+    structure name
+
+atlas_icv (eTIV) = 1262270 mm^3    (det: 1.543335 )
+ 1138   1168   2019  1.967 1.045     0.171     0.049       36     1.7  bankssts
+ 1051   1092   2285  2.470 0.543     0.162     0.034       17     1.4  caudalanteriorcingulate
+ 2192   1650   3675  2.237 0.785     0.142     0.036       41     3.0  caudalmiddlefrontal
+ 2287   2402   5230  2.522 0.623     0.168     0.036       35     3.2  cuneus
+  358    274    590  2.112 0.931     0.128     0.032        8     0.4  entorhinal
+ 4505   3706   7486  2.142 0.749     0.143     0.033       93     5.8  fusiform
+ 6675   6602  12718  2.171 0.922     0.167     0.041      123    11.2  inferiorparietal
+ 3826   3676   7466  2.240 0.734     0.165     0.045       73     5.4  inferiortemporal
+ 1231   1258   2818  2.563 0.625     0.152     0.029       15     1.4  isthmuscingulate
+ 7014   6182  12944  2.236 0.821     0.153     0.038      150     9.5  lateraloccipital
+ 3321   2969   6797  2.445 0.845     0.150     0.034       72     4.6  lateralorbitofrontal
+ 3693   3518   7959  2.484 0.748     0.158     0.034       71     5.1  lingual
+ 2348   2541   5414  2.545 0.604     0.175     0.037       39     3.5  medialorbitofrontal
+ 4213   4319   6818  1.726 1.166     0.163     0.037       72     6.1  middletemporal
+  761    670   1457  2.322 0.906     0.155     0.040       18     1.2  parahippocampal
+ 2277   2055   4698  2.526 0.603     0.150     0.035       36     3.1  paracentral
+ 2005   1627   3331  2.152 0.852     0.147     0.037       43     2.5  parsopercularis
+  996    956   1832  2.111 0.920     0.160     0.035       18     1.4  parsorbitalis
+ 1815   1590   3170  2.141 0.886     0.152     0.037       34     2.6  parstriangularis
+ 1944   1748   4004  2.526 0.621     0.154     0.036       83     2.5  pericalcarine
+ 4927   4234   8704  2.221 0.865     0.153     0.042      131     7.3  postcentral
+ 1439   1438   3132  2.502 0.559     0.169     0.038       42     2.2  posteriorcingulate
+ 6328   5544  11706  2.302 0.786     0.153     0.036      134     9.0  precentral
+ 5348   4931  11168  2.508 0.684     0.153     0.035       92     7.4  precuneus
+ 1040   1045   2364  2.619 0.617     0.160     0.033       16     1.4  rostralanteriorcingulate
+ 7365   5966  13026  2.281 0.852     0.147     0.036      180    10.0  rostralmiddlefrontal
+ 8821   7952  17713  2.457 0.618     0.146     0.032      145    11.0  superiorfrontal
+ 6741   5489  12082  2.296 0.906     0.146     0.035      141     9.3  superiorparietal
+ 4496   4639   8090  1.929 0.997     0.168     0.037       98     6.6  superiortemporal
+ 4608   4585   8418  2.062 1.093     0.166     0.040       75     7.3  supramarginal
+  484    441   1039  2.617 0.624     0.150     0.033        6     0.7  frontalpole
+  578    474    976  2.143 0.823     0.153     0.044       14     1.0  temporalpole
+  531    482    882  2.006 0.802     0.145     0.034       13     0.6  transversetemporal
+ 2939   2660   5425  2.187 0.875     0.159     0.035       69     4.3  insula
+computing statistics for each annotation in /output/Recon/sub-101/label/rh.aparc.annot.
+reading volume /output/Recon/sub-101/mri/wm.mgz...
+reading input surface /output/Recon/sub-101/surf/lh.white...
+reading input pial surface /output/Recon/sub-101/surf/lh.pial...
+reading input white surface /output/Recon/sub-101/surf/lh.white...
+INFO: using TH3 volume calc
+INFO: assuming MGZ format for volumes.
+INFO: using /output/Recon/sub-101/label/rh.cortex.label as mask to calc cortex NumVert, SurfArea and MeanThickness.
+Using TH3 vertex volume calc
+Total face volume 227312
+Total vertex volume 227136 (mask=0)
+Saving annotation colortable /output/Recon/sub-101/label/aparc.annot.ctab
+
+table columns are:
+    number of vertices
+    total surface area (mm^2)
+    total gray matter volume (mm^3)
+    average cortical thickness +- standard deviation (mm)
+    integrated rectified mean curvature
+    integrated rectified Gaussian curvature
+    folding index
+    intrinsic curvature index
+    structure name
+
+atlas_icv (eTIV) = 1262270 mm^3    (det: 1.543335 )
+ 1138    892   2019  1.967 1.045     0.146     0.033       17     1.7  bankssts
+ 1051    802   2285  2.470 0.543     0.139     0.032       19     1.3  caudalanteriorcingulate
+ 2192   1608   3675  2.237 0.785     0.131     0.024       22     2.4  caudalmiddlefrontal
+ 2287   1797   5230  2.522 0.623     0.136     0.026       30     2.6  cuneus
+  358    271    590  2.112 0.931     0.126     0.024        3     0.4  entorhinal
+ 4505   3402   7486  2.142 0.749     0.126     0.025       48     4.6  fusiform
+ 6675   5126  12718  2.171 0.922     0.143     0.031       97     8.7  inferiorparietal
+ 3826   2956   7466  2.240 0.734     0.139     0.027       47     4.6  inferiortemporal
+ 1231    957   2818  2.563 0.625     0.123     0.022       13     1.1  isthmuscingulate
+ 7014   5349  12944  2.236 0.821     0.131     0.026       83     7.5  lateraloccipital
+ 3321   2575   6797  2.445 0.845     0.128     0.024       37     3.2  lateralorbitofrontal
+ 3693   2839   7959  2.484 0.748     0.132     0.027       43     4.2  lingual
+ 2348   1828   5414  2.545 0.604     0.141     0.027       33     2.9  medialorbitofrontal
+ 4213   3353   6818  1.726 1.166     0.142     0.028       53     5.2  middletemporal
+  761    575   1457  2.322 0.906     0.133     0.028       11     1.0  parahippocampal
+ 2277   1699   4698  2.526 0.603     0.129     0.025       29     2.4  paracentral
+ 2005   1492   3331  2.152 0.852     0.137     0.028       26     2.5  parsopercularis
+  996    773   1832  2.111 0.920     0.139     0.029       13     1.2  parsorbitalis
+ 1815   1390   3170  2.141 0.886     0.135     0.026       22     2.1  parstriangularis
+ 1944   1474   4004  2.526 0.621     0.129     0.025       24     1.9  pericalcarine
+ 4927   3692   8704  2.221 0.865     0.128     0.025       53     5.0  postcentral
+ 1439   1109   3132  2.502 0.559     0.131     0.028       18     1.9  posteriorcingulate
+ 6328   4721  11706  2.302 0.786     0.132     0.025       79     6.3  precentral
+ 5348   3988  11168  2.508 0.684     0.129     0.025       63     5.7  precuneus
+ 1040    770   2364  2.619 0.617     0.138     0.024       15     1.1  rostralanteriorcingulate
+ 7365   5491  13026  2.281 0.852     0.127     0.024       81     7.6  rostralmiddlefrontal
+ 8821   6629  17713  2.457 0.618     0.128     0.022      102     8.9  superiorfrontal
+ 6741   5006  12082  2.296 0.906     0.125     0.024       76     7.0  superiorparietal
+ 4496   3565   8090  1.929 0.997     0.141     0.031       64     6.0  superiortemporal
+ 4608   3479   8418  2.062 1.093     0.130     0.026       55     5.2  supramarginal
+  484    361   1039  2.617 0.624     0.119     0.019        4     0.4  frontalpole
+  578    430    976  2.143 0.823     0.142     0.028        7     0.8  temporalpole
+  531    404    882  2.006 0.802     0.136     0.026        7     0.6  transversetemporal
+ 2939   2270   5425  2.187 0.875     0.133     0.027       32     3.4  insula

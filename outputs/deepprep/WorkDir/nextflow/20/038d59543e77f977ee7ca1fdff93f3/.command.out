@@ -1,0 +1,43 @@
+7.2.0
+
+cd /output/WorkDir/nextflow/20/038d59543e77f977ee7ca1fdff93f3
+setenv SUBJECTS_DIR /opt/freesurfer/subjects
+mris_autodet_gwstats --o /output/Recon/sub-101/surf/autodet.gw.stats.lh.dat --i /output/Recon/sub-101/mri/brain.finalsurfs.mgz --wm /output/Recon/sub-101/mri/wm.mgz --surf /output/Recon/sub-101/surf/lh.orig.premesh 
+
+Reading in intensity volume /output/Recon/sub-101/mri/brain.finalsurfs.mgz
+Reading in wm volume /output/Recon/sub-101/mri/wm.mgz
+Reading in surf /output/Recon/sub-101/surf/lh.orig.premesh
+Auto detecting stats
+MRIclipBrightWM(): nthresh=14844, wmmin=5, clip=110 
+Binarizing thresholding at 5
+computing class statistics... low=30, hi=110.000000
+CCS WM (98.0): 97.3 +- 10.0 [70.0 --> 110.0]
+CCS GM (61.0) : 61.4 +- 12.9 [30.0 --> 110.0]
+white_mean = 97.3115 +/- 10.0465, gray_mean = 61.3577 +/- 12.9403
+using class modes intead of means, discounting robust sigmas....
+MRIScomputeClassModes(): min=0 max=177 nbins=178
+intensity peaks found at WM=103+-7.0,    GM=51+-10.4
+white_mode = 103, gray_mode = 51
+std_scale = 1
+Applying sanity checks, max_scale_down = 0.2
+setting MIN_GRAY_AT_WHITE_BORDER to 38.1 (was 70.000000)
+setting MAX_BORDER_WHITE to 113.0 (was 105.000000)
+setting MIN_BORDER_WHITE to 51.0 (was 85.000000)
+setting MAX_CSF to 25.1 (was 40.000000)
+setting MAX_GRAY to 93.0 (was 95.000000)
+setting MAX_GRAY_AT_CSF_BORDER to 38.1 (was 75.000000)
+setting MIN_GRAY_AT_CSF_BORDER to 12.2 (was 40.000000)
+When placing the white surface
+  white_border_hi   = 113.047;
+  white_border_low  = 51;
+  white_outside_low = 38.0597;
+  white_inside_hi   = 120;
+  white_outside_hi  = 113.047;
+When placing the pial surface
+  pial_border_hi   = 38.0597;
+  pial_border_low  = 12.1792;
+  pial_outside_low = 10;
+  pial_inside_hi   = 92.9535;
+  pial_outside_hi  = 31.5896;
+#VMPC# mris_autodet_gwstats VmPeak  226560
+mris_autodet_gwstats done

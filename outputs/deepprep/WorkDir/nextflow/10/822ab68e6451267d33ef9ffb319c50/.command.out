@@ -1,0 +1,356 @@
+7.2.0
+7.2.0
+
+cd /output/WorkDir/nextflow/10/822ab68e6451267d33ef9ffb319c50
+setenv SUBJECTS_DIR /opt/freesurfer/subjects
+mris_place_surface --adgws-in /output/Recon/sub-101/surf/autodet.gw.stats.rh.dat --wm /output/Recon/sub-101/mri/wm.mgz --nthreads 4 --invol /output/Recon/sub-101/mri/brain.finalsurfs.mgz --rh --i /output/Recon/sub-101/surf/rh.orig --o /output/Recon/sub-101/surf/rh.white.preaparc --white --seg /output/Recon/sub-101/mri/aseg.presurf.mgz --nsmooth 5 
+
+Reading in input surface /output/Recon/sub-101/surf/rh.orig
+Smoothing surface with 5 iterations
+Area    231816  0.29011  0.11662 0.000873   0.8514
+Corner  695448 60.00000 17.29983 2.521694 171.0735
+Edge    347724  0.83413  0.21015 0.015906   1.6959
+Hinge   347724  7.70789  7.92622 0.000060 166.0839
+Not reading in aparc
+Reading in input volume /output/Recon/sub-101/mri/brain.finalsurfs.mgz
+Reading in wm volume /output/Recon/sub-101/mri/wm.mgz
+MRIclipBrightWM(): nthresh=14844, wmmin=5, clip=110 
+MRIfindBrightNonWM(): 21 bright non-wm voxels segmented.
+Masking bright non-wm for white surface
+MRImask(): AllowDiffGeom = 1
+MRImask(): AllowDiffGeom = 1
+Reading in seg volume /output/Recon/sub-101/mri/aseg.presurf.mgz
+Ripping frozen voxels
+INFO: rip surface needed but not specified, so using input surface
+Freezing midline and others
+Entering: MRISripMidline(): inhibiting deformation at non-cortical midline structures...
+  which=1, fix_mtl=0, using annot = 0
+#FML0# MRISripMidline(): nripped=0
+#FML# MRISripMidline(): nmarked=5257, nmarked2=0, nripped=5257
+Ripping WMSA
+Starting MRISripSegs() d = (-2 2 0.5) segnos: 247 
+MRISripSegs(): -2 2 0.5 ripped 0
+vertex 57955: xyz = (28.4988,-48.1862,-46.0232) oxyz = (28.4988,-48.1862,-46.0232) wxzy = (28.4988,-48.1862,-46.0232) pxyz = (0,0,0) 
+CBVO Creating mask 115910
+n_averages 4
+Iteration 0 =========================================
+n_averages=4, current_sigma=2
+Freezing midline and others
+Ripping frozen voxels
+INFO: rip surface needed but not specified, so using input surface
+Freezing midline and others
+Entering: MRISripMidline(): inhibiting deformation at non-cortical midline structures...
+  which=1, fix_mtl=0, using annot = 0
+#FML0# MRISripMidline(): nripped=5257
+#FML# MRISripMidline(): nmarked=5257, nmarked2=0, nripped=5257
+Ripping WMSA
+Starting MRISripSegs() d = (-2 2 0.5) segnos: 247 247 
+MRISripSegs(): -2 2 0.5 ripped 0
+Computing target border values 
+Entering MRIScomputeBorderValues_new(): 
+  inside_hi   = 120.0000000;
+  border_hi   = 115.0465010;
+  border_low  =  53.0000000;
+  outside_low =  40.0597380;
+  outside_hi  = 115.0465010;
+  sigma = 2;
+  max_thickness = 10;
+  step_size=0.5;
+  STEP_SIZE=0.1;
+  which = 1
+  thresh = 0
+  flags = 0
+  CBVfindFirstPeakD1=0
+  CBVfindFirstPeakD2=0
+  nvertices=115910
+  Gdiag_no=-1
+  vno start=0, stop=115910
+Replacing 255s with 0s
+#SI# sigma=2 had to be increased for 74 vertices, nripped=5257
+mean border=69.6, 11 (11) missing vertices, mean dist 0.5 [0.5 (%29.7)->0.8 (%70.3))]
+%67 local maxima, %29 large gradients and % 0 min vals, 0 gradients ignored
+nFirstPeakD1 0
+MRIScomputeBorderValues_new() finished in 0.0892 min
+
+
+Finding expansion regions
+mean absolute distance = 0.73 +- 0.86
+Averaging target values for 5 iterations...
+Positioning Surface: tspring = 0.3, nspring = 0.3, spring = 0, niters = 100 l_repulse = 5, l_surf_repulse = 0, checktol = 0
+Positioning pial surface
+Entering MRISpositionSurface()
+  max_mm = 0.3
+  MAX_REDUCTIONS = 2, REDUCTION_PCT = 0.5
+  parms->check_tol = 0, niterations = 100
+tol=1.0e-04, sigma=2.0, host=unkno, nav=4, nbrs=2, l_repulse=5.000, l_tspring=0.300, l_nspring=0.300, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50
+complete_dist_mat 0
+rms 0
+smooth_averages 0
+remove_neg 0
+ico_order 0
+which_surface 0
+target_radius 0.000000
+nfields 0
+scale 0.000000
+desired_rms_height 0.000000
+momentum 0.000000
+nbhd_size 0
+max_nbrs 0
+niterations 100
+nsurfaces 0
+SURFACES 3
+flags 0 (0)
+use curv 0
+no sulc 0
+no rigid align 0
+mris->nsize 2
+mris->hemisphere 1
+randomSeed 0
+
+000: dt: 0.0000, sse=6026346.5, rms=16.295
+001: dt: 0.5000, sse=3613540.8, rms=12.523 (23.152%)
+002: dt: 0.5000, sse=2363168.5, rms=10.020 (19.984%)
+003: dt: 0.5000, sse=1621000.8, rms=8.177 (18.398%)
+004: dt: 0.5000, sse=1208082.6, rms=6.940 (15.120%)
+005: dt: 0.5000, sse=955397.1, rms=6.055 (12.749%)
+006: dt: 0.5000, sse=831677.1, rms=5.571 (7.996%)
+007: dt: 0.5000, sse=750479.2, rms=5.227 (6.173%)
+008: dt: 0.5000, sse=720276.9, rms=5.089 (2.646%)
+009: dt: 0.5000, sse=689546.4, rms=4.944 (2.844%)
+rms = 4.9115/4.9443, sse=683934.6/689546.4, time step reduction 1 of 3 to 0.250  0 0 1
+010: dt: 0.5000, sse=683934.6, rms=4.912 (0.662%)
+011: dt: 0.2500, sse=383213.8, rms=3.227 (34.307%)
+012: dt: 0.2500, sse=327231.8, rms=2.804 (13.106%)
+013: dt: 0.2500, sse=313708.8, rms=2.689 (4.079%)
+014: dt: 0.2500, sse=304257.1, rms=2.605 (3.131%)
+rms = 2.5562/2.6052, sse=299087.0/304257.1, time step reduction 2 of 3 to 0.125  0 0 1
+015: dt: 0.2500, sse=299087.0, rms=2.556 (1.878%)
+016: dt: 0.1250, sse=258793.9, rms=2.166 (15.283%)
+017: dt: 0.1250, sse=253812.2, rms=2.113 (2.440%)
+rms = 2.0950/2.1127, sse=252583.7/253812.3, time step reduction 3 of 3 to 0.062  0 0 1
+018: dt: 0.1250, sse=252583.7, rms=2.095 (0.841%)
+  maximum number of reductions reached, breaking from loop
+positioning took 1.2 minutes
+Iteration 1 =========================================
+n_averages=2, current_sigma=1
+Freezing midline and others
+Ripping frozen voxels
+INFO: rip surface needed but not specified, so using input surface
+Freezing midline and others
+Entering: MRISripMidline(): inhibiting deformation at non-cortical midline structures...
+  which=1, fix_mtl=0, using annot = 0
+#FML0# MRISripMidline(): nripped=5257
+removing 4 vertices from ripped group in thread:0
+removing 1 vertices from ripped group in thread:0
+removing 3 vertices from ripped group in thread:0
+#FML# MRISripMidline(): nmarked=5366, nmarked2=0, nripped=5366
+Ripping WMSA
+Starting MRISripSegs() d = (-2 2 0.5) segnos: 247 247 247 
+MRISripSegs(): -2 2 0.5 ripped 0
+Computing target border values 
+Entering MRIScomputeBorderValues_new(): 
+  inside_hi   = 120.0000000;
+  border_hi   = 115.0465010;
+  border_low  =  53.0000000;
+  outside_low =  40.0597380;
+  outside_hi  = 115.0465010;
+  sigma = 1;
+  max_thickness = 10;
+  step_size=0.5;
+  STEP_SIZE=0.1;
+  which = 1
+  thresh = 0
+  flags = 0
+  CBVfindFirstPeakD1=0
+  CBVfindFirstPeakD2=0
+  nvertices=115910
+  Gdiag_no=-1
+  vno start=0, stop=115910
+Replacing 255s with 0s
+#SI# sigma=1 had to be increased for 141 vertices, nripped=5366
+mean border=72.8, 49 (2) missing vertices, mean dist -0.1 [0.3 (%71.2)->0.3 (%28.8))]
+%72 local maxima, %24 large gradients and % 0 min vals, 0 gradients ignored
+nFirstPeakD1 0
+MRIScomputeBorderValues_new() finished in 0.0484 min
+
+
+Finding expansion regions
+mean absolute distance = 0.30 +- 0.57
+Averaging target values for 5 iterations...
+Positioning Surface: tspring = 0.3, nspring = 0.3, spring = 0, niters = 100 l_repulse = 5, l_surf_repulse = 0, checktol = 0
+Positioning pial surface
+Entering MRISpositionSurface()
+  max_mm = 0.3
+  MAX_REDUCTIONS = 2, REDUCTION_PCT = 0.5
+  parms->check_tol = 0, niterations = 100
+tol=1.0e-04, sigma=1.0, host=unkno, nav=2, nbrs=2, l_repulse=5.000, l_tspring=0.300, l_nspring=0.300, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50
+000: dt: 0.0000, sse=833156.8, rms=5.301
+019: dt: 0.5000, sse=621103.2, rms=4.301 (18.857%)
+rms = 4.7472/4.3011, sse=709421.6/621103.2, time step reduction 1 of 3 to 0.250  0 1 1
+   RMS increased, rejecting step
+020: dt: 0.2500, sse=408532.1, rms=2.982 (30.669%)
+021: dt: 0.2500, sse=342310.6, rms=2.425 (18.691%)
+022: dt: 0.2500, sse=311318.3, rms=2.112 (12.894%)
+023: dt: 0.2500, sse=306187.8, rms=2.033 (3.751%)
+024: dt: 0.2500, sse=296591.9, rms=1.945 (4.311%)
+rms = 1.9423/1.9451, sse=297068.6/296591.9, time step reduction 2 of 3 to 0.125  0 1 1
+025: dt: 0.2500, sse=297068.6, rms=1.942 (0.144%)
+026: dt: 0.1250, sse=273378.5, rms=1.649 (15.106%)
+rms = 1.6150/1.6489, sse=274998.4/273378.5, time step reduction 3 of 3 to 0.062  0 1 1
+027: dt: 0.1250, sse=274998.4, rms=1.615 (2.055%)
+  maximum number of reductions reached, breaking from loop
+positioning took 0.7 minutes
+Iteration 2 =========================================
+n_averages=1, current_sigma=0.5
+Freezing midline and others
+Ripping frozen voxels
+INFO: rip surface needed but not specified, so using input surface
+Freezing midline and others
+Entering: MRISripMidline(): inhibiting deformation at non-cortical midline structures...
+  which=1, fix_mtl=0, using annot = 0
+#FML0# MRISripMidline(): nripped=5366
+removing 4 vertices from ripped group in thread:0
+removing 2 vertices from ripped group in thread:0
+removing 1 vertices from ripped group in thread:0
+removing 2 vertices from ripped group in thread:0
+removing 4 vertices from ripped group in thread:0
+removing 1 vertices from ripped group in thread:0
+#FML# MRISripMidline(): nmarked=5383, nmarked2=0, nripped=5383
+Ripping WMSA
+Starting MRISripSegs() d = (-2 2 0.5) segnos: 247 247 247 247 
+MRISripSegs(): -2 2 0.5 ripped 0
+Computing target border values 
+Entering MRIScomputeBorderValues_new(): 
+  inside_hi   = 120.0000000;
+  border_hi   = 115.0465010;
+  border_low  =  53.0000000;
+  outside_low =  40.0597380;
+  outside_hi  = 115.0465010;
+  sigma = 0.5;
+  max_thickness = 10;
+  step_size=0.5;
+  STEP_SIZE=0.1;
+  which = 1
+  thresh = 0
+  flags = 0
+  CBVfindFirstPeakD1=0
+  CBVfindFirstPeakD2=0
+  nvertices=115910
+  Gdiag_no=-1
+  vno start=0, stop=115910
+Replacing 255s with 0s
+#SI# sigma=0.5 had to be increased for 106 vertices, nripped=5383
+mean border=75.7, 64 (1) missing vertices, mean dist -0.1 [0.2 (%71.2)->0.2 (%28.8))]
+%81 local maxima, %15 large gradients and % 0 min vals, 0 gradients ignored
+nFirstPeakD1 0
+MRIScomputeBorderValues_new() finished in 0.0251 min
+
+
+Finding expansion regions
+mean absolute distance = 0.24 +- 0.41
+Averaging target values for 5 iterations...
+Positioning Surface: tspring = 0.3, nspring = 0.3, spring = 0, niters = 100 l_repulse = 5, l_surf_repulse = 0, checktol = 0
+Positioning pial surface
+Entering MRISpositionSurface()
+  max_mm = 0.3
+  MAX_REDUCTIONS = 2, REDUCTION_PCT = 0.5
+  parms->check_tol = 0, niterations = 100
+tol=1.0e-04, sigma=0.5, host=unkno, nav=1, nbrs=2, l_repulse=5.000, l_tspring=0.300, l_nspring=0.300, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50
+000: dt: 0.0000, sse=565136.4, rms=3.980
+rms = 4.1709/3.9798, sse=598132.2/565136.4, time step reduction 1 of 3 to 0.250  0 1 1
+   RMS increased, rejecting step
+028: dt: 0.2500, sse=385262.1, rms=2.804 (29.546%)
+029: dt: 0.2500, sse=287183.3, rms=1.831 (34.710%)
+030: dt: 0.2500, sse=270810.2, rms=1.634 (10.732%)
+031: dt: 0.2500, sse=264633.1, rms=1.548 (5.273%)
+rms = 1.5899/1.5480, sse=267097.3/264633.1, time step reduction 2 of 3 to 0.125  0 1 1
+   RMS increased, rejecting step
+032: dt: 0.1250, sse=259638.2, rms=1.472 (4.939%)
+033: dt: 0.1250, sse=253476.1, rms=1.372 (6.771%)
+rms = 1.3591/1.3720, sse=252291.0/253476.1, time step reduction 3 of 3 to 0.062  0 0 1
+034: dt: 0.1250, sse=252291.0, rms=1.359 (0.936%)
+  maximum number of reductions reached, breaking from loop
+positioning took 0.6 minutes
+Iteration 3 =========================================
+n_averages=0, current_sigma=0.25
+Freezing midline and others
+Ripping frozen voxels
+INFO: rip surface needed but not specified, so using input surface
+Freezing midline and others
+Entering: MRISripMidline(): inhibiting deformation at non-cortical midline structures...
+  which=1, fix_mtl=0, using annot = 0
+#FML0# MRISripMidline(): nripped=5383
+removing 4 vertices from ripped group in thread:0
+removing 2 vertices from ripped group in thread:0
+removing 4 vertices from ripped group in thread:0
+removing 2 vertices from ripped group in thread:0
+removing 3 vertices from ripped group in thread:0
+removing 1 vertices from ripped group in thread:0
+removing 4 vertices from ripped group in thread:0
+removing 1 vertices from ripped group in thread:0
+removing 2 vertices from ripped group in thread:0
+#FML# MRISripMidline(): nmarked=5384, nmarked2=0, nripped=5384
+Ripping WMSA
+Starting MRISripSegs() d = (-2 2 0.5) segnos: 247 247 247 247 247 
+MRISripSegs(): -2 2 0.5 ripped 0
+Computing target border values 
+Entering MRIScomputeBorderValues_new(): 
+  inside_hi   = 120.0000000;
+  border_hi   = 115.0465010;
+  border_low  =  53.0000000;
+  outside_low =  40.0597380;
+  outside_hi  = 115.0465010;
+  sigma = 0.25;
+  max_thickness = 10;
+  step_size=0.5;
+  STEP_SIZE=0.1;
+  which = 1
+  thresh = 0
+  flags = 0
+  CBVfindFirstPeakD1=0
+  CBVfindFirstPeakD2=0
+  nvertices=115910
+  Gdiag_no=-1
+  vno start=0, stop=115910
+Replacing 255s with 0s
+#SI# sigma=0.25 had to be increased for 108 vertices, nripped=5384
+mean border=76.9, 95 (1) missing vertices, mean dist -0.0 [0.2 (%58.4)->0.2 (%41.6))]
+%84 local maxima, %11 large gradients and % 0 min vals, 0 gradients ignored
+nFirstPeakD1 0
+MRIScomputeBorderValues_new() finished in 0.0164 min
+
+
+Finding expansion regions
+mean absolute distance = 0.20 +- 0.33
+Averaging target values for 5 iterations...
+Positioning Surface: tspring = 0.3, nspring = 0.3, spring = 0, niters = 100 l_repulse = 5, l_surf_repulse = 0, checktol = 0
+Positioning pial surface
+Entering MRISpositionSurface()
+  max_mm = 0.3
+  MAX_REDUCTIONS = 2, REDUCTION_PCT = 0.5
+  parms->check_tol = 0, niterations = 100
+tol=1.0e-04, sigma=0.2, host=unkno, nav=0, nbrs=2, l_repulse=5.000, l_tspring=0.300, l_nspring=0.300, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50
+000: dt: 0.0000, sse=301380.4, rms=2.049
+rms = 3.0688/2.0488, sse=424280.1/301380.4, time step reduction 1 of 3 to 0.250  0 1 1
+   RMS increased, rejecting step
+035: dt: 0.2500, sse=246254.8, rms=1.290 (37.017%)
+036: dt: 0.2500, sse=234383.8, rms=1.030 (20.175%)
+rms = 1.0004/1.0301, sse=232093.1/234383.8, time step reduction 2 of 3 to 0.125  0 0 1
+037: dt: 0.2500, sse=232093.1, rms=1.000 (2.877%)
+rms = 0.9669/1.0004, sse=229394.4/232093.1, time step reduction 3 of 3 to 0.062  0 0 1
+038: dt: 0.1250, sse=229394.5, rms=0.967 (3.349%)
+  maximum number of reductions reached, breaking from loop
+positioning took 0.3 minutes
+
+
+Writing output to /output/Recon/sub-101/surf/rh.white.preaparc
+#ET# mris_place_surface  3.07 minutes
+#VMPC# mris_place_surfaces VmPeak  2097180
+mris_place_surface done
+insurf  /output/Recon/sub-101/surf/rh.white.preaparc, nbrs 2, curvature_avgs 10
+writing curvature file /output/Recon/sub-101/surf/rh.curv
+writing curvature file /output/Recon/sub-101/surf/rh.area

@@ -1,0 +1,1 @@
+nextflow run /opt/DeepPrep/deepprep/nextflow/deepprep.nf -c /output/WorkDir/nextflow/run.config -w /output/WorkDir/nextflow -with-report /output/QC/report.html -with-timeline /output/QC/timeline.html --bids_dir /input --output_dir /output --anat_only --fs_license_file /fs_license.txt --cpus 10 --memory 20 --skip_bids_validation --participant_label 101

@@ -1,0 +1,20 @@
+Started at Fri Apr 24 02:33:48 UTC 2026
+Ended   at Fri Apr 24 02:34:11 UTC 2026
+talairach_avi done
+7.2.0
+
+--src: /output/Recon/sub-101/mri/orig.mgz src image (geometry).
+--trg: /opt/freesurfer/average/mni305.cor.mgz trg image (geometry).
+--inmni: /output/Recon/sub-101/mri/transforms/talairach.xfm input MNI/XFM transform.
+--outlta: /output/Recon/sub-101/mri/transforms/talairach.xfm.lta output LTA.
+--s: fsaverage subject name
+--ltavox2vox: output LTA as VOX_TO_VOX transform.
+ LTA read, type : 1
+ 1.07495   0.02928  -0.01220   0.15892;
+ 0.00589   1.10207   0.35551  -1.20302;
+-0.00313  -0.29619   1.20742   0.21442;
+ 0.00000   0.00000   0.00000   1.00000;
+setting subject to fsaverage
+Writing  LTA to file /output/Recon/sub-101/mri/transforms/talairach.xfm.lta...
+lta_convert successful.
+INFO: extension is mgz

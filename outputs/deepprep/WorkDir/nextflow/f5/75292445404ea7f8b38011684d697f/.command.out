@@ -1,0 +1,51 @@
+INFO: Device select strategy: auto
+INFO: Auto select device by ： auto
+GPU INFO: 
+['0, Quadro RTX 6000, 22501 MiB, 23040 MiB, 12.84 W, 250.00 W\n']
+GPU INFO: 
+['0, Quadro RTX 6000, 22501 MiB, 23040 MiB, 16.41 W, 250.00 W\n']
+Choosing the GPU device has largest free memory...
+Sorted by free memory size
+Using GPU 0:
+index:0
+gpu_name:Quadro RTX 6000
+memory.free:22501
+memory.total:23040
+power.draw:16
+power.limit:250
+specified:False
+WARNNING: Auto select: GPU 0
+INFO: GPU: 0
+INFO: sys.argv : ['/opt/DeepPrep/deepprep/nextflow/bin/gpu_schedule_run.py', 'auto', '3150', 'executor', '/opt/DeepPrep/deepprep/FastCSR/fastcsr_model_infer.py', '--fastcsr_subjects_dir', '/output/Recon', '--subj', 'sub-101', '--hemi', 'lh', '--model-path', '/opt/model/FastCSR']
+connect to StrictRedis DB
+INFO: run_count : two
+lock_name: nextflow-local-gpu-1
+INFO: GPU: python3 /opt/DeepPrep/deepprep/FastCSR/fastcsr_model_infer.py --fastcsr_subjects_dir /output/Recon --subj sub-101 --hemi lh --model-path /opt/model/FastCSR
+/opt/conda/envs/deepprep/lib/python3.10/site-packages/torch/nn/modules/conv.py:608: UserWarning: Applied workaround for CuDNN issue, install nvrtc.so (Triggered internally at ../aten/src/ATen/native/cudnn/Conv_v8.cpp:80.)
+  return F.conv3d(
+
+
+Please cite the following paper when using nnUNet:
+
+Isensee, F., Jaeger, P.F., Kohl, S.A.A. et al. "nnU-Net: a self-configuring method for deep learning-based biomedical image segmentation." Nat Methods (2020). https://doi.org/10.1038/s41592-020-01008-z
+
+
+If you have questions or suggestions, feel free to open an issue at https://github.com/MIC-DKFZ/nnUNet
+
+before crop: (2, 256, 256, 256) after crop: (2, 236, 238, 226) spacing: [1. 1. 1.] 
+
+no resampling necessary
+no resampling necessary
+before: {'spacing': array([1., 1., 1.]), 'spacing_transposed': array([1., 1., 1.]), 'data.shape (data is transposed)': (2, 236, 238, 226)} 
+after:  {'spacing': array([1., 1., 1.]), 'data.shape (data is resampled)': (2, 236, 238, 226)} 
+
+debug: mirroring True mirror_axes (0, 1, 2)
+step_size: 0.5
+do mirror: True
+data shape: (2, 236, 238, 226)
+patch size: [128 160 112]
+steps (x, y, and z): [[0, 54, 108], [0, 78], [0, 38, 76, 114]]
+number of tiles: 24
+computing Gaussian
+done
+prediction done

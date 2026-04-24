@@ -1,0 +1,19 @@
+             Toggling save flag on curvature files                       [ ok ]
+                 Outputting results using filestem [ /output/Recon/sub-101/stats/rh.curv.stats ]
+             Toggling save flag on curvature files                       [ ok ]
+                                   Setting surface      [ sub-101/rh.smoothwm ]
+                                Reading surface...                       [ ok ]
+                                   Setting texture                     [ curv ]
+                                Reading texture...                       [ ok ]
+                                   Setting texture                     [ sulc ]
+                                Reading texture...Gb_filter = 0
+                       [ ok ]
+      Calculating Discrete Principal Curvatures...
+      Determining geometric order for vno faces... [####################] [ ok ]
+                      Determining KH curvatures... [####################] [ ok ]
+                    Determining k1k2 curvatures... [####################] [ ok ]
+                                   deltaViolations                      [ 210 ]
+Gb_filter = 0
+
+WARN:    S lookup   min:                          -0.524404
+WARN:    S explicit min:                          0.000000	vertex = 2

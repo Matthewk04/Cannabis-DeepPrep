@@ -1,0 +1,15 @@
+[
+    [
+        "max_scale",
+        "3.0000000000"
+    ],
+    [
+        "t1w_list",
+        [
+            [
+                "/input/sub-101/ses-BL/anat/sub-101_ses-BL_T1w.nii.gz",
+                "8807ed118eb4ced15b86d0147d787513"
+            ]
+        ]
+    ]
+]

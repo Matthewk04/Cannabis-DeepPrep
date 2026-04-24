@@ -1,0 +1,17 @@
+nextflow.trace/v2
+realtime=23993
+%cpu=144
+cpu_model=AMD EPYC 7532 32-Core Processor
+rchar=37766451
+wchar=76034
+syscr=5198
+syscw=50
+read_bytes=5668864
+write_bytes=126976
+%mem=12
+vmem=627008
+rss=200284
+peak_vmem=674268
+peak_rss=200284
+vol_ctxt=22
+inv_ctxt=215

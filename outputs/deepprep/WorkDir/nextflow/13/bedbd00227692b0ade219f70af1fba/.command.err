@@ -1,0 +1,11 @@
+setting seed for random number genererator to 1234
+Setting OMP_NUM_THREADS=8
+reading original vertex positions...
+projecting onto sphere...
+surface projected - minimizing metric distortion...
+singular matrix in quadratic form
+singular matrix in quadratic form
+singular matrix in quadratic form
+singular matrix in quadratic form
+writing spherical brain to /output/Recon/sub-101/surf/lh.sphere
+spherical transformation took 0.1003 hours

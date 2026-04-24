@@ -1,0 +1,2 @@
+#!/bin/bash -ue
+mris_volmask --sd /output/Recon --aseg_name aseg.presurf --label_left_white 2 --label_left_ribbon 3 --label_right_white 41 --label_right_ribbon 42 --save_ribbon sub-101

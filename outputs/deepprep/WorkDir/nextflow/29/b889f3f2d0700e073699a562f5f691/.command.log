@@ -1,0 +1,338 @@
+7.2.0
+7.2.0
+
+cd /output/WorkDir/nextflow/29/b889f3f2d0700e073699a562f5f691
+setenv SUBJECTS_DIR /opt/freesurfer/subjects
+mris_place_surface --adgws-in /output/Recon/sub-101/surf/autodet.gw.stats.lh.dat --seg /output/Recon/sub-101/mri/aseg.presurf.mgz --nthreads 4 --wm /output/Recon/sub-101/mri/wm.mgz --invol /output/Recon/sub-101/mri/brain.finalsurfs.mgz --lh --i /output/Recon/sub-101/surf/lh.white --o /output/Recon/sub-101/surf/lh.pial.T1 --pial --nsmooth 0 --rip-label /output/Recon/sub-101/label/lh.cortex+hipamyg.label --pin-medial-wall /output/Recon/sub-101/label/lh.cortex.label --aparc /output/Recon/sub-101/label/lh.aparc.annot --repulse-surf /output/Recon/sub-101/surf/lh.white --white-surf /output/Recon/sub-101/surf/lh.white 
+
+Reading in input surface /output/Recon/sub-101/surf/lh.white
+Not smoothing input surface
+Area    233576  0.38086  0.18754 0.000281   2.5482
+Corner  700728 60.00000 20.08040 0.358143 178.1820
+Edge    350364  0.96390  0.29490 0.009153   3.5570
+Hinge   350364 10.72819 12.29099 0.000139 179.8647
+Reading white surface coordinates from /output/Recon/sub-101/surf/lh.white
+Reading repulsion surface coordinates from /output/Recon/sub-101/surf/lh.white
+Reading in aparc /output/Recon/sub-101/label/lh.aparc.annot
+Reading in input volume /output/Recon/sub-101/mri/brain.finalsurfs.mgz
+Reading in wm volume /output/Recon/sub-101/mri/wm.mgz
+MRIclipBrightWM(): nthresh=14844, wmmin=5, clip=110 
+MRIfindBrightNonWM(): 21 bright non-wm voxels segmented.
+Masking bright non-wm for pial surface mid_gray = 52.5664
+MRImask(): AllowDiffGeom = 1
+MRImask(): AllowDiffGeom = 1
+MRImask(): AllowDiffGeom = 1
+Reading in seg volume /output/Recon/sub-101/mri/aseg.presurf.mgz
+Ripping frozen voxels
+Ripping vertices not in label /output/Recon/sub-101/label/lh.cortex+hipamyg.label
+INFO: rip surface needed but not specified, so using input surface
+Ripping WMSA
+Starting MRISripSegs() d = (-2 2 0.5) segnos: 247 
+MRISripSegs(): -2 2 0.5 ripped 0
+vertex 58395: xyz = (-29.1836,53.4565,-21.0398) oxyz = (-29.1836,53.4565,-21.0398) wxzy = (-29.1836,53.4565,-21.0398) pxyz = (-29.1836,53.4565,-21.0398) 
+CBVO Creating mask 116790
+n_averages 16
+Iteration 0 =========================================
+n_averages=16, current_sigma=2
+Computing target border values 
+Entering MRIScomputeBorderValues_new(): 
+  inside_hi   =  92.9534990;
+  border_hi   =  38.0597380;
+  border_low  =  12.1792070;
+  outside_low =  10.0000000;
+  outside_hi  =  31.5896050;
+  sigma = 2;
+  max_thickness = 10;
+  step_size=0.5;
+  STEP_SIZE=0.1;
+  which = 2
+  thresh = 0
+  flags = 0
+  CBVfindFirstPeakD1=0
+  CBVfindFirstPeakD2=0
+  nvertices=116790
+  Gdiag_no=-1
+  vno start=0, stop=116790
+Replacing 255s with 0s
+#SI# sigma=2 had to be increased for 156 vertices, nripped=4468
+mean border=36.1, 85 (85) missing vertices, mean dist 1.4 [1.2 (%0.0)->2.5 (%100.0))]
+% 6 local maxima, %50 large gradients and %40 min vals, 0 gradients ignored
+nFirstPeakD1 0
+MRIScomputeBorderValues_new() finished in 0.0557 min
+
+
+Averaging target values for 5 iterations...
+Positioning Surface: tspring = 0.3, nspring = 0.3, spring = 0, niters = 100 l_repulse = 0, l_surf_repulse = 5, checktol = 0
+Positioning pial surface
+Entering MRISpositionSurface()
+  max_mm = 0.3
+  MAX_REDUCTIONS = 2, REDUCTION_PCT = 0.5
+  parms->check_tol = 0, niterations = 100
+tol=1.0e-04, sigma=2.0, host=unkno, nav=16, nbrs=2, l_surf_repulse=5.000, l_tspring=0.300, l_nspring=0.300, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50
+complete_dist_mat 0
+rms 0
+smooth_averages 0
+remove_neg 0
+ico_order 0
+which_surface 0
+target_radius 0.000000
+nfields 0
+scale 0.000000
+desired_rms_height 0.000000
+momentum 0.000000
+nbhd_size 0
+max_nbrs 0
+niterations 100
+nsurfaces 0
+SURFACES 3
+flags 0 (0)
+use curv 0
+no sulc 0
+no rigid align 0
+mris->nsize 2
+mris->hemisphere 0
+randomSeed 0
+
+000: dt: 0.0000, sse=38208532.0, rms=41.148
+001: dt: 0.5000, sse=25944528.0, rms=33.864 (17.702%)
+002: dt: 0.5000, sse=17303376.0, rms=27.600 (18.499%)
+003: dt: 0.5000, sse=11759250.0, rms=22.686 (17.804%)
+004: dt: 0.5000, sse=8323618.5, rms=19.012 (16.193%)
+005: dt: 0.5000, sse=6094089.5, rms=16.187 (14.861%)
+006: dt: 0.5000, sse=4518577.5, rms=13.846 (14.462%)
+007: dt: 0.5000, sse=3339577.0, rms=11.793 (14.830%)
+008: dt: 0.5000, sse=2458009.5, rms=9.984 (15.341%)
+009: dt: 0.5000, sse=1843766.6, rms=8.497 (14.894%)
+010: dt: 0.5000, sse=1438982.4, rms=7.352 (13.473%)
+011: dt: 0.5000, sse=1189742.9, rms=6.546 (10.962%)
+012: dt: 0.5000, sse=1032372.5, rms=5.980 (8.651%)
+013: dt: 0.5000, sse=935091.5, rms=5.599 (6.367%)
+014: dt: 0.5000, sse=866233.1, rms=5.312 (5.126%)
+015: dt: 0.5000, sse=825628.5, rms=5.133 (3.372%)
+016: dt: 0.5000, sse=791595.1, rms=4.978 (3.022%)
+017: dt: 0.5000, sse=769993.4, rms=4.875 (2.056%)
+018: dt: 0.5000, sse=749344.5, rms=4.775 (2.053%)
+019: dt: 0.5000, sse=737184.4, rms=4.714 (1.276%)
+020: dt: 0.5000, sse=724479.8, rms=4.650 (1.373%)
+rms = 4.6166/4.6497, sse=718263.7/724479.7, time step reduction 1 of 3 to 0.250  0 0 1
+021: dt: 0.5000, sse=718263.8, rms=4.617 (0.711%)
+022: dt: 0.2500, sse=601649.4, rms=3.991 (13.546%)
+023: dt: 0.2500, sse=575002.6, rms=3.837 (3.870%)
+rms = 3.8143/3.8368, sse=571579.3/575002.6, time step reduction 2 of 3 to 0.125  0 0 1
+024: dt: 0.2500, sse=571579.3, rms=3.814 (0.586%)
+025: dt: 0.1250, sse=559940.9, rms=3.742 (1.888%)
+rms = 3.7280/3.7423, sse=557685.6/559940.9, time step reduction 3 of 3 to 0.062  0 0 1
+026: dt: 0.1250, sse=557685.6, rms=3.728 (0.384%)
+  maximum number of reductions reached, breaking from loop
+positioning took 1.8 minutes
+Iteration 1 =========================================
+n_averages=8, current_sigma=1
+Computing target border values 
+Entering MRIScomputeBorderValues_new(): 
+  inside_hi   =  92.9534990;
+  border_hi   =  38.0597380;
+  border_low  =  12.1792070;
+  outside_low =  10.0000000;
+  outside_hi  =  31.5896050;
+  sigma = 1;
+  max_thickness = 10;
+  step_size=0.5;
+  STEP_SIZE=0.1;
+  which = 2
+  thresh = 0
+  flags = 0
+  CBVfindFirstPeakD1=0
+  CBVfindFirstPeakD2=0
+  nvertices=116790
+  Gdiag_no=-1
+  vno start=0, stop=116790
+Replacing 255s with 0s
+#SI# sigma=1 had to be increased for 7271 vertices, nripped=4468
+mean border=34.7, 1235 (23) missing vertices, mean dist 0.1 [0.1 (%63.0)->0.6 (%37.0))]
+%10 local maxima, %49 large gradients and %37 min vals, 0 gradients ignored
+nFirstPeakD1 0
+MRIScomputeBorderValues_new() finished in 0.0193 min
+
+
+Averaging target values for 5 iterations...
+Positioning Surface: tspring = 0.3, nspring = 0.3, spring = 0, niters = 100 l_repulse = 0, l_surf_repulse = 5, checktol = 0
+Positioning pial surface
+Entering MRISpositionSurface()
+  max_mm = 0.3
+  MAX_REDUCTIONS = 2, REDUCTION_PCT = 0.5
+  parms->check_tol = 0, niterations = 100
+tol=1.0e-04, sigma=1.0, host=unkno, nav=8, nbrs=2, l_surf_repulse=5.000, l_tspring=0.300, l_nspring=0.300, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50
+000: dt: 0.0000, sse=761262.8, rms=4.564
+027: dt: 0.5000, sse=707607.4, rms=4.299 (5.815%)
+rms = 4.3339/4.2989, sse=711205.3/707607.4, time step reduction 1 of 3 to 0.250  0 1 1
+   RMS increased, rejecting step
+028: dt: 0.2500, sse=641005.4, rms=3.934 (8.489%)
+029: dt: 0.2500, sse=611463.2, rms=3.764 (4.325%)
+030: dt: 0.2500, sse=600483.6, rms=3.697 (1.779%)
+rms = 3.6547/3.6969, sse=593471.8/600483.6, time step reduction 2 of 3 to 0.125  0 0 1
+031: dt: 0.2500, sse=593471.8, rms=3.655 (1.143%)
+032: dt: 0.1250, sse=582180.8, rms=3.582 (1.985%)
+rms = 3.5603/3.5821, sse=578721.9/582180.8, time step reduction 3 of 3 to 0.062  0 0 1
+033: dt: 0.1250, sse=578721.9, rms=3.560 (0.610%)
+  maximum number of reductions reached, breaking from loop
+positioning took 0.5 minutes
+Iteration 2 =========================================
+n_averages=4, current_sigma=0.5
+Computing target border values 
+Entering MRIScomputeBorderValues_new(): 
+  inside_hi   =  92.9534990;
+  border_hi   =  38.0597380;
+  border_low  =  12.1792070;
+  outside_low =  10.0000000;
+  outside_hi  =  31.5896050;
+  sigma = 0.5;
+  max_thickness = 10;
+  step_size=0.5;
+  STEP_SIZE=0.1;
+  which = 2
+  thresh = 0
+  flags = 0
+  CBVfindFirstPeakD1=0
+  CBVfindFirstPeakD2=0
+  nvertices=116790
+  Gdiag_no=-1
+  vno start=0, stop=116790
+Replacing 255s with 0s
+#SI# sigma=0.5 had to be increased for 7750 vertices, nripped=4468
+mean border=34.0, 1611 (14) missing vertices, mean dist 0.1 [0.2 (%61.5)->0.5 (%38.5))]
+%20 local maxima, %38 large gradients and %36 min vals, 0 gradients ignored
+nFirstPeakD1 0
+MRIScomputeBorderValues_new() finished in 0.0128 min
+
+
+Averaging target values for 5 iterations...
+Positioning Surface: tspring = 0.3, nspring = 0.3, spring = 0, niters = 100 l_repulse = 0, l_surf_repulse = 5, checktol = 0
+Positioning pial surface
+Entering MRISpositionSurface()
+  max_mm = 0.3
+  MAX_REDUCTIONS = 2, REDUCTION_PCT = 0.5
+  parms->check_tol = 0, niterations = 100
+tol=1.0e-04, sigma=0.5, host=unkno, nav=4, nbrs=2, l_surf_repulse=5.000, l_tspring=0.300, l_nspring=0.300, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50
+000: dt: 0.0000, sse=633684.0, rms=3.853
+rms = 3.9804/3.8535, sse=654553.2/633684.0, time step reduction 1 of 3 to 0.250  0 1 1
+   RMS increased, rejecting step
+034: dt: 0.2500, sse=604590.7, rms=3.680 (4.496%)
+035: dt: 0.2500, sse=589324.1, rms=3.589 (2.478%)
+rms = 3.5576/3.5890, sse=583975.7/589324.0, time step reduction 2 of 3 to 0.125  0 0 1
+036: dt: 0.2500, sse=583975.7, rms=3.558 (0.876%)
+037: dt: 0.1250, sse=572550.6, rms=3.484 (2.079%)
+rms = 3.4591/3.4836, sse=568617.5/572550.6, time step reduction 3 of 3 to 0.062  0 0 1
+038: dt: 0.1250, sse=568617.4, rms=3.459 (0.702%)
+  maximum number of reductions reached, breaking from loop
+positioning took 0.4 minutes
+Iteration 3 =========================================
+n_averages=2, current_sigma=0.25
+Computing target border values 
+Entering MRIScomputeBorderValues_new(): 
+  inside_hi   =  92.9534990;
+  border_hi   =  38.0597380;
+  border_low  =  12.1792070;
+  outside_low =  10.0000000;
+  outside_hi  =  31.5896050;
+  sigma = 0.25;
+  max_thickness = 10;
+  step_size=0.5;
+  STEP_SIZE=0.1;
+  which = 2
+  thresh = 0
+  flags = 0
+  CBVfindFirstPeakD1=0
+  CBVfindFirstPeakD2=0
+  nvertices=116790
+  Gdiag_no=-1
+  vno start=0, stop=116790
+Replacing 255s with 0s
+#SI# sigma=0.25 had to be increased for 6486 vertices, nripped=4468
+mean border=33.1, 3336 (13) missing vertices, mean dist 0.0 [0.2 (%58.8)->0.4 (%41.2))]
+%28 local maxima, %30 large gradients and %35 min vals, 0 gradients ignored
+nFirstPeakD1 0
+MRIScomputeBorderValues_new() finished in 0.0073 min
+
+
+Averaging target values for 5 iterations...
+Positioning Surface: tspring = 0.3, nspring = 0.3, spring = 0, niters = 100 l_repulse = 0, l_surf_repulse = 5, checktol = 0
+Positioning pial surface
+Entering MRISpositionSurface()
+  max_mm = 0.3
+  MAX_REDUCTIONS = 2, REDUCTION_PCT = 0.5
+  parms->check_tol = 0, niterations = 100
+tol=1.0e-04, sigma=0.2, host=unkno, nav=2, nbrs=2, l_surf_repulse=5.000, l_tspring=0.300, l_nspring=0.300, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50
+000: dt: 0.0000, sse=616398.7, rms=3.746
+rms = 3.8864/3.7465, sse=638465.1/616398.7, time step reduction 1 of 3 to 0.250  0 1 1
+   RMS increased, rejecting step
+039: dt: 0.2500, sse=587378.8, rms=3.569 (4.738%)
+040: dt: 0.2500, sse=567994.5, rms=3.451 (3.306%)
+041: dt: 0.2500, sse=558446.0, rms=3.393 (1.691%)
+042: dt: 0.2500, sse=548620.7, rms=3.332 (1.777%)
+rms = 3.3122/3.3323, sse=545209.3/548620.7, time step reduction 2 of 3 to 0.125  0 0 1
+043: dt: 0.2500, sse=545209.2, rms=3.312 (0.603%)
+044: dt: 0.1250, sse=531769.6, rms=3.219 (2.813%)
+rms = 3.1934/3.2191, sse=527863.0/531769.5, time step reduction 3 of 3 to 0.062  0 0 1
+045: dt: 0.1250, sse=527863.0, rms=3.193 (0.797%)
+  maximum number of reductions reached, breaking from loop
+positioning took 0.4 minutes
+Pinning medial wall to white surface
+removing intersecting faces
+000: 25 intersecting
+001: 18 intersecting
+002: 6 intersecting
+step 1 with no progress (num=13, old_num=6)
+003: 13 intersecting
+terminating search with 0 intersecting
+
+
+Writing output to /output/Recon/sub-101/surf/lh.pial.T1
+#ET# mris_place_surface  3.38 minutes
+#VMPC# mris_place_surfaces VmPeak  1411940
+mris_place_surface done
+insurf  /output/Recon/sub-101/surf/lh.pial.T1, nbrs 2, curvature_avgs 10
+writing curvature file /output/Recon/sub-101/surf/lh.curv.pial
+writing curvature file /output/Recon/sub-101/surf/lh.area.pial
+0 of 116790 vertices processed
+25000 of 116790 vertices processed
+50000 of 116790 vertices processed
+75000 of 116790 vertices processed
+100000 of 116790 vertices processed
+0 of 116790 vertices processed
+25000 of 116790 vertices processed
+50000 of 116790 vertices processed
+75000 of 116790 vertices processed
+100000 of 116790 vertices processed
+thickness calculation complete, 196:832 truncations.
+48214 vertices at 0 distance
+95978 vertices at 1 distance
+59655 vertices at 2 distance
+19803 vertices at 3 distance
+6161 vertices at 4 distance
+2186 vertices at 5 distance
+850 vertices at 6 distance
+324 vertices at 7 distance
+140 vertices at 8 distance
+75 vertices at 9 distance
+46 vertices at 10 distance
+36 vertices at 11 distance
+20 vertices at 12 distance
+18 vertices at 13 distance
+5 vertices at 14 distance
+9 vertices at 15 distance
+10 vertices at 16 distance
+10 vertices at 17 distance
+15 vertices at 18 distance
+9 vertices at 19 distance
+16 vertices at 20 distance
+writing curvature file /output/Recon/sub-101/surf/lh.thickness
+Saving result to '/output/Recon/sub-101/surf/lh.area.mid' (type = MRI_CURV_FILE)                       [ ok ]
+Saving result to '/output/Recon/sub-101/surf/lh.area.mid' (type = MRI_CURV_FILE)                       [ ok ]
+masking with /output/Recon/sub-101/label/lh.cortex.label
+Total face volume 227312
+Total vertex volume 227136 (mask=0)
+#@# sub-101 lh 227136

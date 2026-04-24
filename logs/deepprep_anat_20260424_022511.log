@@ -1,0 +1,521 @@
+INFO: args: /input /output participant --anat_only --fs_license_file /fs_license.txt --cpus 10 --memory 20 --skip_bids_validation --participant_label 101
+Input --fs_license_file : /fs_license.txt
+Input --cpus : 10
+Input --memory : 20 GB
+INFO: existed nextflow WorkDir: /output/WorkDir/nextflow
+INFO: run_config : /output/WorkDir/nextflow/run.config
+INFO: Starting Redis...
+INFO: Redis is running.
+INFO: /home/deepprep/matlab/startup.m does not exist ... creating
+
+ N E X T F L O W   ~  version 24.10.3
+
+Launching `/opt/DeepPrep/deepprep/nextflow/deepprep.nf` [mad_volta] DSL2 - revision: e26eff89fa
+
+DEBUG: params           : [profile:standard, bids_dir:/input, subjects_dir:None, output_dir:/output, participant_label:101, skip_bids_validation:true, anat_only:true, bold_only:False, bold_cifti:False, bold_task_type:, bold_skip_frame:0, bold_bandpass:0.01-0.08, bold_sdc:True, bold_confounds:True, bold_surface_spaces:fsaverage6, bold_volume_space:MNI152NLin6Asym, bold_volume_res:02, exec_env:docker, python:, device:auto, mriqc:False, debug:False, fs_threads:8, freesurfer_home:/opt/freesurfer, fs_license_file:/fs_license.txt, deepprep_home:/opt/DeepPrep, fastsurfer_home:/opt/DeepPrep/deepprep/FastSurfer, fastcsr_home:/opt/DeepPrep/deepprep/FastCSR, fastcsr_model_path:/opt/model/FastCSR, surfreg_home:/opt/DeepPrep/deepprep/SUGAR, surfreg_model_path:/opt/model/SUGAR/model_files, synthmorph_home:/opt/DeepPrep/deepprep/SynthMorph, synthmorph_model_path:/opt/model/SynthMorph/models, qc_utils_path:/opt/DeepPrep/deepprep/nextflow/bin/qc_tool, reports_utils_path:/opt/DeepPrep/deepprep/nextflow/bin/reports, deepprep_version:25.1.0, preprocess_others:False, cpus:10, memory:20]
+INFO: bids_dir           : /input
+INFO: output_dir         : /output
+INFO: subjects_dir       : /output/Recon
+INFO: anat preprocess ONLY
+[-        ] deepprep_init                  -
+[-        ] ana…:anat_get_t1w_file_in_bids -
+[-        ] ana…at_create_subject_orig_dir -
+[-        ] anat_wf:anat_create_summary    -
+[-        ] anat_wf:anat_motioncor         -
+[-        ] anat_wf:anat_segment           -
+[-        ] anat_wf:anat_reduce_to_aseg    -
+[-        ] anat_wf:anat_N4_bias_correct   -
+
+[-        ] deepprep_init                  -
+[-        ] ana…:anat_get_t1w_file_in_bids -
+[-        ] ana…at_create_subject_orig_dir -
+[-        ] anat_wf:anat_create_summary    -
+[-        ] anat_wf:anat_motioncor         -
+[-        ] anat_wf:anat_segment           -
+[-        ] anat_wf:anat_reduce_to_aseg    -
+[-        ] anat_wf:anat_N4_bias_correct   -
+[-        ] anat_wf:anat_talairach_and_nu  -
+[-        ] anat_wf:anat_T1                -
+[-        ] anat_wf:anat_brainmask         -
+[-        ] anat_wf:anat_paint_cc_to_aseg  -
+[-        ] anat_wf:anat_fill              -
+[-        ] anat_wf:subject_id_hemi_lh     -
+[-        ] anat_wf:subject_id_hemi_rh     -
+[-        ] anat_wf:split_hemi_orig_mgz    -
+[-        ] anat_wf:split_hemi_rawavg_mgz  -
+[-        ] ana…f:split_hemi_brainmask_mgz -
+[-        ] ana…plit_hemi_aseg_presurf_mgz -
+[-        ] ana…_hemi_brain_finalsurfs_mgz -
+Plus 7 more processes waiting for tasks…
+
+[-        ] deepprep_init                  -
+[-        ] ana…:anat_get_t1w_file_in_bids -
+[-        ] ana…at_create_subject_orig_dir -
+[-        ] anat_wf:anat_create_summary    -
+[-        ] anat_wf:anat_motioncor         -
+[-        ] anat_wf:anat_segment           -
+[-        ] anat_wf:anat_reduce_to_aseg    -
+[-        ] anat_wf:anat_N4_bias_correct   -
+[-        ] anat_wf:anat_talairach_and_nu  -
+[-        ] anat_wf:anat_T1                -
+[-        ] anat_wf:anat_brainmask         -
+[-        ] anat_wf:anat_paint_cc_to_aseg  -
+[-        ] anat_wf:anat_fill              -
+[-        ] anat_wf:subject_id_hemi_lh     -
+[-        ] anat_wf:subject_id_hemi_rh     -
+[-        ] anat_wf:split_hemi_orig_mgz    -
+[-        ] anat_wf:split_hemi_rawavg_mgz  -
+[-        ] ana…f:split_hemi_brainmask_mgz -
+[-        ] ana…plit_hemi_aseg_presurf_mgz -
+[-        ] ana…_hemi_brain_finalsurfs_mgz -
+Plus 19 more processes waiting for tasks…
+
+[-        ] deepprep_init                  -
+[-        ] ana…:anat_get_t1w_file_in_bids -
+[-        ] ana…at_create_subject_orig_dir -
+[-        ] anat_wf:anat_create_summary    -
+[-        ] anat_wf:anat_motioncor         -
+[-        ] anat_wf:anat_segment           -
+[-        ] anat_wf:anat_reduce_to_aseg    -
+[-        ] anat_wf:anat_N4_bias_correct   -
+[-        ] anat_wf:anat_talairach_and_nu  -
+[-        ] anat_wf:anat_T1                -
+[-        ] anat_wf:anat_brainmask         -
+[-        ] anat_wf:anat_paint_cc_to_aseg  -
+[-        ] anat_wf:anat_fill              -
+[-        ] anat_wf:subject_id_hemi_lh     -
+[-        ] anat_wf:subject_id_hemi_rh     -
+[-        ] anat_wf:split_hemi_orig_mgz    -
+[-        ] anat_wf:split_hemi_rawavg_mgz  -
+[-        ] ana…f:split_hemi_brainmask_mgz -
+[-        ] ana…plit_hemi_aseg_presurf_mgz -
+[-        ] ana…_hemi_brain_finalsurfs_mgz -
+Plus 25 more processes waiting for tasks…
+
+executor >  local (1)
+[e1/ece15b] deepprep_init                  | 0 of 1
+[-        ] ana…:anat_get_t1w_file_in_bids -
+[-        ] ana…at_create_subject_orig_dir -
+[-        ] anat_wf:anat_create_summary    -
+[-        ] anat_wf:anat_motioncor         -
+[-        ] anat_wf:anat_segment           -
+[-        ] anat_wf:anat_reduce_to_aseg    -
+[-        ] anat_wf:anat_N4_bias_correct   -
+[-        ] anat_wf:anat_talairach_and_nu  -
+[-        ] anat_wf:anat_T1                -
+[-        ] anat_wf:anat_brainmask         -
+[-        ] anat_wf:anat_paint_cc_to_aseg  -
+[-        ] anat_wf:anat_fill              -
+[-        ] anat_wf:subject_id_hemi_lh     -
+[-        ] anat_wf:subject_id_hemi_rh     -
+[-        ] anat_wf:split_hemi_orig_mgz    -
+[-        ] anat_wf:split_hemi_rawavg_mgz  -
+[-        ] ana…f:split_hemi_brainmask_mgz -
+[-        ] ana…plit_hemi_aseg_presurf_mgz -
+[-        ] ana…_hemi_brain_finalsurfs_mgz -
+Plus 25 more processes waiting for tasks…
+
+executor >  local (1)
+[e1/ece15b] deepprep_init                  | 0 of 1
+[-        ] ana…:anat_get_t1w_file_in_bids -
+[-        ] ana…at_create_subject_orig_dir -
+[-        ] anat_wf:anat_create_summary    -
+[-        ] anat_wf:anat_motioncor         -
+[-        ] anat_wf:anat_segment           -
+[-        ] anat_wf:anat_reduce_to_aseg    -
+[-        ] anat_wf:anat_N4_bias_correct   -
+[-        ] anat_wf:anat_talairach_and_nu  -
+[-        ] anat_wf:anat_T1                -
+[-        ] anat_wf:anat_brainmask         -
+[-        ] anat_wf:anat_paint_cc_to_aseg  -
+[-        ] anat_wf:anat_fill              -
+[-        ] anat_wf:subject_id_hemi_lh     -
+[-        ] anat_wf:subject_id_hemi_rh     -
+[-        ] anat_wf:split_hemi_orig_mgz    -
+[-        ] anat_wf:split_hemi_rawavg_mgz  -
+[-        ] ana…f:split_hemi_brainmask_mgz -
+[-        ] ana…plit_hemi_aseg_presurf_mgz -
+[-        ] ana…_hemi_brain_finalsurfs_mgz -
+Plus 25 more processes waiting for tasks…
+
+executor >  local (2)
+[e1/ece15b] deepprep_init                  | 1 of 1 ✔
+[4b/f4fc0d] ana…:anat_get_t1w_file_in_bids | 0 of 1
+[-        ] ana…at_create_subject_orig_dir -
+[-        ] anat_wf:anat_create_summary    -
+[-        ] anat_wf:anat_motioncor         -
+[-        ] anat_wf:anat_segment           -
+[-        ] anat_wf:anat_reduce_to_aseg    -
+[-        ] anat_wf:anat_N4_bias_correct   -
+[-        ] anat_wf:anat_talairach_and_nu  -
+[-        ] anat_wf:anat_T1                -
+[-        ] anat_wf:anat_brainmask         -
+[-        ] anat_wf:anat_paint_cc_to_aseg  -
+[-        ] anat_wf:anat_fill              -
+[-        ] anat_wf:subject_id_hemi_lh     -
+[-        ] anat_wf:subject_id_hemi_rh     -
+[-        ] anat_wf:split_hemi_orig_mgz    -
+[-        ] anat_wf:split_hemi_rawavg_mgz  -
+[-        ] ana…f:split_hemi_brainmask_mgz -
+[-        ] ana…plit_hemi_aseg_presurf_mgz -
+[-        ] ana…_hemi_brain_finalsurfs_mgz -
+Plus 25 more processes waiting for tasks…
+
+executor >  local (3)
+[e1/ece15b] deepprep_init                  | 1 of 1 ✔
+[4b/f4fc0d] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[ff/a912c4] ana…subject_orig_dir (sub-101) | 0 of 1
+[-        ] anat_wf:anat_create_summary    -
+[-        ] anat_wf:anat_motioncor         -
+[-        ] anat_wf:anat_segment           -
+[-        ] anat_wf:anat_reduce_to_aseg    -
+[-        ] anat_wf:anat_N4_bias_correct   -
+[-        ] anat_wf:anat_talairach_and_nu  -
+[-        ] anat_wf:anat_T1                -
+[-        ] anat_wf:anat_brainmask         -
+[-        ] anat_wf:anat_paint_cc_to_aseg  -
+[-        ] anat_wf:anat_fill              -
+[-        ] anat_wf:subject_id_hemi_lh     -
+[-        ] anat_wf:subject_id_hemi_rh     -
+[-        ] anat_wf:split_hemi_orig_mgz    -
+[-        ] anat_wf:split_hemi_rawavg_mgz  -
+[-        ] ana…f:split_hemi_brainmask_mgz -
+[-        ] ana…plit_hemi_aseg_presurf_mgz -
+[-        ] ana…_hemi_brain_finalsurfs_mgz -
+Plus 25 more processes waiting for tasks…
+
+executor >  local (5)
+[e1/ece15b] deepprep_init                  | 1 of 1 ✔
+[4b/f4fc0d] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[ff/a912c4] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[5b/7b0400] ana…t_create_summary (sub-101) | 0 of 1
+[1a/0e7d79] ana…f:anat_motioncor (sub-101) | 0 of 1
+[-        ] anat_wf:anat_segment           -
+[-        ] anat_wf:anat_reduce_to_aseg    -
+[-        ] anat_wf:anat_N4_bias_correct   -
+[-        ] anat_wf:anat_talairach_and_nu  -
+[-        ] anat_wf:anat_T1                -
+[-        ] anat_wf:anat_brainmask         -
+[-        ] anat_wf:anat_paint_cc_to_aseg  -
+[-        ] anat_wf:anat_fill              -
+[-        ] anat_wf:subject_id_hemi_lh     -
+[-        ] anat_wf:subject_id_hemi_rh     -
+[-        ] anat_wf:split_hemi_orig_mgz    -
+[-        ] anat_wf:split_hemi_rawavg_mgz  -
+[-        ] ana…f:split_hemi_brainmask_mgz -
+[-        ] ana…plit_hemi_aseg_presurf_mgz -
+[-        ] ana…_hemi_brain_finalsurfs_mgz -
+Plus 25 more processes waiting for tasks…
+
+executor >  local (5)
+[e1/ece15b] deepprep_init                  | 1 of 1 ✔
+[4b/f4fc0d] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[ff/a912c4] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[5b/7b0400] ana…t_create_summary (sub-101) | 0 of 1
+[1a/0e7d79] ana…f:anat_motioncor (sub-101) | 0 of 1
+[-        ] anat_wf:anat_segment           -
+[-        ] anat_wf:anat_reduce_to_aseg    -
+[-        ] anat_wf:anat_N4_bias_correct   -
+[-        ] anat_wf:anat_talairach_and_nu  -
+[-        ] anat_wf:anat_T1                -
+[-        ] anat_wf:anat_brainmask         -
+[-        ] anat_wf:anat_paint_cc_to_aseg  -
+[-        ] anat_wf:anat_fill              -
+[-        ] anat_wf:subject_id_hemi_lh     -
+[-        ] anat_wf:subject_id_hemi_rh     -
+[-        ] anat_wf:split_hemi_orig_mgz    -
+[-        ] anat_wf:split_hemi_rawavg_mgz  -
+[-        ] ana…f:split_hemi_brainmask_mgz -
+[-        ] ana…plit_hemi_aseg_presurf_mgz -
+[-        ] ana…_hemi_brain_finalsurfs_mgz -
+Plus 25 more processes waiting for tasks…
+
+executor >  local (5)
+[e1/ece15b] deepprep_init                  | 1 of 1 ✔
+[4b/f4fc0d] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[ff/a912c4] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[5b/7b0400] ana…t_create_summary (sub-101) | 0 of 1
+[1a/0e7d79] ana…f:anat_motioncor (sub-101) | 0 of 1
+[-        ] anat_wf:anat_segment           -
+[-        ] anat_wf:anat_reduce_to_aseg    -
+[-        ] anat_wf:anat_N4_bias_correct   -
+[-        ] anat_wf:anat_talairach_and_nu  -
+[-        ] anat_wf:anat_T1                -
+[-        ] anat_wf:anat_brainmask         -
+[-        ] anat_wf:anat_paint_cc_to_aseg  -
+[-        ] anat_wf:anat_fill              -
+[-        ] anat_wf:subject_id_hemi_lh     -
+[-        ] anat_wf:subject_id_hemi_rh     -
+[-        ] anat_wf:split_hemi_orig_mgz    -
+[-        ] anat_wf:split_hemi_rawavg_mgz  -
+[-        ] ana…f:split_hemi_brainmask_mgz -
+[-        ] ana…plit_hemi_aseg_presurf_mgz -
+[-        ] ana…_hemi_brain_finalsurfs_mgz -
+Plus 25 more processes waiting for tasks…
+ERROR ~ Error executing process > 'anat_wf:anat_motioncor (sub-101)'
+
+Caused by:
+  Process `anat_wf:anat_motioncor (sub-101)` terminated with an error exit status (1)
+
+
+Command executed:
+
+  recon-all -sd /output/Recon -subject sub-101 -motioncor -threads 8 -itkthreads 8 -no-isrunning
+
+Command exit status:
+  1
+
+Command output:
+  Actual FREESURFER_HOME /opt/freesurfer
+  -rw-rw-r-- 1 root root 184961 Apr 24 02:20 /output/Recon/sub-101/scripts/recon-all.log
+  Linux de0c2c85f4c6 5.15.0-176-generic #186-Ubuntu SMP Fri Mar 13 11:01:42 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+  #--------------------------------------------
+  #@# MotionCor Fri Apr 24 02:25:47 UTC 2026
+  Found 2 runs
+  /output/Recon/sub-101/mri/orig/001.mgz
+  /output/Recon/sub-101/mri/orig/002.mgz
+  Checking for (invalid) multi-frame inputs...
+  Checking for (invalid) multi-frame inputs...
+  #-----------------------------------------------
+  /output/Recon/sub-101
+  
+   mri_robust_template --mov /output/Recon/sub-101/mri/orig/001.mgz /output/Recon/sub-101/mri/orig/002.mgz --average 1 --template /output/Recon/sub-101/mri/rawavg.mgz --satit --inittp 1 --fixtp --noit --iscale --iscaleout /output/Recon/sub-101/mri/orig/001-iscale.txt /output/Recon/sub-101/mri/orig/002-iscale.txt --subsample 200 --lta /output/Recon/sub-101/mri/orig/001.lta /output/Recon/sub-101/mri/orig/002.lta 
+  
+  7.2.0
+  
+  --mov: Using /output/Recon/sub-101/mri/orig/001.mgz as movable/source volume.
+  --mov: Using /output/Recon/sub-101/mri/orig/002.mgz as movable/source volume.
+      Total: 2 input volumes
+  --average: Using method 1 for template computation.
+  --template: Using /output/Recon/sub-101/mri/rawavg.mgz as template output volume.
+  --satit: Will estimate SAT iteratively!
+  --inittp: Using TP 1 as target for initialization
+  --fixtp: Will map everything to init TP!
+  --noit: Will output only first template (no iterations)!
+  --iscale: Enabling intensity scaling!
+  --iscaleout: Will perform intensity scaling and output results
+  --subsample: Will subsample if size is larger than 200 on all axes!
+  --lta: Will output LTA transforms
+  Setting iscale ...
+  reading source '/output/Recon/sub-101/mri/orig/001.mgz'...
+  converting source '/output/Recon/sub-101/mri/orig/001.mgz' to bspline ...
+  MRItoBSpline degree 3
+  reading source '/output/Recon/sub-101/mri/orig/002.mgz'...
+  converting source '/output/Recon/sub-101/mri/orig/002.mgz' to bspline ...
+  MRItoBSpline degree 3
+  ERROR: MultiRegistration::loadMovables: images have different voxel sizes.
+    Currently not supported, maybe first make conform?
+    Debug info: size(1) = 1, 1, 1   size(0) = 0.88, 1.2, 0.88
+  error: No such file or directory
+  error: MultiRegistration::loadMovables: voxel size is different /output/Recon/sub-101/mri/orig/002.mgz.
+   
+  Linux de0c2c85f4c6 5.15.0-176-generic #186-Ubuntu SMP Fri Mar 13 11:01:42 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+  
+  recon-all -s sub-101 exited with ERRORS at Fri Apr 24 02:25:50 UTC 2026
+  
+  For more details, see the log file /output/Recon/sub-101/scripts/recon-all.log
+  To report a problem, see http://surfer.nmr.mgh.harvard.edu/fswiki/BugReporting
+
+Command error:
+  Actual FREESURFER_HOME /opt/freesurfer
+  -rw-rw-r-- 1 root root 184961 Apr 24 02:20 /output/Recon/sub-101/scripts/recon-all.log
+  Linux de0c2c85f4c6 5.15.0-176-generic #186-Ubuntu SMP Fri Mar 13 11:01:42 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+  #--------------------------------------------
+  #@# MotionCor Fri Apr 24 02:25:47 UTC 2026
+  Found 2 runs
+  /output/Recon/sub-101/mri/orig/001.mgz
+  /output/Recon/sub-101/mri/orig/002.mgz
+  Checking for (invalid) multi-frame inputs...
+  Checking for (invalid) multi-frame inputs...
+  #-----------------------------------------------
+  /output/Recon/sub-101
+  
+   mri_robust_template --mov /output/Recon/sub-101/mri/orig/001.mgz /output/Recon/sub-101/mri/orig/002.mgz --average 1 --template /output/Recon/sub-101/mri/rawavg.mgz --satit --inittp 1 --fixtp --noit --iscale --iscaleout /output/Recon/sub-101/mri/orig/001-iscale.txt /output/Recon/sub-101/mri/orig/002-iscale.txt --subsample 200 --lta /output/Recon/sub-101/mri/orig/001.lta /output/Recon/sub-101/mri/orig/002.lta 
+  
+  7.2.0
+  
+  --mov: Using /output/Recon/sub-101/mri/orig/001.mgz as movable/source volume.
+  --mov: Using /output/Recon/sub-101/mri/orig/002.mgz as movable/source volume.
+      Total: 2 input volumes
+  --average: Using method 1 for template computation.
+  --template: Using /output/Recon/sub-101/mri/rawavg.mgz as template output volume.
+  --satit: Will estimate SAT iteratively!
+  --inittp: Using TP 1 as target for initialization
+  --fixtp: Will map everything to init TP!
+  --noit: Will output only first template (no iterations)!
+  --iscale: Enabling intensity scaling!
+  --iscaleout: Will perform intensity scaling and output results
+  --subsample: Will subsample if size is larger than 200 on all axes!
+  --lta: Will output LTA transforms
+  Setting iscale ...
+  reading source '/output/Recon/sub-101/mri/orig/001.mgz'...
+  converting source '/output/Recon/sub-101/mri/orig/001.mgz' to bspline ...
+  MRItoBSpline degree 3
+  reading source '/output/Recon/sub-101/mri/orig/002.mgz'...
+  converting source '/output/Recon/sub-101/mri/orig/002.mgz' to bspline ...
+  MRItoBSpline degree 3
+  ERROR: MultiRegistration::loadMovables: images have different voxel sizes.
+    Currently not supported, maybe first make conform?
+    Debug info: size(1) = 1, 1, 1   size(0) = 0.88, 1.2, 0.88
+  error: No such file or directory
+  error: MultiRegistration::loadMovables: voxel size is different /output/Recon/sub-101/mri/orig/002.mgz.
+   
+  Linux de0c2c85f4c6 5.15.0-176-generic #186-Ubuntu SMP Fri Mar 13 11:01:42 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+  
+  recon-all -s sub-101 exited with ERRORS at Fri Apr 24 02:25:50 UTC 2026
+  
+  For more details, see the log file /output/Recon/sub-101/scripts/recon-all.log
+  To report a problem, see http://surfer.nmr.mgh.harvard.edu/fswiki/BugReporting
+
+Work dir:
+  /output/WorkDir/nextflow/1a/0e7d7906a454b03373f9d1e9cec283
+
+Tip: you can try to figure out what's wrong by changing to the process work dir and showing the script file named `.command.sh`
+
+ -- Check '.nextflow.log' file for details
+WARN: Killing running tasks (1)
+
+executor >  local (5)
+[e1/ece15b] deepprep_init                  | 1 of 1 ✔
+[4b/f4fc0d] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[ff/a912c4] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[5b/7b0400] ana…t_create_summary (sub-101) | 0 of 1
+[1a/0e7d79] ana…f:anat_motioncor (sub-101) | 1 of 1, failed: 1 ✘
+[-        ] anat_wf:anat_segment           -
+[-        ] anat_wf:anat_reduce_to_aseg    -
+[-        ] anat_wf:anat_N4_bias_correct   -
+[-        ] anat_wf:anat_talairach_and_nu  -
+[-        ] anat_wf:anat_T1                -
+[-        ] anat_wf:anat_brainmask         -
+[-        ] anat_wf:anat_paint_cc_to_aseg  -
+[-        ] anat_wf:anat_fill              -
+[-        ] anat_wf:subject_id_hemi_lh     -
+[-        ] anat_wf:subject_id_hemi_rh     -
+[-        ] anat_wf:split_hemi_orig_mgz    -
+[-        ] anat_wf:split_hemi_rawavg_mgz  -
+[-        ] ana…f:split_hemi_brainmask_mgz -
+[-        ] ana…plit_hemi_aseg_presurf_mgz -
+[-        ] ana…_hemi_brain_finalsurfs_mgz -
+Plus 25 more processes waiting for tasks…
+ERROR ~ Error executing process > 'anat_wf:anat_motioncor (sub-101)'
+
+Caused by:
+  Process `anat_wf:anat_motioncor (sub-101)` terminated with an error exit status (1)
+
+
+Command executed:
+
+  recon-all -sd /output/Recon -subject sub-101 -motioncor -threads 8 -itkthreads 8 -no-isrunning
+
+Command exit status:
+  1
+
+Command output:
+  Actual FREESURFER_HOME /opt/freesurfer
+  -rw-rw-r-- 1 root root 184961 Apr 24 02:20 /output/Recon/sub-101/scripts/recon-all.log
+  Linux de0c2c85f4c6 5.15.0-176-generic #186-Ubuntu SMP Fri Mar 13 11:01:42 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+  #--------------------------------------------
+  #@# MotionCor Fri Apr 24 02:25:47 UTC 2026
+  Found 2 runs
+  /output/Recon/sub-101/mri/orig/001.mgz
+  /output/Recon/sub-101/mri/orig/002.mgz
+  Checking for (invalid) multi-frame inputs...
+  Checking for (invalid) multi-frame inputs...
+  #-----------------------------------------------
+  /output/Recon/sub-101
+  
+   mri_robust_template --mov /output/Recon/sub-101/mri/orig/001.mgz /output/Recon/sub-101/mri/orig/002.mgz --average 1 --template /output/Recon/sub-101/mri/rawavg.mgz --satit --inittp 1 --fixtp --noit --iscale --iscaleout /output/Recon/sub-101/mri/orig/001-iscale.txt /output/Recon/sub-101/mri/orig/002-iscale.txt --subsample 200 --lta /output/Recon/sub-101/mri/orig/001.lta /output/Recon/sub-101/mri/orig/002.lta 
+  
+  7.2.0
+  
+  --mov: Using /output/Recon/sub-101/mri/orig/001.mgz as movable/source volume.
+  --mov: Using /output/Recon/sub-101/mri/orig/002.mgz as movable/source volume.
+      Total: 2 input volumes
+  --average: Using method 1 for template computation.
+  --template: Using /output/Recon/sub-101/mri/rawavg.mgz as template output volume.
+  --satit: Will estimate SAT iteratively!
+  --inittp: Using TP 1 as target for initialization
+  --fixtp: Will map everything to init TP!
+  --noit: Will output only first template (no iterations)!
+  --iscale: Enabling intensity scaling!
+  --iscaleout: Will perform intensity scaling and output results
+  --subsample: Will subsample if size is larger than 200 on all axes!
+  --lta: Will output LTA transforms
+  Setting iscale ...
+  reading source '/output/Recon/sub-101/mri/orig/001.mgz'...
+  converting source '/output/Recon/sub-101/mri/orig/001.mgz' to bspline ...
+  MRItoBSpline degree 3
+  reading source '/output/Recon/sub-101/mri/orig/002.mgz'...
+  converting source '/output/Recon/sub-101/mri/orig/002.mgz' to bspline ...
+  MRItoBSpline degree 3
+  ERROR: MultiRegistration::loadMovables: images have different voxel sizes.
+    Currently not supported, maybe first make conform?
+    Debug info: size(1) = 1, 1, 1   size(0) = 0.88, 1.2, 0.88
+  error: No such file or directory
+  error: MultiRegistration::loadMovables: voxel size is different /output/Recon/sub-101/mri/orig/002.mgz.
+   
+  Linux de0c2c85f4c6 5.15.0-176-generic #186-Ubuntu SMP Fri Mar 13 11:01:42 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+  
+  recon-all -s sub-101 exited with ERRORS at Fri Apr 24 02:25:50 UTC 2026
+  
+  For more details, see the log file /output/Recon/sub-101/scripts/recon-all.log
+  To report a problem, see http://surfer.nmr.mgh.harvard.edu/fswiki/BugReporting
+
+Command error:
+  Actual FREESURFER_HOME /opt/freesurfer
+  -rw-rw-r-- 1 root root 184961 Apr 24 02:20 /output/Recon/sub-101/scripts/recon-all.log
+  Linux de0c2c85f4c6 5.15.0-176-generic #186-Ubuntu SMP Fri Mar 13 11:01:42 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+  #--------------------------------------------
+  #@# MotionCor Fri Apr 24 02:25:47 UTC 2026
+  Found 2 runs
+  /output/Recon/sub-101/mri/orig/001.mgz
+  /output/Recon/sub-101/mri/orig/002.mgz
+  Checking for (invalid) multi-frame inputs...
+  Checking for (invalid) multi-frame inputs...
+  #-----------------------------------------------
+  /output/Recon/sub-101
+  
+   mri_robust_template --mov /output/Recon/sub-101/mri/orig/001.mgz /output/Recon/sub-101/mri/orig/002.mgz --average 1 --template /output/Recon/sub-101/mri/rawavg.mgz --satit --inittp 1 --fixtp --noit --iscale --iscaleout /output/Recon/sub-101/mri/orig/001-iscale.txt /output/Recon/sub-101/mri/orig/002-iscale.txt --subsample 200 --lta /output/Recon/sub-101/mri/orig/001.lta /output/Recon/sub-101/mri/orig/002.lta 
+  
+  7.2.0
+  
+  --mov: Using /output/Recon/sub-101/mri/orig/001.mgz as movable/source volume.
+  --mov: Using /output/Recon/sub-101/mri/orig/002.mgz as movable/source volume.
+      Total: 2 input volumes
+  --average: Using method 1 for template computation.
+  --template: Using /output/Recon/sub-101/mri/rawavg.mgz as template output volume.
+  --satit: Will estimate SAT iteratively!
+  --inittp: Using TP 1 as target for initialization
+  --fixtp: Will map everything to init TP!
+  --noit: Will output only first template (no iterations)!
+  --iscale: Enabling intensity scaling!
+  --iscaleout: Will perform intensity scaling and output results
+  --subsample: Will subsample if size is larger than 200 on all axes!
+  --lta: Will output LTA transforms
+  Setting iscale ...
+  reading source '/output/Recon/sub-101/mri/orig/001.mgz'...
+  converting source '/output/Recon/sub-101/mri/orig/001.mgz' to bspline ...
+  MRItoBSpline degree 3
+  reading source '/output/Recon/sub-101/mri/orig/002.mgz'...
+  converting source '/output/Recon/sub-101/mri/orig/002.mgz' to bspline ...
+  MRItoBSpline degree 3
+  ERROR: MultiRegistration::loadMovables: images have different voxel sizes.
+    Currently not supported, maybe first make conform?
+    Debug info: size(1) = 1, 1, 1   size(0) = 0.88, 1.2, 0.88
+  error: No such file or directory
+  error: MultiRegistration::loadMovables: voxel size is different /output/Recon/sub-101/mri/orig/002.mgz.
+   
+  Linux de0c2c85f4c6 5.15.0-176-generic #186-Ubuntu SMP Fri Mar 13 11:01:42 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+  
+  recon-all -s sub-101 exited with ERRORS at Fri Apr 24 02:25:50 UTC 2026
+  
+  For more details, see the log file /output/Recon/sub-101/scripts/recon-all.log
+  To report a problem, see http://surfer.nmr.mgh.harvard.edu/fswiki/BugReporting
+
+Work dir:
+  /output/WorkDir/nextflow/1a/0e7d7906a454b03373f9d1e9cec283
+
+Tip: you can try to figure out what's wrong by changing to the process work dir and showing the script file named `.command.sh`
+
+ -- Check '.nextflow.log' file for details
+

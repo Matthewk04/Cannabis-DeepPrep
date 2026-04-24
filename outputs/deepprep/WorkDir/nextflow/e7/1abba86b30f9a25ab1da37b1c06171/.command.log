@@ -1,0 +1,112 @@
+Log file is /output/Recon/sub-101/scripts/pctsurfcon.log
+Fri Apr 24 02:55:48 UTC 2026
+setenv SUBJECTS_DIR /output/Recon
+cd /output/WorkDir/nextflow/e7/1abba86b30f9a25ab1da37b1c06171
+/opt/freesurfer/bin/pctsurfcon
+pctsurfcon 7.2.0
+Linux 8eb296a60dbd 5.15.0-176-generic #186-Ubuntu SMP Fri Mar 13 11:01:42 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+FREESURFER_HOME /opt/freesurfer
+mri_vol2surf --mov /output/Recon/sub-101/mri/rawavg.mgz --hemi lh --noreshape --interp trilinear --projdist -1 --o /output/Recon/sub-101/surf/tmp.pctsurfcon.67576/lh.wm.mgh --regheader sub-101 --cortex
+srcvol = /output/Recon/sub-101/mri/rawavg.mgz
+srcreg unspecified
+srcregold = 0
+srcwarp unspecified
+surf = white
+hemi = lh
+ProjDist = -1
+reshape = 0
+interp = trilinear
+float2int = round
+GetProjMax = 0
+INFO: float2int code = 0
+Done loading volume
+Computing registration from header.
+  Using /output/Recon/sub-101/mri/orig.mgz as target reference.
+-------- original matrix -----------
+ 0.99998   0.00605   0.00016   0.00000;
+ 0.00043  -0.09626   0.99536  -0.00002;
+ 0.00604  -0.99534  -0.09626   0.00001;
+ 0.00000   0.00000   0.00000   1.00000;
+-------- original matrix -----------
+Loading label /output/Recon/sub-101/label/lh.cortex.label
+Reading surface /output/Recon/sub-101/surf/lh.white
+Done reading source surface
+Mapping Source Volume onto Source Subject Surface
+ 1 -1 -1 -1
+using old
+Done mapping volume to surface
+Number of source voxels hit = 72792
+Masking with /output/Recon/sub-101/label/lh.cortex.label
+Writing to /output/Recon/sub-101/surf/tmp.pctsurfcon.67576/lh.wm.mgh
+Dim: 116790 1 1
+mri_vol2surf --mov /output/Recon/sub-101/mri/rawavg.mgz --hemi lh --noreshape --interp trilinear --o /output/Recon/sub-101/surf/tmp.pctsurfcon.67576/lh.gm.mgh --projfrac 0.3 --regheader sub-101 --cortex
+srcvol = /output/Recon/sub-101/mri/rawavg.mgz
+srcreg unspecified
+srcregold = 0
+srcwarp unspecified
+surf = white
+hemi = lh
+ProjFrac = 0.3
+thickness = thickness
+reshape = 0
+interp = trilinear
+float2int = round
+GetProjMax = 0
+INFO: float2int code = 0
+Done loading volume
+Computing registration from header.
+  Using /output/Recon/sub-101/mri/orig.mgz as target reference.
+-------- original matrix -----------
+ 0.99998   0.00605   0.00016   0.00000;
+ 0.00043  -0.09626   0.99536  -0.00002;
+ 0.00604  -0.99534  -0.09626   0.00001;
+ 0.00000   0.00000   0.00000   1.00000;
+-------- original matrix -----------
+Loading label /output/Recon/sub-101/label/lh.cortex.label
+Reading surface /output/Recon/sub-101/surf/lh.white
+Done reading source surface
+Reading thickness /output/Recon/sub-101/surf/lh.thickness
+Done
+Mapping Source Volume onto Source Subject Surface
+ 1 0.3 0.3 0.3
+using old
+Done mapping volume to surface
+Number of source voxels hit = 82706
+Masking with /output/Recon/sub-101/label/lh.cortex.label
+Writing to /output/Recon/sub-101/surf/tmp.pctsurfcon.67576/lh.gm.mgh
+Dim: 116790 1 1
+mri_concat /output/Recon/sub-101/surf/tmp.pctsurfcon.67576/lh.wm.mgh /output/Recon/sub-101/surf/tmp.pctsurfcon.67576/lh.gm.mgh --paired-diff-norm --mul 100 --o /output/Recon/sub-101/surf/lh.w-g.pct.mgh
+ninputs = 2
+Checking inputs
+nframestot = 2
+Allocing output
+Done allocing
+Combining pairs
+nframes = 1
+Multiplying by 100.000000
+Writing to /output/Recon/sub-101/surf/lh.w-g.pct.mgh
+mri_segstats --in /output/Recon/sub-101/surf/lh.w-g.pct.mgh --annot sub-101 lh aparc --sum /output/Recon/sub-101/stats/lh.w-g.pct.stats --snr
+
+7.2.0
+cwd 
+cmdline mri_segstats --in /output/Recon/sub-101/surf/lh.w-g.pct.mgh --annot sub-101 lh aparc --sum /output/Recon/sub-101/stats/lh.w-g.pct.stats --snr 
+sysname  Linux
+hostname 8eb296a60dbd
+machine  x86_64
+user     root
+whitesurfname  white
+UseRobust  0
+Constructing seg from annotation
+
+Reading annotation /output/Recon/sub-101/label/lh.aparc.annot
+Seg base 1000
+Loading /output/Recon/sub-101/surf/lh.w-g.pct.mgh
+Vertex Area is 0.761714 mm^3
+Generating list of segmentation ids
+Found  36 segmentations
+Computing statistics for each segmentation
+
+Reporting on  35 segmentations
+Using PrintSegStat
+mri_segstats done
+Cleaning up

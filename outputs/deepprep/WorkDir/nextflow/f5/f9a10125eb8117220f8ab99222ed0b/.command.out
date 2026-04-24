@@ -1,0 +1,42 @@
+Subject Stamp: freesurfer-linux-ubuntu18_x86_64-7.2.0-20210721-aa8f76b
+Current Stamp: freesurfer-linux-ubuntu18_x86_64-7.2.0-20210721-aa8f76b
+INFO: SUBJECTS_DIR is /output/Recon
+Actual FREESURFER_HOME /opt/freesurfer
+Linux 8eb296a60dbd 5.15.0-176-generic #186-Ubuntu SMP Fri Mar 13 11:01:42 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+#--------------------------------------------
+#@# MotionCor Fri Apr 24 02:32:11 UTC 2026
+Found 1 runs
+/output/Recon/sub-101/mri/orig/001.mgz
+Checking for (invalid) multi-frame inputs...
+Only one run found so motion
+correction will not be performed. I'll
+copy the run to rawavg and continue.
+
+ cp /output/Recon/sub-101/mri/orig/001.mgz /output/Recon/sub-101/mri/rawavg.mgz 
+
+/output/Recon/sub-101
+
+ mri_convert /output/Recon/sub-101/mri/rawavg.mgz /output/Recon/sub-101/mri/orig.mgz --conform 
+
+mri_convert /output/Recon/sub-101/mri/rawavg.mgz /output/Recon/sub-101/mri/orig.mgz --conform 
+reading from /output/Recon/sub-101/mri/rawavg.mgz...
+TR=0.00, TE=0.00, TI=0.00, flip angle=0.00
+i_ras = (-0.999982, -0.00605133, -0.000157172)
+j_ras = (-0.00603835, 0.995337, 0.0962649)
+k_ras = (0.000426092, -0.0962641, 0.995356)
+changing data type from float to uchar (noscale = 0)...
+MRIchangeType: Building histogram 0 3922.31 1000, flo=0, fhi=0.999, dest_type=0
+Reslicing using trilinear interpolation 
+writing to /output/Recon/sub-101/mri/orig.mgz...
+
+ mri_add_xform_to_header -c /output/Recon/sub-101/mri/transforms/talairach.xfm /output/Recon/sub-101/mri/orig.mgz /output/Recon/sub-101/mri/orig.mgz 
+
+INFO: extension is mgz
+/output/Recon/sub-101/mri/transforms /output/Recon/sub-101 
+/output/Recon/sub-101 
+
+Started at Fri Apr 24 02:32:10 UTC 2026 
+Ended   at Fri Apr 24 02:32:22 UTC 2026
+#@#%# recon-all-run-time-hours 0.003
+recon-all -s sub-101 finished without error at Fri Apr 24 02:32:22 UTC 2026
+done

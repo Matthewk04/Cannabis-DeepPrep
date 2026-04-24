@@ -1,0 +1,19 @@
+
+ Generating cortex label... RemoveHipAmgy=1
+ NucAccIsMedialWall=0
+ mris->useRealRAS=0
+14 non-cortical segments detected
+only using segment with 4224 vertices
+erasing segment 1 (vno[0] = 15635)
+erasing segment 2 (vno[0] = 28543)
+erasing segment 3 (vno[0] = 32728)
+erasing segment 4 (vno[0] = 36694)
+erasing segment 5 (vno[0] = 38551)
+erasing segment 6 (vno[0] = 43999)
+erasing segment 7 (vno[0] = 44035)
+erasing segment 8 (vno[0] = 44142)
+erasing segment 9 (vno[0] = 54819)
+erasing segment 10 (vno[0] = 58516)
+erasing segment 11 (vno[0] = 58724)
+erasing segment 12 (vno[0] = 59022)
+erasing segment 13 (vno[0] = 65055)

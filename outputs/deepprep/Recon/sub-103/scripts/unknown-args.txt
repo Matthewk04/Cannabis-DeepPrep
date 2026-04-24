@@ -1,0 +1,10 @@
+-sd
+/output/Recon
+-subject
+sub-103
+-motioncor
+-threads
+8
+-itkthreads
+8
+-no-isrunning

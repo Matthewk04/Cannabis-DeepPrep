@@ -1,0 +1,21 @@
+Filesystem      Size  Used Avail Use% Mounted on
+overlay          97G   49G   49G  50% /
+tmpfs            64M     0   64M   0% /dev
+shm             8.0G     0  8.0G   0% /dev/shm
+tmpfs           1.6G  1.4M  1.6G   1% /run/nvidia-persistenced/socket
+/dev/vda1        97G   49G   49G  50% /usr/bin/nvidia-smi
+tmpfs           4.0K  4.0K     0 100% /run/nvidia-ctk-hookf31b42ec-6dce-4028-a1f4-acf4f25a660c
+tmpfs           7.9G     0  7.9G   0% /proc/acpi
+tmpfs           7.9G     0  7.9G   0% /proc/scsi
+tmpfs           7.9G     0  7.9G   0% /sys/devices/virtual/powercap
+tmpfs           7.9G     0  7.9G   0% /sys/firmware
+set gpu lock
+connect to StrictRedis DB
+sending incremental file list
+
+sent 3,049 bytes  received 19 bytes  6,136.00 bytes/sec
+total size is 116,825,961  speedup is 38,078.87
+sending incremental file list
+
+sent 9,443 bytes  received 34 bytes  18,954.00 bytes/sec
+total size is 503,536,476  speedup is 53,132.48

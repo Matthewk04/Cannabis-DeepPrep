@@ -1,0 +1,234 @@
+INFO: args: /input /output participant --anat_only --fs_license_file /fs_license.txt --cpus 10 --memory 20 --skip_bids_validation --participant_label cannabis01
+Input --fs_license_file : /fs_license.txt
+Input --cpus : 10
+Input --memory : 20 GB
+INFO: create  nextflow WorkDir: /output/WorkDir/nextflow
+INFO: create  nextflow WorkDir: /output/WorkDir/home
+INFO: create  nextflow WorkDir: /output/WorkDir/tmp
+INFO: run_config : /output/WorkDir/nextflow/run.config
+INFO: Starting Redis...
+INFO: Redis is running.
+INFO: /home/deepprep/matlab/startup.m does not exist ... creating
+
+ N E X T F L O W   ~  version 24.10.3
+
+Launching `/opt/DeepPrep/deepprep/nextflow/deepprep.nf` [exotic_morse] DSL2 - revision: e26eff89fa
+
+DEBUG: params           : [profile:standard, bids_dir:/input, subjects_dir:None, output_dir:/output, participant_label:cannabis01, skip_bids_validation:true, anat_only:true, bold_only:False, bold_cifti:False, bold_task_type:, bold_skip_frame:0, bold_bandpass:0.01-0.08, bold_sdc:True, bold_confounds:True, bold_surface_spaces:fsaverage6, bold_volume_space:MNI152NLin6Asym, bold_volume_res:02, exec_env:docker, python:, device:auto, mriqc:False, debug:False, fs_threads:8, freesurfer_home:/opt/freesurfer, fs_license_file:/fs_license.txt, deepprep_home:/opt/DeepPrep, fastsurfer_home:/opt/DeepPrep/deepprep/FastSurfer, fastcsr_home:/opt/DeepPrep/deepprep/FastCSR, fastcsr_model_path:/opt/model/FastCSR, surfreg_home:/opt/DeepPrep/deepprep/SUGAR, surfreg_model_path:/opt/model/SUGAR/model_files, synthmorph_home:/opt/DeepPrep/deepprep/SynthMorph, synthmorph_model_path:/opt/model/SynthMorph/models, qc_utils_path:/opt/DeepPrep/deepprep/nextflow/bin/qc_tool, reports_utils_path:/opt/DeepPrep/deepprep/nextflow/bin/reports, deepprep_version:25.1.0, preprocess_others:False, cpus:10, memory:20]
+INFO: bids_dir           : /input
+INFO: output_dir         : /output
+INFO: subjects_dir       : /output/Recon
+[-        ] deepprep_init                  -
+[-        ] ana…:anat_get_t1w_file_in_bids -
+[-        ] ana…at_create_subject_orig_dir -
+[-        ] anat_wf:anat_create_summary    -
+INFO: anat preprocess ONLY
+
+[-        ] deepprep_init                  -
+[-        ] ana…:anat_get_t1w_file_in_bids -
+[-        ] ana…at_create_subject_orig_dir -
+[-        ] anat_wf:anat_create_summary    -
+[-        ] anat_wf:anat_motioncor         -
+[-        ] anat_wf:anat_segment           -
+[-        ] anat_wf:anat_reduce_to_aseg    -
+[-        ] anat_wf:anat_N4_bias_correct   -
+[-        ] anat_wf:anat_talairach_and_nu  -
+[-        ] anat_wf:anat_T1                -
+[-        ] anat_wf:anat_brainmask         -
+[-        ] anat_wf:anat_paint_cc_to_aseg  -
+[-        ] anat_wf:anat_fill              -
+[-        ] anat_wf:subject_id_hemi_lh     -
+[-        ] anat_wf:subject_id_hemi_rh     -
+[-        ] anat_wf:split_hemi_orig_mgz    -
+[-        ] anat_wf:split_hemi_rawavg_mgz  -
+[-        ] ana…f:split_hemi_brainmask_mgz -
+[-        ] ana…plit_hemi_aseg_presurf_mgz -
+[-        ] ana…_hemi_brain_finalsurfs_mgz -
+Plus 2 more processes waiting for tasks…
+INFO: anat preprocess ONLY
+
+[-        ] deepprep_init                  -
+[-        ] ana…:anat_get_t1w_file_in_bids -
+[-        ] ana…at_create_subject_orig_dir -
+[-        ] anat_wf:anat_create_summary    -
+[-        ] anat_wf:anat_motioncor         -
+[-        ] anat_wf:anat_segment           -
+[-        ] anat_wf:anat_reduce_to_aseg    -
+[-        ] anat_wf:anat_N4_bias_correct   -
+[-        ] anat_wf:anat_talairach_and_nu  -
+[-        ] anat_wf:anat_T1                -
+[-        ] anat_wf:anat_brainmask         -
+[-        ] anat_wf:anat_paint_cc_to_aseg  -
+[-        ] anat_wf:anat_fill              -
+[-        ] anat_wf:subject_id_hemi_lh     -
+[-        ] anat_wf:subject_id_hemi_rh     -
+[-        ] anat_wf:split_hemi_orig_mgz    -
+[-        ] anat_wf:split_hemi_rawavg_mgz  -
+[-        ] ana…f:split_hemi_brainmask_mgz -
+[-        ] ana…plit_hemi_aseg_presurf_mgz -
+[-        ] ana…_hemi_brain_finalsurfs_mgz -
+Plus 16 more processes waiting for tasks…
+INFO: anat preprocess ONLY
+
+[-        ] deepprep_init                  -
+[-        ] ana…:anat_get_t1w_file_in_bids -
+[-        ] ana…at_create_subject_orig_dir -
+[-        ] anat_wf:anat_create_summary    -
+[-        ] anat_wf:anat_motioncor         -
+[-        ] anat_wf:anat_segment           -
+[-        ] anat_wf:anat_reduce_to_aseg    -
+[-        ] anat_wf:anat_N4_bias_correct   -
+[-        ] anat_wf:anat_talairach_and_nu  -
+[-        ] anat_wf:anat_T1                -
+[-        ] anat_wf:anat_brainmask         -
+[-        ] anat_wf:anat_paint_cc_to_aseg  -
+[-        ] anat_wf:anat_fill              -
+[-        ] anat_wf:subject_id_hemi_lh     -
+[-        ] anat_wf:subject_id_hemi_rh     -
+[-        ] anat_wf:split_hemi_orig_mgz    -
+[-        ] anat_wf:split_hemi_rawavg_mgz  -
+[-        ] ana…f:split_hemi_brainmask_mgz -
+[-        ] ana…plit_hemi_aseg_presurf_mgz -
+[-        ] ana…_hemi_brain_finalsurfs_mgz -
+Plus 25 more processes waiting for tasks…
+INFO: anat preprocess ONLY
+
+executor >  local (1)
+[26/52dbab] deepprep_init                  | 0 of 1
+[-        ] ana…:anat_get_t1w_file_in_bids -
+[-        ] ana…at_create_subject_orig_dir -
+[-        ] anat_wf:anat_create_summary    -
+[-        ] anat_wf:anat_motioncor         -
+[-        ] anat_wf:anat_segment           -
+[-        ] anat_wf:anat_reduce_to_aseg    -
+[-        ] anat_wf:anat_N4_bias_correct   -
+[-        ] anat_wf:anat_talairach_and_nu  -
+[-        ] anat_wf:anat_T1                -
+[-        ] anat_wf:anat_brainmask         -
+[-        ] anat_wf:anat_paint_cc_to_aseg  -
+[-        ] anat_wf:anat_fill              -
+[-        ] anat_wf:subject_id_hemi_lh     -
+[-        ] anat_wf:subject_id_hemi_rh     -
+[-        ] anat_wf:split_hemi_orig_mgz    -
+[-        ] anat_wf:split_hemi_rawavg_mgz  -
+[-        ] ana…f:split_hemi_brainmask_mgz -
+[-        ] ana…plit_hemi_aseg_presurf_mgz -
+[-        ] ana…_hemi_brain_finalsurfs_mgz -
+Plus 25 more processes waiting for tasks…
+INFO: anat preprocess ONLY
+
+executor >  local (2)
+[26/52dbab] deepprep_init                  | 1 of 1 ✔
+[3c/9655d0] ana…:anat_get_t1w_file_in_bids | 0 of 1
+[-        ] ana…at_create_subject_orig_dir -
+[-        ] anat_wf:anat_create_summary    -
+[-        ] anat_wf:anat_motioncor         -
+[-        ] anat_wf:anat_segment           -
+[-        ] anat_wf:anat_reduce_to_aseg    -
+[-        ] anat_wf:anat_N4_bias_correct   -
+[-        ] anat_wf:anat_talairach_and_nu  -
+[-        ] anat_wf:anat_T1                -
+[-        ] anat_wf:anat_brainmask         -
+[-        ] anat_wf:anat_paint_cc_to_aseg  -
+[-        ] anat_wf:anat_fill              -
+[-        ] anat_wf:subject_id_hemi_lh     -
+[-        ] anat_wf:subject_id_hemi_rh     -
+[-        ] anat_wf:split_hemi_orig_mgz    -
+[-        ] anat_wf:split_hemi_rawavg_mgz  -
+[-        ] ana…f:split_hemi_brainmask_mgz -
+[-        ] ana…plit_hemi_aseg_presurf_mgz -
+[-        ] ana…_hemi_brain_finalsurfs_mgz -
+Plus 25 more processes waiting for tasks…
+
+
+executor >  local (2)
+[26/52dbab] deepprep_init                  | 1 of 1 ✔
+[3c/9655d0] ana…:anat_get_t1w_file_in_bids | 0 of 1
+[-        ] ana…at_create_subject_orig_dir -
+[-        ] anat_wf:anat_create_summary    -
+[-        ] anat_wf:anat_motioncor         -
+[-        ] anat_wf:anat_segment           -
+[-        ] anat_wf:anat_reduce_to_aseg    -
+[-        ] anat_wf:anat_N4_bias_correct   -
+[-        ] anat_wf:anat_talairach_and_nu  -
+[-        ] anat_wf:anat_T1                -
+[-        ] anat_wf:anat_brainmask         -
+[-        ] anat_wf:anat_paint_cc_to_aseg  -
+[-        ] anat_wf:anat_fill              -
+[-        ] anat_wf:subject_id_hemi_lh     -
+[-        ] anat_wf:subject_id_hemi_rh     -
+[-        ] anat_wf:split_hemi_orig_mgz    -
+[-        ] anat_wf:split_hemi_rawavg_mgz  -
+[-        ] ana…f:split_hemi_brainmask_mgz -
+[-        ] ana…plit_hemi_aseg_presurf_mgz -
+[-        ] ana…_hemi_brain_finalsurfs_mgz -
+Plus 25 more processes waiting for tasks…
+ERROR ~ Error executing process > 'anat_wf:anat_get_t1w_file_in_bids'
+
+Caused by:
+  Missing output file(s) `sub-*` expected by process `anat_wf:anat_get_t1w_file_in_bids`
+
+
+Command executed:
+
+  anat_get_t1w_file_in_bids.py --bids-dir /input --subject-ids cannabis01
+
+Command exit status:
+  0
+
+Command output:
+  (empty)
+
+Work dir:
+  /output/WorkDir/nextflow/3c/9655d0ec3238a3ff04cdbb217d772a
+
+Tip: you can try to figure out what's wrong by changing to the process work dir and showing the script file named `.command.sh`
+
+ -- Check '.nextflow.log' file for details
+
+executor >  local (2)
+[26/52dbab] deepprep_init                  | 1 of 1 ✔
+[3c/9655d0] ana…:anat_get_t1w_file_in_bids | 1 of 1, failed: 1 ✘
+[-        ] ana…at_create_subject_orig_dir -
+[-        ] anat_wf:anat_create_summary    -
+[-        ] anat_wf:anat_motioncor         -
+[-        ] anat_wf:anat_segment           -
+[-        ] anat_wf:anat_reduce_to_aseg    -
+[-        ] anat_wf:anat_N4_bias_correct   -
+[-        ] anat_wf:anat_talairach_and_nu  -
+[-        ] anat_wf:anat_T1                -
+[-        ] anat_wf:anat_brainmask         -
+[-        ] anat_wf:anat_paint_cc_to_aseg  -
+[-        ] anat_wf:anat_fill              -
+[-        ] anat_wf:subject_id_hemi_lh     -
+[-        ] anat_wf:subject_id_hemi_rh     -
+[-        ] anat_wf:split_hemi_orig_mgz    -
+[-        ] anat_wf:split_hemi_rawavg_mgz  -
+[-        ] ana…f:split_hemi_brainmask_mgz -
+[-        ] ana…plit_hemi_aseg_presurf_mgz -
+[-        ] ana…_hemi_brain_finalsurfs_mgz -
+Plus 25 more processes waiting for tasks…
+WARN: Got an interrupted exception while taking agent result | java.lang.InterruptedException
+ERROR ~ Error executing process > 'anat_wf:anat_get_t1w_file_in_bids'
+
+Caused by:
+  Missing output file(s) `sub-*` expected by process `anat_wf:anat_get_t1w_file_in_bids`
+
+
+Command executed:
+
+  anat_get_t1w_file_in_bids.py --bids-dir /input --subject-ids cannabis01
+
+Command exit status:
+  0
+
+Command output:
+  (empty)
+
+Work dir:
+  /output/WorkDir/nextflow/3c/9655d0ec3238a3ff04cdbb217d772a
+
+Tip: you can try to figure out what's wrong by changing to the process work dir and showing the script file named `.command.sh`
+
+ -- Check '.nextflow.log' file for details
+

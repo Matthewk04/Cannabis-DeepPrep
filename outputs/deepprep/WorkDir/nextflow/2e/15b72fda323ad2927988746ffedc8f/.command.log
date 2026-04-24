@@ -1,0 +1,44 @@
+INFO: Device select strategy: auto
+INFO: Auto select device by ： auto
+GPU INFO: 
+['0, Quadro RTX 6000, 22501 MiB, 23040 MiB, 20.27 W, 250.00 W\n']
+GPU INFO: 
+['0, Quadro RTX 6000, 22501 MiB, 23040 MiB, 20.27 W, 250.00 W\n']
+Choosing the GPU device has largest free memory...
+Sorted by free memory size
+Using GPU 0:
+index:0
+gpu_name:Quadro RTX 6000
+memory.free:22501
+memory.total:23040
+power.draw:20
+power.limit:250
+specified:False
+WARNNING: Auto select: GPU 0
+INFO: GPU: 0
+INFO: sys.argv : ['/opt/DeepPrep/deepprep/nextflow/bin/gpu_schedule_run.py', 'auto', '5000', 'executor', '/opt/DeepPrep/deepprep/SUGAR/predict.py', '--sd', '/output/Recon', '--sid', 'sub-101', '--fsd', '/opt/freesurfer', '--hemi', 'lh', '--model_path', '/opt/model/SUGAR/model_files', '--device', 'auto']
+connect to StrictRedis DB
+INFO: run_count : two
+lock_name: nextflow-local-gpu-1
+INFO: GPU: python3 /opt/DeepPrep/deepprep/SUGAR/predict.py --sd /output/Recon --sid sub-101 --fsd /opt/freesurfer --hemi lh --model_path /opt/model/SUGAR/model_files --device auto
+CUDA is available! You can use the GPU.
+interp: >>> /output/Recon/sub-101/tmp/surf/lh.orig.interp_fsaverage6.sulc
+interp: >>> /output/Recon/sub-101/tmp/surf/lh.orig.interp_fsaverage6.curv
+interp: >>> /output/Recon/sub-101/tmp/surf/lh.orig.interp_fsaverage6.sulc
+interp: >>> /output/Recon/sub-101/tmp/surf/lh.orig.interp_fsaverage6.curv
+interp: >>> /output/Recon/sub-101/tmp/surf/lh.orig.interp_fsaverage6.sphere
+<<< model : /opt/model/SUGAR/model_files/fsaverage6/lh_Rigid_904_fsaverage6.model
+sphere_moved_fs_file >>> /output/Recon/sub-101/tmp/surf/lh.orig.interp_fsaverage6.sphere.reg
+sphere.reg >>> /output/Recon/sub-101/tmp/surf/lh.rigid.sphere
+interp: >>> /output/Recon/sub-101/tmp/surf/lh.rigid.interp_fsaverage6.sulc
+interp: >>> /output/Recon/sub-101/tmp/surf/lh.rigid.interp_fsaverage6.curv
+interp: >>> /output/Recon/sub-101/tmp/surf/lh.rigid.interp_fsaverage6.sulc
+interp: >>> /output/Recon/sub-101/tmp/surf/lh.rigid.interp_fsaverage6.curv
+interp: >>> /output/Recon/sub-101/tmp/surf/lh.rigid.interp_fsaverage6.sphere
+<<< model : /opt/model/SUGAR/model_files/fsaverage3/lh_NoRigid_904_fsaverage3.model
+<<< model : /opt/model/SUGAR/model_files/fsaverage4/lh_NoRigid_904_fsaverage4.model
+<<< model : /opt/model/SUGAR/model_files/fsaverage5/lh_NoRigid_904_fsaverage5.model
+<<< model : /opt/model/SUGAR/model_files/fsaverage6/lh_NoRigid_904_fsaverage6.model
+sphere_moved_fs_file >>> /output/Recon/sub-101/tmp/surf/lh.rigid.interp_fsaverage6.sphere.reg
+sphere.reg >>> /output/Recon/sub-101/surf/lh.sphere.reg
+[Finished func: remove_negative_area in 0.0318s]

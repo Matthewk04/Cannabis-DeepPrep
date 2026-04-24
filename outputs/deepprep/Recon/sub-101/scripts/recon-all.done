@@ -1,0 +1,13 @@
+------------------------------
+SUBJECT sub-101
+START_TIME Fri Apr 24 02:34:40 UTC 2026
+END_TIME Fri Apr 24 02:40:07 UTC 2026
+RUNTIME_HOURS 0.091
+USER root
+HOST 8eb296a60dbd
+PROCESSOR x86_64
+OS Linux
+UNAME Linux 8eb296a60dbd 5.15.0-176-generic #186-Ubuntu SMP Fri Mar 13 11:01:42 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+VERSION 7.2.0 (freesurfer-linux-ubuntu18_x86_64-7.2.0-20210721-aa8f76b)
+CMDPATH /opt/freesurfer/bin/recon-all
+CMDARGS -sd /output/Recon -subject sub-101 -asegmerge -normalization2 -maskbfs -segmentation -fill -threads 8 -itkthreads 8 -no-isrunning

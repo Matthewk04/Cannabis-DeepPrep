@@ -1,0 +1,13 @@
+SUBJECTS_DIR is /output/Recon
+loading input data...
+Running hemis serially
+Processing left hemi
+computing distance to left white surface 
+computing distance to left pial surface 
+Processing right hemi
+computing distance to right white surface 
+computing distance to right pial surface 
+ hemi masks overlap voxels = 359
+writing volume /output/Recon/sub-101/mri/ribbon.mgz
+mris_volmask took 2.82 minutes
+ writing ribbon files

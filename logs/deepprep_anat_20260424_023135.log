@@ -1,0 +1,2396 @@
+INFO: args: /input /output participant --anat_only --fs_license_file /fs_license.txt --cpus 10 --memory 20 --skip_bids_validation --participant_label 101
+Input --fs_license_file : /fs_license.txt
+Input --cpus : 10
+Input --memory : 20 GB
+INFO: create  nextflow WorkDir: /output/WorkDir/nextflow
+INFO: create  nextflow WorkDir: /output/WorkDir/home
+INFO: create  nextflow WorkDir: /output/WorkDir/tmp
+INFO: run_config : /output/WorkDir/nextflow/run.config
+INFO: Starting Redis...
+INFO: Redis is running.
+INFO: /home/deepprep/matlab/startup.m does not exist ... creating
+
+ N E X T F L O W   ~  version 24.10.3
+
+Launching `/opt/DeepPrep/deepprep/nextflow/deepprep.nf` [jolly_meucci] DSL2 - revision: e26eff89fa
+
+DEBUG: params           : [profile:standard, bids_dir:/input, subjects_dir:None, output_dir:/output, participant_label:101, skip_bids_validation:true, anat_only:true, bold_only:False, bold_cifti:False, bold_task_type:, bold_skip_frame:0, bold_bandpass:0.01-0.08, bold_sdc:True, bold_confounds:True, bold_surface_spaces:fsaverage6, bold_volume_space:MNI152NLin6Asym, bold_volume_res:02, exec_env:docker, python:, device:auto, mriqc:False, debug:False, fs_threads:8, freesurfer_home:/opt/freesurfer, fs_license_file:/fs_license.txt, deepprep_home:/opt/DeepPrep, fastsurfer_home:/opt/DeepPrep/deepprep/FastSurfer, fastcsr_home:/opt/DeepPrep/deepprep/FastCSR, fastcsr_model_path:/opt/model/FastCSR, surfreg_home:/opt/DeepPrep/deepprep/SUGAR, surfreg_model_path:/opt/model/SUGAR/model_files, synthmorph_home:/opt/DeepPrep/deepprep/SynthMorph, synthmorph_model_path:/opt/model/SynthMorph/models, qc_utils_path:/opt/DeepPrep/deepprep/nextflow/bin/qc_tool, reports_utils_path:/opt/DeepPrep/deepprep/nextflow/bin/reports, deepprep_version:25.1.0, preprocess_others:False, cpus:10, memory:20]
+INFO: bids_dir           : /input
+INFO: output_dir         : /output
+INFO: subjects_dir       : /output/Recon
+INFO: anat preprocess ONLY
+[-        ] deepprep_init                  -
+[-        ] ana…:anat_get_t1w_file_in_bids -
+
+[-        ] deepprep_init                  -
+[-        ] ana…:anat_get_t1w_file_in_bids -
+[-        ] ana…at_create_subject_orig_dir -
+[-        ] anat_wf:anat_create_summary    -
+[-        ] anat_wf:anat_motioncor         -
+[-        ] anat_wf:anat_segment           -
+[-        ] anat_wf:anat_reduce_to_aseg    -
+[-        ] anat_wf:anat_N4_bias_correct   -
+[-        ] anat_wf:anat_talairach_and_nu  -
+[-        ] anat_wf:anat_T1                -
+[-        ] anat_wf:anat_brainmask         -
+[-        ] anat_wf:anat_paint_cc_to_aseg  -
+
+[-        ] deepprep_init                  -
+[-        ] ana…:anat_get_t1w_file_in_bids -
+[-        ] ana…at_create_subject_orig_dir -
+[-        ] anat_wf:anat_create_summary    -
+[-        ] anat_wf:anat_motioncor         -
+[-        ] anat_wf:anat_segment           -
+[-        ] anat_wf:anat_reduce_to_aseg    -
+[-        ] anat_wf:anat_N4_bias_correct   -
+[-        ] anat_wf:anat_talairach_and_nu  -
+[-        ] anat_wf:anat_T1                -
+[-        ] anat_wf:anat_brainmask         -
+[-        ] anat_wf:anat_paint_cc_to_aseg  -
+[-        ] anat_wf:anat_fill              -
+[-        ] anat_wf:subject_id_hemi_lh     -
+[-        ] anat_wf:subject_id_hemi_rh     -
+[-        ] anat_wf:split_hemi_orig_mgz    -
+[-        ] anat_wf:split_hemi_rawavg_mgz  -
+[-        ] ana…f:split_hemi_brainmask_mgz -
+[-        ] ana…plit_hemi_aseg_presurf_mgz -
+[-        ] ana…_hemi_brain_finalsurfs_mgz -
+Plus 5 more processes waiting for tasks…
+
+[-        ] deepprep_init                  -
+[-        ] ana…:anat_get_t1w_file_in_bids -
+[-        ] ana…at_create_subject_orig_dir -
+[-        ] anat_wf:anat_create_summary    -
+[-        ] anat_wf:anat_motioncor         -
+[-        ] anat_wf:anat_segment           -
+[-        ] anat_wf:anat_reduce_to_aseg    -
+[-        ] anat_wf:anat_N4_bias_correct   -
+[-        ] anat_wf:anat_talairach_and_nu  -
+[-        ] anat_wf:anat_T1                -
+[-        ] anat_wf:anat_brainmask         -
+[-        ] anat_wf:anat_paint_cc_to_aseg  -
+[-        ] anat_wf:anat_fill              -
+[-        ] anat_wf:subject_id_hemi_lh     -
+[-        ] anat_wf:subject_id_hemi_rh     -
+[-        ] anat_wf:split_hemi_orig_mgz    -
+[-        ] anat_wf:split_hemi_rawavg_mgz  -
+[-        ] ana…f:split_hemi_brainmask_mgz -
+[-        ] ana…plit_hemi_aseg_presurf_mgz -
+[-        ] ana…_hemi_brain_finalsurfs_mgz -
+Plus 18 more processes waiting for tasks…
+
+[-        ] deepprep_init                  -
+[-        ] ana…:anat_get_t1w_file_in_bids -
+[-        ] ana…at_create_subject_orig_dir -
+[-        ] anat_wf:anat_create_summary    -
+[-        ] anat_wf:anat_motioncor         -
+[-        ] anat_wf:anat_segment           -
+[-        ] anat_wf:anat_reduce_to_aseg    -
+[-        ] anat_wf:anat_N4_bias_correct   -
+[-        ] anat_wf:anat_talairach_and_nu  -
+[-        ] anat_wf:anat_T1                -
+[-        ] anat_wf:anat_brainmask         -
+[-        ] anat_wf:anat_paint_cc_to_aseg  -
+[-        ] anat_wf:anat_fill              -
+[-        ] anat_wf:subject_id_hemi_lh     -
+[-        ] anat_wf:subject_id_hemi_rh     -
+[-        ] anat_wf:split_hemi_orig_mgz    -
+[-        ] anat_wf:split_hemi_rawavg_mgz  -
+[-        ] ana…f:split_hemi_brainmask_mgz -
+[-        ] ana…plit_hemi_aseg_presurf_mgz -
+[-        ] ana…_hemi_brain_finalsurfs_mgz -
+Plus 25 more processes waiting for tasks…
+
+executor >  local (1)
+[f0/f07af5] deepprep_init                  | 0 of 1
+[-        ] ana…:anat_get_t1w_file_in_bids -
+[-        ] ana…at_create_subject_orig_dir -
+[-        ] anat_wf:anat_create_summary    -
+[-        ] anat_wf:anat_motioncor         -
+[-        ] anat_wf:anat_segment           -
+[-        ] anat_wf:anat_reduce_to_aseg    -
+[-        ] anat_wf:anat_N4_bias_correct   -
+[-        ] anat_wf:anat_talairach_and_nu  -
+[-        ] anat_wf:anat_T1                -
+[-        ] anat_wf:anat_brainmask         -
+[-        ] anat_wf:anat_paint_cc_to_aseg  -
+[-        ] anat_wf:anat_fill              -
+[-        ] anat_wf:subject_id_hemi_lh     -
+[-        ] anat_wf:subject_id_hemi_rh     -
+[-        ] anat_wf:split_hemi_orig_mgz    -
+[-        ] anat_wf:split_hemi_rawavg_mgz  -
+[-        ] ana…f:split_hemi_brainmask_mgz -
+[-        ] ana…plit_hemi_aseg_presurf_mgz -
+[-        ] ana…_hemi_brain_finalsurfs_mgz -
+Plus 25 more processes waiting for tasks…
+
+executor >  local (2)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 0 of 1
+[-        ] ana…at_create_subject_orig_dir -
+[-        ] anat_wf:anat_create_summary    -
+[-        ] anat_wf:anat_motioncor         -
+[-        ] anat_wf:anat_segment           -
+[-        ] anat_wf:anat_reduce_to_aseg    -
+[-        ] anat_wf:anat_N4_bias_correct   -
+[-        ] anat_wf:anat_talairach_and_nu  -
+[-        ] anat_wf:anat_T1                -
+[-        ] anat_wf:anat_brainmask         -
+[-        ] anat_wf:anat_paint_cc_to_aseg  -
+[-        ] anat_wf:anat_fill              -
+[-        ] anat_wf:subject_id_hemi_lh     -
+[-        ] anat_wf:subject_id_hemi_rh     -
+[-        ] anat_wf:split_hemi_orig_mgz    -
+[-        ] anat_wf:split_hemi_rawavg_mgz  -
+[-        ] ana…f:split_hemi_brainmask_mgz -
+[-        ] ana…plit_hemi_aseg_presurf_mgz -
+[-        ] ana…_hemi_brain_finalsurfs_mgz -
+Plus 25 more processes waiting for tasks…
+
+executor >  local (3)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 0 of 1
+[-        ] anat_wf:anat_create_summary    -
+[-        ] anat_wf:anat_motioncor         -
+[-        ] anat_wf:anat_segment           -
+[-        ] anat_wf:anat_reduce_to_aseg    -
+[-        ] anat_wf:anat_N4_bias_correct   -
+[-        ] anat_wf:anat_talairach_and_nu  -
+[-        ] anat_wf:anat_T1                -
+[-        ] anat_wf:anat_brainmask         -
+[-        ] anat_wf:anat_paint_cc_to_aseg  -
+[-        ] anat_wf:anat_fill              -
+[-        ] anat_wf:subject_id_hemi_lh     -
+[-        ] anat_wf:subject_id_hemi_rh     -
+[-        ] anat_wf:split_hemi_orig_mgz    -
+[-        ] anat_wf:split_hemi_rawavg_mgz  -
+[-        ] ana…f:split_hemi_brainmask_mgz -
+[-        ] ana…plit_hemi_aseg_presurf_mgz -
+[-        ] ana…_hemi_brain_finalsurfs_mgz -
+Plus 25 more processes waiting for tasks…
+
+executor >  local (5)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 0 of 1
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 0 of 1
+[-        ] anat_wf:anat_segment           -
+[-        ] anat_wf:anat_reduce_to_aseg    -
+[-        ] anat_wf:anat_N4_bias_correct   -
+[-        ] anat_wf:anat_talairach_and_nu  -
+[-        ] anat_wf:anat_T1                -
+[-        ] anat_wf:anat_brainmask         -
+[-        ] anat_wf:anat_paint_cc_to_aseg  -
+[-        ] anat_wf:anat_fill              -
+[-        ] anat_wf:subject_id_hemi_lh     -
+[-        ] anat_wf:subject_id_hemi_rh     -
+[-        ] anat_wf:split_hemi_orig_mgz    -
+[-        ] anat_wf:split_hemi_rawavg_mgz  -
+[-        ] ana…f:split_hemi_brainmask_mgz -
+[-        ] ana…plit_hemi_aseg_presurf_mgz -
+[-        ] ana…_hemi_brain_finalsurfs_mgz -
+Plus 25 more processes waiting for tasks…
+
+executor >  local (9)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 0 of 1
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 0 of 1
+[-        ] anat_wf:anat_reduce_to_aseg    -
+[-        ] anat_wf:anat_N4_bias_correct   -
+[-        ] anat_wf:anat_talairach_and_nu  -
+[-        ] anat_wf:anat_T1                -
+[-        ] anat_wf:anat_brainmask         -
+[-        ] anat_wf:anat_paint_cc_to_aseg  -
+[-        ] anat_wf:anat_fill              -
+[-        ] anat_wf:subject_id_hemi_lh     -
+[-        ] anat_wf:subject_id_hemi_rh     -
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 0 of 2
+[96/c5af94] ana…_hemi_rawavg_mgz (sub-101) | 0 of 2
+[-        ] ana…f:split_hemi_brainmask_mgz -
+[-        ] ana…plit_hemi_aseg_presurf_mgz -
+[-        ] ana…_hemi_brain_finalsurfs_mgz -
+Plus 25 more processes waiting for tasks…
+
+executor >  local (10)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 0 of 1
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 0 of 1
+[-        ] anat_wf:anat_reduce_to_aseg    -
+[-        ] anat_wf:anat_N4_bias_correct   -
+[-        ] anat_wf:anat_talairach_and_nu  -
+[-        ] anat_wf:anat_T1                -
+[-        ] anat_wf:anat_brainmask         -
+[-        ] anat_wf:anat_paint_cc_to_aseg  -
+[-        ] anat_wf:anat_fill              -
+[-        ] anat_wf:subject_id_hemi_lh     -
+[-        ] anat_wf:subject_id_hemi_rh     -
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[-        ] ana…f:split_hemi_brainmask_mgz -
+[-        ] ana…plit_hemi_aseg_presurf_mgz -
+[-        ] ana…_hemi_brain_finalsurfs_mgz -
+Plus 25 more processes waiting for tasks…
+
+executor >  local (10)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 0 of 1
+[-        ] anat_wf:anat_reduce_to_aseg    -
+[-        ] anat_wf:anat_N4_bias_correct   -
+[-        ] anat_wf:anat_talairach_and_nu  -
+[-        ] anat_wf:anat_T1                -
+[-        ] anat_wf:anat_brainmask         -
+[-        ] anat_wf:anat_paint_cc_to_aseg  -
+[-        ] anat_wf:anat_fill              -
+[-        ] anat_wf:subject_id_hemi_lh     -
+[-        ] anat_wf:subject_id_hemi_rh     -
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[-        ] ana…f:split_hemi_brainmask_mgz -
+[-        ] ana…plit_hemi_aseg_presurf_mgz -
+[-        ] ana…_hemi_brain_finalsurfs_mgz -
+Plus 25 more processes waiting for tasks…
+
+executor >  local (11)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 0 of 1
+[-        ] anat_wf:anat_N4_bias_correct   -
+[-        ] anat_wf:anat_talairach_and_nu  -
+[-        ] anat_wf:anat_T1                -
+[-        ] anat_wf:anat_brainmask         -
+[-        ] anat_wf:anat_paint_cc_to_aseg  -
+[-        ] anat_wf:anat_fill              -
+[-        ] anat_wf:subject_id_hemi_lh     -
+[-        ] anat_wf:subject_id_hemi_rh     -
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[-        ] ana…f:split_hemi_brainmask_mgz -
+[-        ] ana…plit_hemi_aseg_presurf_mgz -
+[-        ] ana…_hemi_brain_finalsurfs_mgz -
+Plus 25 more processes waiting for tasks…
+
+executor >  local (11)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[-        ] anat_wf:anat_N4_bias_correct   -
+[-        ] anat_wf:anat_talairach_and_nu  -
+[-        ] anat_wf:anat_T1                -
+[-        ] anat_wf:anat_brainmask         -
+[-        ] anat_wf:anat_paint_cc_to_aseg  -
+[-        ] anat_wf:anat_fill              -
+[-        ] anat_wf:subject_id_hemi_lh     -
+[-        ] anat_wf:subject_id_hemi_rh     -
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[-        ] ana…f:split_hemi_brainmask_mgz -
+[-        ] ana…plit_hemi_aseg_presurf_mgz -
+[-        ] ana…_hemi_brain_finalsurfs_mgz -
+Plus 25 more processes waiting for tasks…
+
+executor >  local (12)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 0 of 1
+[-        ] anat_wf:anat_talairach_and_nu  -
+[-        ] anat_wf:anat_T1                -
+[-        ] anat_wf:anat_brainmask         -
+[-        ] anat_wf:anat_paint_cc_to_aseg  -
+[-        ] anat_wf:anat_fill              -
+[-        ] anat_wf:subject_id_hemi_lh     -
+[-        ] anat_wf:subject_id_hemi_rh     -
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[-        ] ana…f:split_hemi_brainmask_mgz -
+[-        ] ana…plit_hemi_aseg_presurf_mgz -
+[-        ] ana…_hemi_brain_finalsurfs_mgz -
+Plus 25 more processes waiting for tasks…
+
+executor >  local (13)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 0 of 1
+[-        ] anat_wf:anat_T1                -
+[-        ] anat_wf:anat_brainmask         -
+[-        ] anat_wf:anat_paint_cc_to_aseg  -
+[-        ] anat_wf:anat_fill              -
+[-        ] anat_wf:subject_id_hemi_lh     -
+[-        ] anat_wf:subject_id_hemi_rh     -
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[-        ] ana…f:split_hemi_brainmask_mgz -
+[-        ] ana…plit_hemi_aseg_presurf_mgz -
+[-        ] ana…_hemi_brain_finalsurfs_mgz -
+Plus 25 more processes waiting for tasks…
+
+executor >  local (13)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 0 of 1
+[-        ] anat_wf:anat_T1                -
+[-        ] anat_wf:anat_brainmask         -
+[-        ] anat_wf:anat_paint_cc_to_aseg  -
+[-        ] anat_wf:anat_fill              -
+[-        ] anat_wf:subject_id_hemi_lh     -
+[-        ] anat_wf:subject_id_hemi_rh     -
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[-        ] ana…f:split_hemi_brainmask_mgz -
+[-        ] ana…plit_hemi_aseg_presurf_mgz -
+[-        ] ana…_hemi_brain_finalsurfs_mgz -
+Plus 25 more processes waiting for tasks…
+
+executor >  local (15)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 0 of 1
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 0 of 1
+[-        ] anat_wf:anat_paint_cc_to_aseg  -
+[-        ] anat_wf:anat_fill              -
+[-        ] anat_wf:subject_id_hemi_lh     -
+[-        ] anat_wf:subject_id_hemi_rh     -
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[-        ] ana…f:split_hemi_brainmask_mgz -
+[-        ] ana…plit_hemi_aseg_presurf_mgz -
+[-        ] ana…_hemi_brain_finalsurfs_mgz -
+Plus 25 more processes waiting for tasks…
+
+executor >  local (18)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 0 of 1
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 0 of 1
+[-        ] anat_wf:anat_fill              -
+[-        ] anat_wf:subject_id_hemi_lh     -
+[-        ] anat_wf:subject_id_hemi_rh     -
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[cd/e891bb] ana…mi_brainmask_mgz (sub-101) | 0 of 2
+[-        ] ana…plit_hemi_aseg_presurf_mgz -
+[-        ] ana…_hemi_brain_finalsurfs_mgz -
+Plus 25 more processes waiting for tasks…
+
+executor >  local (18)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 0 of 1
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 0 of 1
+[-        ] anat_wf:anat_fill              -
+[-        ] anat_wf:subject_id_hemi_lh     -
+[-        ] anat_wf:subject_id_hemi_rh     -
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[-        ] ana…plit_hemi_aseg_presurf_mgz -
+[-        ] ana…_hemi_brain_finalsurfs_mgz -
+Plus 25 more processes waiting for tasks…
+
+executor >  local (19)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 0 of 1
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 0 of 1
+[-        ] anat_wf:subject_id_hemi_lh     -
+[-        ] anat_wf:subject_id_hemi_rh     -
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[-        ] ana…plit_hemi_aseg_presurf_mgz -
+[-        ] ana…_hemi_brain_finalsurfs_mgz -
+Plus 25 more processes waiting for tasks…
+
+executor >  local (19)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 0 of 1
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 0 of 1
+[-        ] anat_wf:subject_id_hemi_lh     -
+[-        ] anat_wf:subject_id_hemi_rh     -
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[-        ] ana…plit_hemi_aseg_presurf_mgz -
+[-        ] ana…_hemi_brain_finalsurfs_mgz -
+Plus 25 more processes waiting for tasks…
+
+executor >  local (19)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 0 of 1
+[-        ] anat_wf:subject_id_hemi_lh     -
+[-        ] anat_wf:subject_id_hemi_rh     -
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[-        ] ana…plit_hemi_aseg_presurf_mgz -
+[-        ] ana…_hemi_brain_finalsurfs_mgz -
+Plus 25 more processes waiting for tasks…
+
+executor >  local (21)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[-        ] anat_wf:subject_id_hemi_lh     -
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 0 of 1
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[bb/31775b] ana…aseg_presurf_mgz (sub-101) | 0 of 1
+[-        ] ana…_hemi_brain_finalsurfs_mgz -
+Plus 25 more processes waiting for tasks…
+
+executor >  local (26)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 1 of 2
+[13/387116] ana…n_finalsurfs_mgz (sub-101) | 0 of 2
+[65/6a9ca9] ana…plit_hemi_wm_mgz (sub-101) | 0 of 2
+[c4/d09f02] ana…_hemi_filled_mgz (sub-101) | 0 of 2
+[-        ] anat_wf:anat_fastcsr_levelset  | 0 of 2
+Plus 22 more processes waiting for tasks…
+
+executor >  local (30)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[13/387116] ana…n_finalsurfs_mgz (sub-101) | 1 of 2
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 1 of 2
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 1 of 2
+[f5/752924] ana…fastcsr_levelset (sub-101) | 0 of 2
+Plus 22 more processes waiting for tasks…
+
+executor >  local (31)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 0 of 2
+Plus 22 more processes waiting for tasks…
+
+executor >  local (32)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[f5/752924] ana…fastcsr_levelset (sub-101) | 1 of 2
+[41/4b071b] ana…astcsr_mksurface (sub-101) | 0 of 1
+Plus 21 more processes waiting for tasks…
+
+executor >  local (33)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[7c/bb79a3] ana…astcsr_mksurface (sub-101) | 0 of 2
+Plus 21 more processes waiting for tasks…
+
+executor >  local (33)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[7c/bb79a3] ana…astcsr_mksurface (sub-101) | 0 of 2
+Plus 21 more processes waiting for tasks…
+
+executor >  local (34)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[7c/bb79a3] ana…astcsr_mksurface (sub-101) | 1 of 2
+[1f/3588ad] ana…_autodet_gwstats (sub-101) | 0 of 1
+Plus 20 more processes waiting for tasks…
+
+executor >  local (35)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[41/4b071b] ana…astcsr_mksurface (sub-101) | 2 of 2 ✔
+[20/038d59] ana…_autodet_gwstats (sub-101) | 0 of 2
+Plus 20 more processes waiting for tasks…
+
+executor >  local (37)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[41/4b071b] ana…astcsr_mksurface (sub-101) | 2 of 2 ✔
+[20/038d59] ana…_autodet_gwstats (sub-101) | 2 of 2 ✔
+[8f/a55ec9] ana…at_white_surface (sub-101) | 0 of 2
+Plus 19 more processes waiting for tasks…
+
+executor >  local (37)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[41/4b071b] ana…astcsr_mksurface (sub-101) | 2 of 2 ✔
+[20/038d59] ana…_autodet_gwstats (sub-101) | 2 of 2 ✔
+[8f/a55ec9] ana…at_white_surface (sub-101) | 0 of 2
+Plus 19 more processes waiting for tasks…
+
+executor >  local (40)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[41/4b071b] ana…astcsr_mksurface (sub-101) | 2 of 2 ✔
+[20/038d59] ana…_autodet_gwstats (sub-101) | 2 of 2 ✔
+[10/822ab6] ana…at_white_surface (sub-101) | 1 of 2
+[b0/b562da] ana…nat_cortex_label (sub-101) | 0 of 1
+[b8/6c9680] ana…ex_hipamyg_label (sub-101) | 0 of 1
+[83/e1f5a8] ana…_smooth_inflated (sub-101) | 0 of 1
+Plus 16 more processes waiting for tasks…
+
+executor >  local (41)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[41/4b071b] ana…astcsr_mksurface (sub-101) | 2 of 2 ✔
+[20/038d59] ana…_autodet_gwstats (sub-101) | 2 of 2 ✔
+[8f/a55ec9] ana…at_white_surface (sub-101) | 2 of 2 ✔
+[b0/b562da] ana…nat_cortex_label (sub-101) | 0 of 2
+[b8/6c9680] ana…ex_hipamyg_label (sub-101) | 0 of 2
+[53/d96a2d] ana…anat_hyporelabel (sub-101) | 0 of 1
+[83/e1f5a8] ana…_smooth_inflated (sub-101) | 0 of 2
+Plus 15 more processes waiting for tasks…
+
+executor >  local (42)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[41/4b071b] ana…astcsr_mksurface (sub-101) | 2 of 2 ✔
+[20/038d59] ana…_autodet_gwstats (sub-101) | 2 of 2 ✔
+[8f/a55ec9] ana…at_white_surface (sub-101) | 2 of 2 ✔
+[b0/b562da] ana…nat_cortex_label (sub-101) | 0 of 2
+[b8/6c9680] ana…ex_hipamyg_label (sub-101) | 1 of 2
+[53/d96a2d] ana…anat_hyporelabel (sub-101) | 0 of 1
+[9e/cc4e47] ana…_smooth_inflated (sub-101) | 0 of 2
+Plus 15 more processes waiting for tasks…
+
+executor >  local (42)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[41/4b071b] ana…astcsr_mksurface (sub-101) | 2 of 2 ✔
+[20/038d59] ana…_autodet_gwstats (sub-101) | 2 of 2 ✔
+[8f/a55ec9] ana…at_white_surface (sub-101) | 2 of 2 ✔
+[b0/b562da] ana…nat_cortex_label (sub-101) | 0 of 2
+[b8/6c9680] ana…ex_hipamyg_label (sub-101) | 1 of 2
+[53/d96a2d] ana…anat_hyporelabel (sub-101) | 0 of 1
+[9e/cc4e47] ana…_smooth_inflated (sub-101) | 0 of 2
+Plus 15 more processes waiting for tasks…
+
+executor >  local (43)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[41/4b071b] ana…astcsr_mksurface (sub-101) | 2 of 2 ✔
+[20/038d59] ana…_autodet_gwstats (sub-101) | 2 of 2 ✔
+[8f/a55ec9] ana…at_white_surface (sub-101) | 2 of 2 ✔
+[8c/0480b2] ana…nat_cortex_label (sub-101) | 1 of 2
+[b8/6c9680] ana…ex_hipamyg_label (sub-101) | 1 of 2
+[53/d96a2d] ana…anat_hyporelabel (sub-101) | 0 of 1
+[9e/cc4e47] ana…_smooth_inflated (sub-101) | 0 of 2
+Plus 15 more processes waiting for tasks…
+
+executor >  local (44)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[41/4b071b] ana…astcsr_mksurface (sub-101) | 2 of 2 ✔
+[20/038d59] ana…_autodet_gwstats (sub-101) | 2 of 2 ✔
+[8f/a55ec9] ana…at_white_surface (sub-101) | 2 of 2 ✔
+[8c/0480b2] ana…nat_cortex_label (sub-101) | 1 of 2
+[b0/f094da] ana…ex_hipamyg_label (sub-101) | 1 of 2
+[53/d96a2d] ana…anat_hyporelabel (sub-101) | 1 of 1 ✔
+[9e/cc4e47] ana…_smooth_inflated (sub-101) | 0 of 2
+Plus 15 more processes waiting for tasks…
+
+executor >  local (45)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[41/4b071b] ana…astcsr_mksurface (sub-101) | 2 of 2 ✔
+[20/038d59] ana…_autodet_gwstats (sub-101) | 2 of 2 ✔
+[8f/a55ec9] ana…at_white_surface (sub-101) | 2 of 2 ✔
+[8c/0480b2] ana…nat_cortex_label (sub-101) | 1 of 2
+[b0/f094da] ana…ex_hipamyg_label (sub-101) | 1 of 2
+[53/d96a2d] ana…anat_hyporelabel (sub-101) | 1 of 1 ✔
+[83/e1f5a8] ana…_smooth_inflated (sub-101) | 1 of 2
+[-        ] anat_wf:anat_curv_stats        | 0 of 1
+[12/3234af] anat_wf:anat_sphere (sub-101)  | 0 of 1
+Plus 13 more processes waiting for tasks…
+
+executor >  local (45)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[41/4b071b] ana…astcsr_mksurface (sub-101) | 2 of 2 ✔
+[20/038d59] ana…_autodet_gwstats (sub-101) | 2 of 2 ✔
+[8f/a55ec9] ana…at_white_surface (sub-101) | 2 of 2 ✔
+[8c/0480b2] ana…nat_cortex_label (sub-101) | 1 of 2
+[b0/f094da] ana…ex_hipamyg_label (sub-101) | 1 of 2
+[53/d96a2d] ana…anat_hyporelabel (sub-101) | 1 of 1 ✔
+[83/e1f5a8] ana…_smooth_inflated (sub-101) | 1 of 2
+[-        ] anat_wf:anat_curv_stats        | 0 of 1
+[12/3234af] anat_wf:anat_sphere (sub-101)  | 0 of 1
+Plus 13 more processes waiting for tasks…
+
+executor >  local (46)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[41/4b071b] ana…astcsr_mksurface (sub-101) | 2 of 2 ✔
+[20/038d59] ana…_autodet_gwstats (sub-101) | 2 of 2 ✔
+[8f/a55ec9] ana…at_white_surface (sub-101) | 2 of 2 ✔
+[8c/0480b2] ana…nat_cortex_label (sub-101) | 2 of 2 ✔
+[b0/f094da] ana…ex_hipamyg_label (sub-101) | 1 of 2
+[53/d96a2d] ana…anat_hyporelabel (sub-101) | 1 of 1 ✔
+[83/e1f5a8] ana…_smooth_inflated (sub-101) | 1 of 2
+[6a/174e2d] ana…:anat_curv_stats (sub-101) | 0 of 1
+[12/3234af] anat_wf:anat_sphere (sub-101)  | 0 of 1
+Plus 13 more processes waiting for tasks…
+
+executor >  local (46)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[41/4b071b] ana…astcsr_mksurface (sub-101) | 2 of 2 ✔
+[20/038d59] ana…_autodet_gwstats (sub-101) | 2 of 2 ✔
+[8f/a55ec9] ana…at_white_surface (sub-101) | 2 of 2 ✔
+[8c/0480b2] ana…nat_cortex_label (sub-101) | 2 of 2 ✔
+[b0/f094da] ana…ex_hipamyg_label (sub-101) | 1 of 2
+[53/d96a2d] ana…anat_hyporelabel (sub-101) | 1 of 1 ✔
+[83/e1f5a8] ana…_smooth_inflated (sub-101) | 1 of 2
+[6a/174e2d] ana…:anat_curv_stats (sub-101) | 1 of 1
+[12/3234af] anat_wf:anat_sphere (sub-101)  | 0 of 1
+Plus 13 more processes waiting for tasks…
+
+executor >  local (48)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[41/4b071b] ana…astcsr_mksurface (sub-101) | 2 of 2 ✔
+[20/038d59] ana…_autodet_gwstats (sub-101) | 2 of 2 ✔
+[8f/a55ec9] ana…at_white_surface (sub-101) | 2 of 2 ✔
+[8c/0480b2] ana…nat_cortex_label (sub-101) | 2 of 2 ✔
+[b0/f094da] ana…ex_hipamyg_label (sub-101) | 1 of 2
+[53/d96a2d] ana…anat_hyporelabel (sub-101) | 1 of 1 ✔
+[9e/cc4e47] ana…_smooth_inflated (sub-101) | 2 of 2 ✔
+[da/379ace] ana…:anat_curv_stats (sub-101) | 1 of 2
+[13/bedbd0] anat_wf:anat_sphere (sub-101)  | 0 of 2
+Plus 13 more processes waiting for tasks…
+
+executor >  local (48)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[41/4b071b] ana…astcsr_mksurface (sub-101) | 2 of 2 ✔
+[20/038d59] ana…_autodet_gwstats (sub-101) | 2 of 2 ✔
+[8f/a55ec9] ana…at_white_surface (sub-101) | 2 of 2 ✔
+[8c/0480b2] ana…nat_cortex_label (sub-101) | 2 of 2 ✔
+[b0/f094da] ana…ex_hipamyg_label (sub-101) | 2 of 2 ✔
+[53/d96a2d] ana…anat_hyporelabel (sub-101) | 1 of 1 ✔
+[9e/cc4e47] ana…_smooth_inflated (sub-101) | 2 of 2 ✔
+[da/379ace] ana…:anat_curv_stats (sub-101) | 1 of 2
+[13/bedbd0] anat_wf:anat_sphere (sub-101)  | 0 of 2
+Plus 13 more processes waiting for tasks…
+
+executor >  local (48)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[41/4b071b] ana…astcsr_mksurface (sub-101) | 2 of 2 ✔
+[20/038d59] ana…_autodet_gwstats (sub-101) | 2 of 2 ✔
+[8f/a55ec9] ana…at_white_surface (sub-101) | 2 of 2 ✔
+[8c/0480b2] ana…nat_cortex_label (sub-101) | 2 of 2 ✔
+[b0/f094da] ana…ex_hipamyg_label (sub-101) | 2 of 2 ✔
+[53/d96a2d] ana…anat_hyporelabel (sub-101) | 1 of 1 ✔
+[9e/cc4e47] ana…_smooth_inflated (sub-101) | 2 of 2 ✔
+[da/379ace] ana…:anat_curv_stats (sub-101) | 2 of 2 ✔
+[13/bedbd0] anat_wf:anat_sphere (sub-101)  | 0 of 2
+Plus 13 more processes waiting for tasks…
+
+executor >  local (49)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[41/4b071b] ana…astcsr_mksurface (sub-101) | 2 of 2 ✔
+[20/038d59] ana…_autodet_gwstats (sub-101) | 2 of 2 ✔
+[8f/a55ec9] ana…at_white_surface (sub-101) | 2 of 2 ✔
+[8c/0480b2] ana…nat_cortex_label (sub-101) | 2 of 2 ✔
+[b0/f094da] ana…ex_hipamyg_label (sub-101) | 2 of 2 ✔
+[53/d96a2d] ana…anat_hyporelabel (sub-101) | 1 of 1 ✔
+[9e/cc4e47] ana…_smooth_inflated (sub-101) | 2 of 2 ✔
+[da/379ace] ana…:anat_curv_stats (sub-101) | 2 of 2 ✔
+[12/3234af] anat_wf:anat_sphere (sub-101)  | 1 of 2
+[d8/7978c9] ana…_sphere_register (sub-101) | 0 of 1
+Plus 12 more processes waiting for tasks…
+
+executor >  local (49)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[41/4b071b] ana…astcsr_mksurface (sub-101) | 2 of 2 ✔
+[20/038d59] ana…_autodet_gwstats (sub-101) | 2 of 2 ✔
+[8f/a55ec9] ana…at_white_surface (sub-101) | 2 of 2 ✔
+[8c/0480b2] ana…nat_cortex_label (sub-101) | 2 of 2 ✔
+[b0/f094da] ana…ex_hipamyg_label (sub-101) | 2 of 2 ✔
+[53/d96a2d] ana…anat_hyporelabel (sub-101) | 1 of 1 ✔
+[9e/cc4e47] ana…_smooth_inflated (sub-101) | 2 of 2 ✔
+[da/379ace] ana…:anat_curv_stats (sub-101) | 2 of 2 ✔
+[12/3234af] anat_wf:anat_sphere (sub-101)  | 1 of 2
+[d8/7978c9] ana…_sphere_register (sub-101) | 0 of 1
+Plus 12 more processes waiting for tasks…
+
+executor >  local (51)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[41/4b071b] ana…astcsr_mksurface (sub-101) | 2 of 2 ✔
+[20/038d59] ana…_autodet_gwstats (sub-101) | 2 of 2 ✔
+[8f/a55ec9] ana…at_white_surface (sub-101) | 2 of 2 ✔
+[8c/0480b2] ana…nat_cortex_label (sub-101) | 2 of 2 ✔
+[b0/f094da] ana…ex_hipamyg_label (sub-101) | 2 of 2 ✔
+[53/d96a2d] ana…anat_hyporelabel (sub-101) | 1 of 1 ✔
+[9e/cc4e47] ana…_smooth_inflated (sub-101) | 2 of 2 ✔
+[da/379ace] ana…:anat_curv_stats (sub-101) | 2 of 2 ✔
+[12/3234af] anat_wf:anat_sphere (sub-101)  | 1 of 2
+[d8/7978c9] ana…_sphere_register (sub-101) | 1 of 1
+[95/9c3c57] ana…wf:anat_jacobian (sub-101) | 0 of 1
+[1e/27a65f] ana…t_cortparc_aparc (sub-101) | 0 of 1
+Plus 10 more processes waiting for tasks…
+
+executor >  local (51)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[41/4b071b] ana…astcsr_mksurface (sub-101) | 2 of 2 ✔
+[20/038d59] ana…_autodet_gwstats (sub-101) | 2 of 2 ✔
+[8f/a55ec9] ana…at_white_surface (sub-101) | 2 of 2 ✔
+[8c/0480b2] ana…nat_cortex_label (sub-101) | 2 of 2 ✔
+[b0/f094da] ana…ex_hipamyg_label (sub-101) | 2 of 2 ✔
+[53/d96a2d] ana…anat_hyporelabel (sub-101) | 1 of 1 ✔
+[9e/cc4e47] ana…_smooth_inflated (sub-101) | 2 of 2 ✔
+[da/379ace] ana…:anat_curv_stats (sub-101) | 2 of 2 ✔
+[12/3234af] anat_wf:anat_sphere (sub-101)  | 1 of 2
+[d8/7978c9] ana…_sphere_register (sub-101) | 1 of 1
+[95/9c3c57] ana…wf:anat_jacobian (sub-101) | 0 of 1
+[1e/27a65f] ana…t_cortparc_aparc (sub-101) | 0 of 1
+Plus 10 more processes waiting for tasks…
+
+executor >  local (51)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[41/4b071b] ana…astcsr_mksurface (sub-101) | 2 of 2 ✔
+[20/038d59] ana…_autodet_gwstats (sub-101) | 2 of 2 ✔
+[8f/a55ec9] ana…at_white_surface (sub-101) | 2 of 2 ✔
+[8c/0480b2] ana…nat_cortex_label (sub-101) | 2 of 2 ✔
+[b0/f094da] ana…ex_hipamyg_label (sub-101) | 2 of 2 ✔
+[53/d96a2d] ana…anat_hyporelabel (sub-101) | 1 of 1 ✔
+[9e/cc4e47] ana…_smooth_inflated (sub-101) | 2 of 2 ✔
+[da/379ace] ana…:anat_curv_stats (sub-101) | 2 of 2 ✔
+[12/3234af] anat_wf:anat_sphere (sub-101)  | 1 of 2
+[d8/7978c9] ana…_sphere_register (sub-101) | 1 of 1
+[95/9c3c57] ana…wf:anat_jacobian (sub-101) | 1 of 1
+[1e/27a65f] ana…t_cortparc_aparc (sub-101) | 0 of 1
+Plus 10 more processes waiting for tasks…
+
+executor >  local (52)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[41/4b071b] ana…astcsr_mksurface (sub-101) | 2 of 2 ✔
+[20/038d59] ana…_autodet_gwstats (sub-101) | 2 of 2 ✔
+[8f/a55ec9] ana…at_white_surface (sub-101) | 2 of 2 ✔
+[8c/0480b2] ana…nat_cortex_label (sub-101) | 2 of 2 ✔
+[b0/f094da] ana…ex_hipamyg_label (sub-101) | 2 of 2 ✔
+[53/d96a2d] ana…anat_hyporelabel (sub-101) | 1 of 1 ✔
+[9e/cc4e47] ana…_smooth_inflated (sub-101) | 2 of 2 ✔
+[da/379ace] ana…:anat_curv_stats (sub-101) | 2 of 2 ✔
+[12/3234af] anat_wf:anat_sphere (sub-101)  | 1 of 2
+[d8/7978c9] ana…_sphere_register (sub-101) | 1 of 1
+[95/9c3c57] ana…wf:anat_jacobian (sub-101) | 1 of 1
+[1e/27a65f] ana…t_cortparc_aparc (sub-101) | 1 of 1
+[96/ebdb2b] ana…nat_pial_surface (sub-101) | 0 of 1
+Plus 9 more processes waiting for tasks…
+
+executor >  local (53)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[41/4b071b] ana…astcsr_mksurface (sub-101) | 2 of 2 ✔
+[20/038d59] ana…_autodet_gwstats (sub-101) | 2 of 2 ✔
+[8f/a55ec9] ana…at_white_surface (sub-101) | 2 of 2 ✔
+[8c/0480b2] ana…nat_cortex_label (sub-101) | 2 of 2 ✔
+[b0/f094da] ana…ex_hipamyg_label (sub-101) | 2 of 2 ✔
+[53/d96a2d] ana…anat_hyporelabel (sub-101) | 1 of 1 ✔
+[9e/cc4e47] ana…_smooth_inflated (sub-101) | 2 of 2 ✔
+[da/379ace] ana…:anat_curv_stats (sub-101) | 2 of 2 ✔
+[13/bedbd0] anat_wf:anat_sphere (sub-101)  | 2 of 2 ✔
+[2e/15b72f] ana…_sphere_register (sub-101) | 1 of 2
+[95/9c3c57] ana…wf:anat_jacobian (sub-101) | 1 of 1
+[1e/27a65f] ana…t_cortparc_aparc (sub-101) | 1 of 1
+[96/ebdb2b] ana…nat_pial_surface (sub-101) | 0 of 1
+Plus 9 more processes waiting for tasks…
+
+executor >  local (55)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[41/4b071b] ana…astcsr_mksurface (sub-101) | 2 of 2 ✔
+[20/038d59] ana…_autodet_gwstats (sub-101) | 2 of 2 ✔
+[8f/a55ec9] ana…at_white_surface (sub-101) | 2 of 2 ✔
+[8c/0480b2] ana…nat_cortex_label (sub-101) | 2 of 2 ✔
+[b0/f094da] ana…ex_hipamyg_label (sub-101) | 2 of 2 ✔
+[53/d96a2d] ana…anat_hyporelabel (sub-101) | 1 of 1 ✔
+[9e/cc4e47] ana…_smooth_inflated (sub-101) | 2 of 2 ✔
+[da/379ace] ana…:anat_curv_stats (sub-101) | 2 of 2 ✔
+[13/bedbd0] anat_wf:anat_sphere (sub-101)  | 2 of 2 ✔
+[2e/15b72f] ana…_sphere_register (sub-101) | 2 of 2 ✔
+[25/0c24ea] ana…wf:anat_jacobian (sub-101) | 1 of 2
+[f1/8cdb03] ana…t_cortparc_aparc (sub-101) | 1 of 2
+[96/ebdb2b] ana…nat_pial_surface (sub-101) | 0 of 1
+Plus 9 more processes waiting for tasks…
+
+executor >  local (55)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[41/4b071b] ana…astcsr_mksurface (sub-101) | 2 of 2 ✔
+[20/038d59] ana…_autodet_gwstats (sub-101) | 2 of 2 ✔
+[8f/a55ec9] ana…at_white_surface (sub-101) | 2 of 2 ✔
+[8c/0480b2] ana…nat_cortex_label (sub-101) | 2 of 2 ✔
+[b0/f094da] ana…ex_hipamyg_label (sub-101) | 2 of 2 ✔
+[53/d96a2d] ana…anat_hyporelabel (sub-101) | 1 of 1 ✔
+[9e/cc4e47] ana…_smooth_inflated (sub-101) | 2 of 2 ✔
+[da/379ace] ana…:anat_curv_stats (sub-101) | 2 of 2 ✔
+[13/bedbd0] anat_wf:anat_sphere (sub-101)  | 2 of 2 ✔
+[2e/15b72f] ana…_sphere_register (sub-101) | 2 of 2 ✔
+[25/0c24ea] ana…wf:anat_jacobian (sub-101) | 1 of 2
+[f1/8cdb03] ana…t_cortparc_aparc (sub-101) | 1 of 2
+[96/ebdb2b] ana…nat_pial_surface (sub-101) | 0 of 1
+Plus 9 more processes waiting for tasks…
+
+executor >  local (55)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[41/4b071b] ana…astcsr_mksurface (sub-101) | 2 of 2 ✔
+[20/038d59] ana…_autodet_gwstats (sub-101) | 2 of 2 ✔
+[8f/a55ec9] ana…at_white_surface (sub-101) | 2 of 2 ✔
+[8c/0480b2] ana…nat_cortex_label (sub-101) | 2 of 2 ✔
+[b0/f094da] ana…ex_hipamyg_label (sub-101) | 2 of 2 ✔
+[53/d96a2d] ana…anat_hyporelabel (sub-101) | 1 of 1 ✔
+[9e/cc4e47] ana…_smooth_inflated (sub-101) | 2 of 2 ✔
+[da/379ace] ana…:anat_curv_stats (sub-101) | 2 of 2 ✔
+[13/bedbd0] anat_wf:anat_sphere (sub-101)  | 2 of 2 ✔
+[2e/15b72f] ana…_sphere_register (sub-101) | 2 of 2 ✔
+[25/0c24ea] ana…wf:anat_jacobian (sub-101) | 2 of 2 ✔
+[f1/8cdb03] ana…t_cortparc_aparc (sub-101) | 1 of 2
+[96/ebdb2b] ana…nat_pial_surface (sub-101) | 0 of 1
+Plus 9 more processes waiting for tasks…
+
+executor >  local (56)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[41/4b071b] ana…astcsr_mksurface (sub-101) | 2 of 2 ✔
+[20/038d59] ana…_autodet_gwstats (sub-101) | 2 of 2 ✔
+[8f/a55ec9] ana…at_white_surface (sub-101) | 2 of 2 ✔
+[8c/0480b2] ana…nat_cortex_label (sub-101) | 2 of 2 ✔
+[b0/f094da] ana…ex_hipamyg_label (sub-101) | 2 of 2 ✔
+[53/d96a2d] ana…anat_hyporelabel (sub-101) | 1 of 1 ✔
+[9e/cc4e47] ana…_smooth_inflated (sub-101) | 2 of 2 ✔
+[da/379ace] ana…:anat_curv_stats (sub-101) | 2 of 2 ✔
+[13/bedbd0] anat_wf:anat_sphere (sub-101)  | 2 of 2 ✔
+[2e/15b72f] ana…_sphere_register (sub-101) | 2 of 2 ✔
+[25/0c24ea] ana…wf:anat_jacobian (sub-101) | 2 of 2 ✔
+[f1/8cdb03] ana…t_cortparc_aparc (sub-101) | 2 of 2 ✔
+[29/b889f3] ana…nat_pial_surface (sub-101) | 0 of 2
+Plus 9 more processes waiting for tasks…
+
+executor >  local (57)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[41/4b071b] ana…astcsr_mksurface (sub-101) | 2 of 2 ✔
+[20/038d59] ana…_autodet_gwstats (sub-101) | 2 of 2 ✔
+[8f/a55ec9] ana…at_white_surface (sub-101) | 2 of 2 ✔
+[8c/0480b2] ana…nat_cortex_label (sub-101) | 2 of 2 ✔
+[b0/f094da] ana…ex_hipamyg_label (sub-101) | 2 of 2 ✔
+[53/d96a2d] ana…anat_hyporelabel (sub-101) | 1 of 1 ✔
+[9e/cc4e47] ana…_smooth_inflated (sub-101) | 2 of 2 ✔
+[da/379ace] ana…:anat_curv_stats (sub-101) | 2 of 2 ✔
+[13/bedbd0] anat_wf:anat_sphere (sub-101)  | 2 of 2 ✔
+[2e/15b72f] ana…_sphere_register (sub-101) | 2 of 2 ✔
+[25/0c24ea] ana…wf:anat_jacobian (sub-101) | 2 of 2 ✔
+[f1/8cdb03] ana…t_cortparc_aparc (sub-101) | 2 of 2 ✔
+[96/ebdb2b] ana…nat_pial_surface (sub-101) | 1 of 2
+[d8/65735f] ana…:anat_pctsurfcon (sub-101) | 0 of 1
+Plus 8 more processes waiting for tasks…
+
+executor >  local (57)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[41/4b071b] ana…astcsr_mksurface (sub-101) | 2 of 2 ✔
+[20/038d59] ana…_autodet_gwstats (sub-101) | 2 of 2 ✔
+[8f/a55ec9] ana…at_white_surface (sub-101) | 2 of 2 ✔
+[8c/0480b2] ana…nat_cortex_label (sub-101) | 2 of 2 ✔
+[b0/f094da] ana…ex_hipamyg_label (sub-101) | 2 of 2 ✔
+[53/d96a2d] ana…anat_hyporelabel (sub-101) | 1 of 1 ✔
+[9e/cc4e47] ana…_smooth_inflated (sub-101) | 2 of 2 ✔
+[da/379ace] ana…:anat_curv_stats (sub-101) | 2 of 2 ✔
+[13/bedbd0] anat_wf:anat_sphere (sub-101)  | 2 of 2 ✔
+[2e/15b72f] ana…_sphere_register (sub-101) | 2 of 2 ✔
+[25/0c24ea] ana…wf:anat_jacobian (sub-101) | 2 of 2 ✔
+[f1/8cdb03] ana…t_cortparc_aparc (sub-101) | 2 of 2 ✔
+[96/ebdb2b] ana…nat_pial_surface (sub-101) | 1 of 2
+[d8/65735f] ana…:anat_pctsurfcon (sub-101) | 1 of 1
+Plus 8 more processes waiting for tasks…
+
+executor >  local (61)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[41/4b071b] ana…astcsr_mksurface (sub-101) | 2 of 2 ✔
+[20/038d59] ana…_autodet_gwstats (sub-101) | 2 of 2 ✔
+[8f/a55ec9] ana…at_white_surface (sub-101) | 2 of 2 ✔
+[8c/0480b2] ana…nat_cortex_label (sub-101) | 2 of 2 ✔
+[b0/f094da] ana…ex_hipamyg_label (sub-101) | 2 of 2 ✔
+[53/d96a2d] ana…anat_hyporelabel (sub-101) | 1 of 1 ✔
+[9e/cc4e47] ana…_smooth_inflated (sub-101) | 2 of 2 ✔
+[da/379ace] ana…:anat_curv_stats (sub-101) | 2 of 2 ✔
+[13/bedbd0] anat_wf:anat_sphere (sub-101)  | 2 of 2 ✔
+[2e/15b72f] ana…_sphere_register (sub-101) | 2 of 2 ✔
+[25/0c24ea] ana…wf:anat_jacobian (sub-101) | 2 of 2 ✔
+[f1/8cdb03] ana…t_cortparc_aparc (sub-101) | 2 of 2 ✔
+[29/b889f3] ana…nat_pial_surface (sub-101) | 2 of 2 ✔
+[e7/1abba8] ana…:anat_pctsurfcon (sub-101) | 1 of 2
+[a4/04cd7e] ana…f:anat_parcstats (sub-101) | 0 of 1
+[c7/9855ac] anat_wf:anat_ribbon (sub-101)  | 0 of 1
+[-        ] anat_wf:qc_plot_volsurf        | 0 of 1
+[5e/b6f749] ana…qc_plot_surfparc (sub-101) | 0 of 1
+Plus 4 more processes waiting for tasks…
+
+executor >  local (62)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[41/4b071b] ana…astcsr_mksurface (sub-101) | 2 of 2 ✔
+[20/038d59] ana…_autodet_gwstats (sub-101) | 2 of 2 ✔
+[8f/a55ec9] ana…at_white_surface (sub-101) | 2 of 2 ✔
+[8c/0480b2] ana…nat_cortex_label (sub-101) | 2 of 2 ✔
+[b0/f094da] ana…ex_hipamyg_label (sub-101) | 2 of 2 ✔
+[53/d96a2d] ana…anat_hyporelabel (sub-101) | 1 of 1 ✔
+[9e/cc4e47] ana…_smooth_inflated (sub-101) | 2 of 2 ✔
+[da/379ace] ana…:anat_curv_stats (sub-101) | 2 of 2 ✔
+[13/bedbd0] anat_wf:anat_sphere (sub-101)  | 2 of 2 ✔
+[2e/15b72f] ana…_sphere_register (sub-101) | 2 of 2 ✔
+[25/0c24ea] ana…wf:anat_jacobian (sub-101) | 2 of 2 ✔
+[f1/8cdb03] ana…t_cortparc_aparc (sub-101) | 2 of 2 ✔
+[29/b889f3] ana…nat_pial_surface (sub-101) | 2 of 2 ✔
+[e7/1abba8] ana…:anat_pctsurfcon (sub-101) | 2 of 2 ✔
+[a4/04cd7e] ana…f:anat_parcstats (sub-101) | 0 of 1
+[c7/9855ac] anat_wf:anat_ribbon (sub-101)  | 0 of 1
+[ac/d779f1] ana…:qc_plot_volsurf (sub-101) | 0 of 1
+[5e/b6f749] ana…qc_plot_surfparc (sub-101) | 0 of 1
+Plus 4 more processes waiting for tasks…
+
+executor >  local (62)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[41/4b071b] ana…astcsr_mksurface (sub-101) | 2 of 2 ✔
+[20/038d59] ana…_autodet_gwstats (sub-101) | 2 of 2 ✔
+[8f/a55ec9] ana…at_white_surface (sub-101) | 2 of 2 ✔
+[8c/0480b2] ana…nat_cortex_label (sub-101) | 2 of 2 ✔
+[b0/f094da] ana…ex_hipamyg_label (sub-101) | 2 of 2 ✔
+[53/d96a2d] ana…anat_hyporelabel (sub-101) | 1 of 1 ✔
+[9e/cc4e47] ana…_smooth_inflated (sub-101) | 2 of 2 ✔
+[da/379ace] ana…:anat_curv_stats (sub-101) | 2 of 2 ✔
+[13/bedbd0] anat_wf:anat_sphere (sub-101)  | 2 of 2 ✔
+[2e/15b72f] ana…_sphere_register (sub-101) | 2 of 2 ✔
+[25/0c24ea] ana…wf:anat_jacobian (sub-101) | 2 of 2 ✔
+[f1/8cdb03] ana…t_cortparc_aparc (sub-101) | 2 of 2 ✔
+[29/b889f3] ana…nat_pial_surface (sub-101) | 2 of 2 ✔
+[e7/1abba8] ana…:anat_pctsurfcon (sub-101) | 2 of 2 ✔
+[a4/04cd7e] ana…f:anat_parcstats (sub-101) | 0 of 1
+[c7/9855ac] anat_wf:anat_ribbon (sub-101)  | 0 of 1
+[ac/d779f1] ana…:qc_plot_volsurf (sub-101) | 0 of 1
+[5e/b6f749] ana…qc_plot_surfparc (sub-101) | 0 of 1
+Plus 4 more processes waiting for tasks…
+
+executor >  local (62)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[41/4b071b] ana…astcsr_mksurface (sub-101) | 2 of 2 ✔
+[20/038d59] ana…_autodet_gwstats (sub-101) | 2 of 2 ✔
+[8f/a55ec9] ana…at_white_surface (sub-101) | 2 of 2 ✔
+[8c/0480b2] ana…nat_cortex_label (sub-101) | 2 of 2 ✔
+[b0/f094da] ana…ex_hipamyg_label (sub-101) | 2 of 2 ✔
+[53/d96a2d] ana…anat_hyporelabel (sub-101) | 1 of 1 ✔
+[9e/cc4e47] ana…_smooth_inflated (sub-101) | 2 of 2 ✔
+[da/379ace] ana…:anat_curv_stats (sub-101) | 2 of 2 ✔
+[13/bedbd0] anat_wf:anat_sphere (sub-101)  | 2 of 2 ✔
+[2e/15b72f] ana…_sphere_register (sub-101) | 2 of 2 ✔
+[25/0c24ea] ana…wf:anat_jacobian (sub-101) | 2 of 2 ✔
+[f1/8cdb03] ana…t_cortparc_aparc (sub-101) | 2 of 2 ✔
+[29/b889f3] ana…nat_pial_surface (sub-101) | 2 of 2 ✔
+[e7/1abba8] ana…:anat_pctsurfcon (sub-101) | 2 of 2 ✔
+[a4/04cd7e] ana…f:anat_parcstats (sub-101) | 0 of 1
+[c7/9855ac] anat_wf:anat_ribbon (sub-101)  | 0 of 1
+[ac/d779f1] ana…:qc_plot_volsurf (sub-101) | 0 of 1
+[5e/b6f749] ana…qc_plot_surfparc (sub-101) | 1 of 1 ✔
+Plus 4 more processes waiting for tasks…
+
+executor >  local (62)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[41/4b071b] ana…astcsr_mksurface (sub-101) | 2 of 2 ✔
+[20/038d59] ana…_autodet_gwstats (sub-101) | 2 of 2 ✔
+[8f/a55ec9] ana…at_white_surface (sub-101) | 2 of 2 ✔
+[8c/0480b2] ana…nat_cortex_label (sub-101) | 2 of 2 ✔
+[b0/f094da] ana…ex_hipamyg_label (sub-101) | 2 of 2 ✔
+[53/d96a2d] ana…anat_hyporelabel (sub-101) | 1 of 1 ✔
+[9e/cc4e47] ana…_smooth_inflated (sub-101) | 2 of 2 ✔
+[da/379ace] ana…:anat_curv_stats (sub-101) | 2 of 2 ✔
+[13/bedbd0] anat_wf:anat_sphere (sub-101)  | 2 of 2 ✔
+[2e/15b72f] ana…_sphere_register (sub-101) | 2 of 2 ✔
+[25/0c24ea] ana…wf:anat_jacobian (sub-101) | 2 of 2 ✔
+[f1/8cdb03] ana…t_cortparc_aparc (sub-101) | 2 of 2 ✔
+[29/b889f3] ana…nat_pial_surface (sub-101) | 2 of 2 ✔
+[e7/1abba8] ana…:anat_pctsurfcon (sub-101) | 2 of 2 ✔
+[a4/04cd7e] ana…f:anat_parcstats (sub-101) | 0 of 1
+[c7/9855ac] anat_wf:anat_ribbon (sub-101)  | 0 of 1
+[ac/d779f1] ana…:qc_plot_volsurf (sub-101) | 1 of 1 ✔
+[5e/b6f749] ana…qc_plot_surfparc (sub-101) | 1 of 1 ✔
+Plus 4 more processes waiting for tasks…
+
+executor >  local (62)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[41/4b071b] ana…astcsr_mksurface (sub-101) | 2 of 2 ✔
+[20/038d59] ana…_autodet_gwstats (sub-101) | 2 of 2 ✔
+[8f/a55ec9] ana…at_white_surface (sub-101) | 2 of 2 ✔
+[8c/0480b2] ana…nat_cortex_label (sub-101) | 2 of 2 ✔
+[b0/f094da] ana…ex_hipamyg_label (sub-101) | 2 of 2 ✔
+[53/d96a2d] ana…anat_hyporelabel (sub-101) | 1 of 1 ✔
+[9e/cc4e47] ana…_smooth_inflated (sub-101) | 2 of 2 ✔
+[da/379ace] ana…:anat_curv_stats (sub-101) | 2 of 2 ✔
+[13/bedbd0] anat_wf:anat_sphere (sub-101)  | 2 of 2 ✔
+[2e/15b72f] ana…_sphere_register (sub-101) | 2 of 2 ✔
+[25/0c24ea] ana…wf:anat_jacobian (sub-101) | 2 of 2 ✔
+[f1/8cdb03] ana…t_cortparc_aparc (sub-101) | 2 of 2 ✔
+[29/b889f3] ana…nat_pial_surface (sub-101) | 2 of 2 ✔
+[e7/1abba8] ana…:anat_pctsurfcon (sub-101) | 2 of 2 ✔
+[a4/04cd7e] ana…f:anat_parcstats (sub-101) | 1 of 1 ✔
+[c7/9855ac] anat_wf:anat_ribbon (sub-101)  | 0 of 1
+[ac/d779f1] ana…:qc_plot_volsurf (sub-101) | 1 of 1 ✔
+[5e/b6f749] ana…qc_plot_surfparc (sub-101) | 1 of 1 ✔
+Plus 4 more processes waiting for tasks…
+
+executor >  local (63)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[41/4b071b] ana…astcsr_mksurface (sub-101) | 2 of 2 ✔
+[20/038d59] ana…_autodet_gwstats (sub-101) | 2 of 2 ✔
+[8f/a55ec9] ana…at_white_surface (sub-101) | 2 of 2 ✔
+[8c/0480b2] ana…nat_cortex_label (sub-101) | 2 of 2 ✔
+[b0/f094da] ana…ex_hipamyg_label (sub-101) | 2 of 2 ✔
+[53/d96a2d] ana…anat_hyporelabel (sub-101) | 1 of 1 ✔
+[9e/cc4e47] ana…_smooth_inflated (sub-101) | 2 of 2 ✔
+[da/379ace] ana…:anat_curv_stats (sub-101) | 2 of 2 ✔
+[13/bedbd0] anat_wf:anat_sphere (sub-101)  | 2 of 2 ✔
+[2e/15b72f] ana…_sphere_register (sub-101) | 2 of 2 ✔
+[25/0c24ea] ana…wf:anat_jacobian (sub-101) | 2 of 2 ✔
+[f1/8cdb03] ana…t_cortparc_aparc (sub-101) | 2 of 2 ✔
+[29/b889f3] ana…nat_pial_surface (sub-101) | 2 of 2 ✔
+[e7/1abba8] ana…:anat_pctsurfcon (sub-101) | 2 of 2 ✔
+[a4/04cd7e] ana…f:anat_parcstats (sub-101) | 1 of 1 ✔
+[c7/9855ac] anat_wf:anat_ribbon (sub-101)  | 1 of 1 ✔
+[d3/1442a5] ana…f:anat_apas2aseg (sub-101) | 0 of 1
+[ac/d779f1] ana…:qc_plot_volsurf (sub-101) | 1 of 1 ✔
+[5e/b6f749] ana…qc_plot_surfparc (sub-101) | 1 of 1 ✔
+Plus 3 more processes waiting for tasks…
+
+executor >  local (64)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[41/4b071b] ana…astcsr_mksurface (sub-101) | 2 of 2 ✔
+[20/038d59] ana…_autodet_gwstats (sub-101) | 2 of 2 ✔
+[8f/a55ec9] ana…at_white_surface (sub-101) | 2 of 2 ✔
+[8c/0480b2] ana…nat_cortex_label (sub-101) | 2 of 2 ✔
+[b0/f094da] ana…ex_hipamyg_label (sub-101) | 2 of 2 ✔
+[53/d96a2d] ana…anat_hyporelabel (sub-101) | 1 of 1 ✔
+[9e/cc4e47] ana…_smooth_inflated (sub-101) | 2 of 2 ✔
+[da/379ace] ana…:anat_curv_stats (sub-101) | 2 of 2 ✔
+[13/bedbd0] anat_wf:anat_sphere (sub-101)  | 2 of 2 ✔
+[2e/15b72f] ana…_sphere_register (sub-101) | 2 of 2 ✔
+[25/0c24ea] ana…wf:anat_jacobian (sub-101) | 2 of 2 ✔
+[f1/8cdb03] ana…t_cortparc_aparc (sub-101) | 2 of 2 ✔
+[29/b889f3] ana…nat_pial_surface (sub-101) | 2 of 2 ✔
+[e7/1abba8] ana…:anat_pctsurfcon (sub-101) | 2 of 2 ✔
+[a4/04cd7e] ana…f:anat_parcstats (sub-101) | 1 of 1 ✔
+[c7/9855ac] anat_wf:anat_ribbon (sub-101)  | 1 of 1 ✔
+[d3/1442a5] ana…f:anat_apas2aseg (sub-101) | 1 of 1 ✔
+[10/629d18] ana…:anat_aparc2aseg (sub-101) | 0 of 1
+[ac/d779f1] ana…:qc_plot_volsurf (sub-101) | 1 of 1 ✔
+[5e/b6f749] ana…qc_plot_surfparc (sub-101) | 1 of 1 ✔
+Plus 2 more processes waiting for tasks…
+
+executor >  local (64)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[41/4b071b] ana…astcsr_mksurface (sub-101) | 2 of 2 ✔
+[20/038d59] ana…_autodet_gwstats (sub-101) | 2 of 2 ✔
+[8f/a55ec9] ana…at_white_surface (sub-101) | 2 of 2 ✔
+[8c/0480b2] ana…nat_cortex_label (sub-101) | 2 of 2 ✔
+[b0/f094da] ana…ex_hipamyg_label (sub-101) | 2 of 2 ✔
+[53/d96a2d] ana…anat_hyporelabel (sub-101) | 1 of 1 ✔
+[9e/cc4e47] ana…_smooth_inflated (sub-101) | 2 of 2 ✔
+[da/379ace] ana…:anat_curv_stats (sub-101) | 2 of 2 ✔
+[13/bedbd0] anat_wf:anat_sphere (sub-101)  | 2 of 2 ✔
+[2e/15b72f] ana…_sphere_register (sub-101) | 2 of 2 ✔
+[25/0c24ea] ana…wf:anat_jacobian (sub-101) | 2 of 2 ✔
+[f1/8cdb03] ana…t_cortparc_aparc (sub-101) | 2 of 2 ✔
+[29/b889f3] ana…nat_pial_surface (sub-101) | 2 of 2 ✔
+[e7/1abba8] ana…:anat_pctsurfcon (sub-101) | 2 of 2 ✔
+[a4/04cd7e] ana…f:anat_parcstats (sub-101) | 1 of 1 ✔
+[c7/9855ac] anat_wf:anat_ribbon (sub-101)  | 1 of 1 ✔
+[d3/1442a5] ana…f:anat_apas2aseg (sub-101) | 1 of 1 ✔
+[10/629d18] ana…:anat_aparc2aseg (sub-101) | 0 of 1
+[ac/d779f1] ana…:qc_plot_volsurf (sub-101) | 1 of 1 ✔
+[5e/b6f749] ana…qc_plot_surfparc (sub-101) | 1 of 1 ✔
+Plus 2 more processes waiting for tasks…
+
+executor >  local (65)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[41/4b071b] ana…astcsr_mksurface (sub-101) | 2 of 2 ✔
+[20/038d59] ana…_autodet_gwstats (sub-101) | 2 of 2 ✔
+[8f/a55ec9] ana…at_white_surface (sub-101) | 2 of 2 ✔
+[8c/0480b2] ana…nat_cortex_label (sub-101) | 2 of 2 ✔
+[b0/f094da] ana…ex_hipamyg_label (sub-101) | 2 of 2 ✔
+[53/d96a2d] ana…anat_hyporelabel (sub-101) | 1 of 1 ✔
+[9e/cc4e47] ana…_smooth_inflated (sub-101) | 2 of 2 ✔
+[da/379ace] ana…:anat_curv_stats (sub-101) | 2 of 2 ✔
+[13/bedbd0] anat_wf:anat_sphere (sub-101)  | 2 of 2 ✔
+[2e/15b72f] ana…_sphere_register (sub-101) | 2 of 2 ✔
+[25/0c24ea] ana…wf:anat_jacobian (sub-101) | 2 of 2 ✔
+[f1/8cdb03] ana…t_cortparc_aparc (sub-101) | 2 of 2 ✔
+[29/b889f3] ana…nat_pial_surface (sub-101) | 2 of 2 ✔
+[e7/1abba8] ana…:anat_pctsurfcon (sub-101) | 2 of 2 ✔
+[a4/04cd7e] ana…f:anat_parcstats (sub-101) | 1 of 1 ✔
+[c7/9855ac] anat_wf:anat_ribbon (sub-101)  | 1 of 1 ✔
+[d3/1442a5] ana…f:anat_apas2aseg (sub-101) | 1 of 1 ✔
+[10/629d18] ana…:anat_aparc2aseg (sub-101) | 1 of 1 ✔
+[ac/d779f1] ana…:qc_plot_volsurf (sub-101) | 1 of 1 ✔
+[5e/b6f749] ana…qc_plot_surfparc (sub-101) | 1 of 1 ✔
+[dc/3970d8] ana…_plot_aparc_aseg (sub-101) | 0 of 1
+Plus 1 more processes waiting for tasks…
+
+executor >  local (66)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[41/4b071b] ana…astcsr_mksurface (sub-101) | 2 of 2 ✔
+[20/038d59] ana…_autodet_gwstats (sub-101) | 2 of 2 ✔
+[8f/a55ec9] ana…at_white_surface (sub-101) | 2 of 2 ✔
+[8c/0480b2] ana…nat_cortex_label (sub-101) | 2 of 2 ✔
+[b0/f094da] ana…ex_hipamyg_label (sub-101) | 2 of 2 ✔
+[53/d96a2d] ana…anat_hyporelabel (sub-101) | 1 of 1 ✔
+[9e/cc4e47] ana…_smooth_inflated (sub-101) | 2 of 2 ✔
+[da/379ace] ana…:anat_curv_stats (sub-101) | 2 of 2 ✔
+[13/bedbd0] anat_wf:anat_sphere (sub-101)  | 2 of 2 ✔
+[2e/15b72f] ana…_sphere_register (sub-101) | 2 of 2 ✔
+[25/0c24ea] ana…wf:anat_jacobian (sub-101) | 2 of 2 ✔
+[f1/8cdb03] ana…t_cortparc_aparc (sub-101) | 2 of 2 ✔
+[29/b889f3] ana…nat_pial_surface (sub-101) | 2 of 2 ✔
+[e7/1abba8] ana…:anat_pctsurfcon (sub-101) | 2 of 2 ✔
+[a4/04cd7e] ana…f:anat_parcstats (sub-101) | 1 of 1 ✔
+[c7/9855ac] anat_wf:anat_ribbon (sub-101)  | 1 of 1 ✔
+[d3/1442a5] ana…f:anat_apas2aseg (sub-101) | 1 of 1 ✔
+[10/629d18] ana…:anat_aparc2aseg (sub-101) | 1 of 1 ✔
+[ac/d779f1] ana…:qc_plot_volsurf (sub-101) | 1 of 1 ✔
+[5e/b6f749] ana…qc_plot_surfparc (sub-101) | 1 of 1 ✔
+[dc/3970d8] ana…_plot_aparc_aseg (sub-101) | 1 of 1 ✔
+[66/4e3177] ana…at_create_report (sub-101) | 0 of 1
+
+executor >  local (66)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[41/4b071b] ana…astcsr_mksurface (sub-101) | 2 of 2 ✔
+[20/038d59] ana…_autodet_gwstats (sub-101) | 2 of 2 ✔
+[8f/a55ec9] ana…at_white_surface (sub-101) | 2 of 2 ✔
+[8c/0480b2] ana…nat_cortex_label (sub-101) | 2 of 2 ✔
+[b0/f094da] ana…ex_hipamyg_label (sub-101) | 2 of 2 ✔
+[53/d96a2d] ana…anat_hyporelabel (sub-101) | 1 of 1 ✔
+[9e/cc4e47] ana…_smooth_inflated (sub-101) | 2 of 2 ✔
+[da/379ace] ana…:anat_curv_stats (sub-101) | 2 of 2 ✔
+[13/bedbd0] anat_wf:anat_sphere (sub-101)  | 2 of 2 ✔
+[2e/15b72f] ana…_sphere_register (sub-101) | 2 of 2 ✔
+[25/0c24ea] ana…wf:anat_jacobian (sub-101) | 2 of 2 ✔
+[f1/8cdb03] ana…t_cortparc_aparc (sub-101) | 2 of 2 ✔
+[29/b889f3] ana…nat_pial_surface (sub-101) | 2 of 2 ✔
+[e7/1abba8] ana…:anat_pctsurfcon (sub-101) | 2 of 2 ✔
+[a4/04cd7e] ana…f:anat_parcstats (sub-101) | 1 of 1 ✔
+[c7/9855ac] anat_wf:anat_ribbon (sub-101)  | 1 of 1 ✔
+[d3/1442a5] ana…f:anat_apas2aseg (sub-101) | 1 of 1 ✔
+[10/629d18] ana…:anat_aparc2aseg (sub-101) | 1 of 1 ✔
+[ac/d779f1] ana…:qc_plot_volsurf (sub-101) | 1 of 1 ✔
+[5e/b6f749] ana…qc_plot_surfparc (sub-101) | 1 of 1 ✔
+[dc/3970d8] ana…_plot_aparc_aseg (sub-101) | 1 of 1 ✔
+[66/4e3177] ana…at_create_report (sub-101) | 0 of 1
+
+executor >  local (66)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[41/4b071b] ana…astcsr_mksurface (sub-101) | 2 of 2 ✔
+[20/038d59] ana…_autodet_gwstats (sub-101) | 2 of 2 ✔
+[8f/a55ec9] ana…at_white_surface (sub-101) | 2 of 2 ✔
+[8c/0480b2] ana…nat_cortex_label (sub-101) | 2 of 2 ✔
+[b0/f094da] ana…ex_hipamyg_label (sub-101) | 2 of 2 ✔
+[53/d96a2d] ana…anat_hyporelabel (sub-101) | 1 of 1 ✔
+[9e/cc4e47] ana…_smooth_inflated (sub-101) | 2 of 2 ✔
+[da/379ace] ana…:anat_curv_stats (sub-101) | 2 of 2 ✔
+[13/bedbd0] anat_wf:anat_sphere (sub-101)  | 2 of 2 ✔
+[2e/15b72f] ana…_sphere_register (sub-101) | 2 of 2 ✔
+[25/0c24ea] ana…wf:anat_jacobian (sub-101) | 2 of 2 ✔
+[f1/8cdb03] ana…t_cortparc_aparc (sub-101) | 2 of 2 ✔
+[29/b889f3] ana…nat_pial_surface (sub-101) | 2 of 2 ✔
+[e7/1abba8] ana…:anat_pctsurfcon (sub-101) | 2 of 2 ✔
+[a4/04cd7e] ana…f:anat_parcstats (sub-101) | 1 of 1 ✔
+[c7/9855ac] anat_wf:anat_ribbon (sub-101)  | 1 of 1 ✔
+[d3/1442a5] ana…f:anat_apas2aseg (sub-101) | 1 of 1 ✔
+[10/629d18] ana…:anat_aparc2aseg (sub-101) | 1 of 1 ✔
+[ac/d779f1] ana…:qc_plot_volsurf (sub-101) | 1 of 1 ✔
+[5e/b6f749] ana…qc_plot_surfparc (sub-101) | 1 of 1 ✔
+[dc/3970d8] ana…_plot_aparc_aseg (sub-101) | 1 of 1 ✔
+[66/4e3177] ana…at_create_report (sub-101) | 1 of 1 ✔
+
+executor >  local (66)
+[f0/f07af5] deepprep_init                  | 1 of 1 ✔
+[b8/4c70d6] ana…:anat_get_t1w_file_in_bids | 1 of 1 ✔
+[06/03793b] ana…subject_orig_dir (sub-101) | 1 of 1 ✔
+[9b/a037b1] ana…t_create_summary (sub-101) | 1 of 1 ✔
+[f5/f9a101] ana…f:anat_motioncor (sub-101) | 1 of 1 ✔
+[d0/402443] anat_wf:anat_segment (sub-101) | 1 of 1 ✔
+[e7/f1df87] ana…t_reduce_to_aseg (sub-101) | 1 of 1 ✔
+[72/7c143c] ana…_N4_bias_correct (sub-101) | 1 of 1 ✔
+[92/95d5b6] ana…talairach_and_nu (sub-101) | 1 of 1 ✔
+[b2/4ac433] anat_wf:anat_T1 (sub-101)      | 1 of 1 ✔
+[83/cbe1d8] ana…f:anat_brainmask (sub-101) | 1 of 1 ✔
+[e3/c0b047] ana…paint_cc_to_aseg (sub-101) | 1 of 1 ✔
+[ee/793d79] anat_wf:anat_fill (sub-101)    | 1 of 1 ✔
+[80/676040] ana…bject_id_hemi_lh (sub-101) | 1 of 1 ✔
+[ac/d40cf5] ana…bject_id_hemi_rh (sub-101) | 1 of 1 ✔
+[1d/9bf9f6] ana…it_hemi_orig_mgz (sub-101) | 2 of 2 ✔
+[f6/0fb15c] ana…_hemi_rawavg_mgz (sub-101) | 2 of 2 ✔
+[fd/05d2c1] ana…mi_brainmask_mgz (sub-101) | 2 of 2 ✔
+[9e/f6e6f9] ana…aseg_presurf_mgz (sub-101) | 2 of 2 ✔
+[72/0a07c0] ana…n_finalsurfs_mgz (sub-101) | 2 of 2 ✔
+[03/b814bd] ana…plit_hemi_wm_mgz (sub-101) | 2 of 2 ✔
+[28/a69e46] ana…_hemi_filled_mgz (sub-101) | 2 of 2 ✔
+[2e/e1000c] ana…fastcsr_levelset (sub-101) | 2 of 2 ✔
+[41/4b071b] ana…astcsr_mksurface (sub-101) | 2 of 2 ✔
+[20/038d59] ana…_autodet_gwstats (sub-101) | 2 of 2 ✔
+[8f/a55ec9] ana…at_white_surface (sub-101) | 2 of 2 ✔
+[8c/0480b2] ana…nat_cortex_label (sub-101) | 2 of 2 ✔
+[b0/f094da] ana…ex_hipamyg_label (sub-101) | 2 of 2 ✔
+[53/d96a2d] ana…anat_hyporelabel (sub-101) | 1 of 1 ✔
+[9e/cc4e47] ana…_smooth_inflated (sub-101) | 2 of 2 ✔
+[da/379ace] ana…:anat_curv_stats (sub-101) | 2 of 2 ✔
+[13/bedbd0] anat_wf:anat_sphere (sub-101)  | 2 of 2 ✔
+[2e/15b72f] ana…_sphere_register (sub-101) | 2 of 2 ✔
+[25/0c24ea] ana…wf:anat_jacobian (sub-101) | 2 of 2 ✔
+[f1/8cdb03] ana…t_cortparc_aparc (sub-101) | 2 of 2 ✔
+[29/b889f3] ana…nat_pial_surface (sub-101) | 2 of 2 ✔
+[e7/1abba8] ana…:anat_pctsurfcon (sub-101) | 2 of 2 ✔
+[a4/04cd7e] ana…f:anat_parcstats (sub-101) | 1 of 1 ✔
+[c7/9855ac] anat_wf:anat_ribbon (sub-101)  | 1 of 1 ✔
+[d3/1442a5] ana…f:anat_apas2aseg (sub-101) | 1 of 1 ✔
+[10/629d18] ana…:anat_aparc2aseg (sub-101) | 1 of 1 ✔
+[ac/d779f1] ana…:qc_plot_volsurf (sub-101) | 1 of 1 ✔
+[5e/b6f749] ana…qc_plot_surfparc (sub-101) | 1 of 1 ✔
+[dc/3970d8] ana…_plot_aparc_aseg (sub-101) | 1 of 1 ✔
+[66/4e3177] ana…at_create_report (sub-101) | 1 of 1 ✔
+Completed at: 24-Apr-2026 02:59:42
+Duration    : 28m 4s
+CPU hours   : 1.9
+Succeeded   : 66
+
+
