@@ -1,6 +1,0 @@
-talairach transform
- 1.07495   0.02928  -0.01220   0.15892;
- 0.00589   1.10207   0.35551  -1.20302;
--0.00313  -0.29619   1.20742   0.21442;
- 0.00000   0.00000   0.00000   1.00000;
-INFO: Modifying talairach volume c_(r,a,s) based on average_305

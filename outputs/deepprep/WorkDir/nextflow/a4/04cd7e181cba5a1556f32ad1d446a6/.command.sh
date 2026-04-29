@@ -1,5 +1,0 @@
-#!/bin/bash -ue
-SUBJECTS_DIR=/output/Recon mris_anatomical_stats -th3 -mgz -cortex /output/Recon/sub-101/label/lh.cortex.label -f /output/Recon/sub-101/stats/lh.aparc.pial.stats -b -a /output/Recon/sub-101/label/lh.aparc.annot -c /output/Recon/sub-101/label/aparc.annot.ctab sub-101 lh pial
-SUBJECTS_DIR=/output/Recon mris_anatomical_stats -th3 -mgz -cortex /output/Recon/sub-101/label/lh.cortex.label -f /output/Recon/sub-101/stats/lh.aparc.stats -b -a /output/Recon/sub-101/label/lh.aparc.annot -c /output/Recon/sub-101/label/aparc.annot.ctab sub-101 lh white
-SUBJECTS_DIR=/output/Recon mris_anatomical_stats -th3 -mgz -cortex /output/Recon/sub-101/label/rh.cortex.label -f /output/Recon/sub-101/stats/rh.aparc.pial.stats -b -a /output/Recon/sub-101/label/rh.aparc.annot -c /output/Recon/sub-101/label/aparc.annot.ctab sub-101 lh pial
-SUBJECTS_DIR=/output/Recon mris_anatomical_stats -th3 -mgz -cortex /output/Recon/sub-101/label/rh.cortex.label -f /output/Recon/sub-101/stats/rh.aparc.stats -b -a /output/Recon/sub-101/label/rh.aparc.annot -c /output/Recon/sub-101/label/aparc.annot.ctab sub-101 lh white

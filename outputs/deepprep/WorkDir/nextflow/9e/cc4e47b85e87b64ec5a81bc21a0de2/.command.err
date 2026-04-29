@@ -1,7 +1,0 @@
-smoothing for 3 iterations
-smoothing surface tessellation for 3 iterations...
-smoothing complete - recomputing first and second fundamental forms...
-avg radius = 45.8 mm, total surface area = 79758 mm^2
-writing inflated surface to /output/Recon/sub-101/surf/lh.inflated
-writing sulcal depths to /output/Recon/sub-101/surf/lh.sulc
-inflation took 0.3 minutes

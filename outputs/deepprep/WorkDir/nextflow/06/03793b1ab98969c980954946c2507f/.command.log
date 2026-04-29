@@ -1,8 +1,0 @@
-mri_convert /input/sub-101/ses-BL/anat/sub-101_ses-BL_T1w.nii.gz /output/Recon/sub-101/mri/orig/001.mgz 
-reading from /input/sub-101/ses-BL/anat/sub-101_ses-BL_T1w.nii.gz...
-TR=0.00, TE=0.00, TI=0.00, flip angle=0.00
-i_ras = (-0.999982, -0.00605133, -0.000157172)
-j_ras = (-0.00603835, 0.995337, 0.0962649)
-k_ras = (0.000426092, -0.0962641, 0.995356)
-writing to /output/Recon/sub-101/mri/orig/001.mgz...
-mri_convert /input/sub-101/ses-BL/anat/sub-101_ses-BL_T1w.nii.gz /output/Recon/sub-101/mri/orig/001.mgz

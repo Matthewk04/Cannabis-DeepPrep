@@ -1,9 +1,0 @@
-Logfile for pctsurfcon
-Fri Apr 24 02:55:48 UTC 2026
-setenv SUBJECTS_DIR /output/Recon
-cd /output/WorkDir/nextflow/e7/1abba86b30f9a25ab1da37b1c06171
-/opt/freesurfer/bin/pctsurfcon
-pctsurfcon 7.2.0
-Linux 8eb296a60dbd 5.15.0-176-generic #186-Ubuntu SMP Fri Mar 13 11:01:42 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
-FREESURFER_HOME /opt/freesurfer
-Cleaning up

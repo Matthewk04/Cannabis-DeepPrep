@@ -1,7 +1,0 @@
-status file for recon-all
-Fri Apr 24 02:06:17 UTC 2026
-#@# MotionCor Fri Apr 24 02:06:17 UTC 2026
-Linux e581b88c2fe1 5.15.0-176-generic #186-Ubuntu SMP Fri Mar 13 11:01:42 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
-
-recon-all -s sub-103 exited with ERRORS at Fri Apr 24 02:06:21 UTC 2026
-

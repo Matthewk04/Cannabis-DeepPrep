@@ -1,2 +1,0 @@
-#!/bin/bash -ue
-qc_anat_aparc_aseg.py     --subject_id sub-101     --subjects_dir /output/Recon     --qc_result_path /output/QC     --dlabel_info /opt/DeepPrep/deepprep/nextflow/bin/qc_tool/FreeSurferAllLut.txt     --scene_file /opt/DeepPrep/deepprep/nextflow/bin/qc_tool/Volume_parc.scene     --svg_outpath /output/QC/sub-101/figures/sub-101_desc-volparc_T1w.svg     --freesurfer_home /opt/freesurfer

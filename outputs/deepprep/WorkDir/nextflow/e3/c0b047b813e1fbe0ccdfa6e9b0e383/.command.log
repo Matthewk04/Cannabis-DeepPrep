@@ -1,33 +1,0 @@
-will read input aseg from aseg.auto_noCCseg.mgz
-will read norm from norm.mgz
-writing aseg with cc labels to aseg.auto.mgz
-will write lta as cc_up.lta
-using /output/Recon as SUBJECTS_DIR...
-reading aseg from /output/Recon/sub-101/mri/aseg.auto_noCCseg.mgz
-reading norm from /output/Recon/sub-101/mri/norm.mgz
-15163 voxels in left wm, 14967 in right wm, xrange [126, 131]
-searching rotation angles z=[-7  7], y=[-8  6]
-searching scale 1 Z rot -7.1  searching scale 1 Z rot -6.9  searching scale 1 Z rot -6.6  searching scale 1 Z rot -6.4  searching scale 1 Z rot -6.1  searching scale 1 Z rot -5.9  searching scale 1 Z rot -5.6  searching scale 1 Z rot -5.4  searching scale 1 Z rot -5.1  searching scale 1 Z rot -4.9  searching scale 1 Z rot -4.6  searching scale 1 Z rot -4.4  searching scale 1 Z rot -4.1  searching scale 1 Z rot -3.9  searching scale 1 Z rot -3.6  searching scale 1 Z rot -3.4  searching scale 1 Z rot -3.1  searching scale 1 Z rot -2.9  searching scale 1 Z rot -2.6  searching scale 1 Z rot -2.4  searching scale 1 Z rot -2.1  searching scale 1 Z rot -1.9  searching scale 1 Z rot -1.6  searching scale 1 Z rot -1.4  searching scale 1 Z rot -1.1  searching scale 1 Z rot -0.9  searching scale 1 Z rot -0.6  searching scale 1 Z rot -0.4  searching scale 1 Z rot -0.1  searching scale 1 Z rot 0.1  searching scale 1 Z rot 0.4  searching scale 1 Z rot 0.6  searching scale 1 Z rot 0.9  searching scale 1 Z rot 1.1  searching scale 1 Z rot 1.4  searching scale 1 Z rot 1.6  searching scale 1 Z rot 1.9  searching scale 1 Z rot 2.1  searching scale 1 Z rot 2.4  searching scale 1 Z rot 2.6  searching scale 1 Z rot 2.9  searching scale 1 Z rot 3.1  searching scale 1 Z rot 3.4  searching scale 1 Z rot 3.6  searching scale 1 Z rot 3.9  searching scale 1 Z rot 4.1  searching scale 1 Z rot 4.4  searching scale 1 Z rot 4.6  searching scale 1 Z rot 4.9  searching scale 1 Z rot 5.1  searching scale 1 Z rot 5.4  searching scale 1 Z rot 5.6  searching scale 1 Z rot 5.9  searching scale 1 Z rot 6.1  searching scale 1 Z rot 6.4  searching scale 1 Z rot 6.6  global minimum found at slice 128.0, rotations (-0.60, -0.14)
-final transformation (x=128.0, yr=-0.600, zr=-0.137):
- 0.99994   0.00239  -0.01047   1.07594;
--0.00239   1.00000   0.00002  -2.69732;
- 0.01047   0.00000   0.99995  -3.33229;
- 0.00000   0.00000   0.00000   1.00000;
-updating x range to be [126, 130] in xformed coordinates
-best xformed slice 128
-min_x_fornix = 138
-WARNING: min_x_fornix not set
-WARNING: min_x_fornix not set
-WARNING: min_x_fornix not set
-WARNING: min_x_fornix not set
-cc center is found at 128 131 130
-eigenvectors:
--0.00030  -0.00588   0.99998;
--0.10147  -0.99482  -0.00588;
- 0.99484  -0.10147  -0.00030;
-writing aseg with callosum to /output/Recon/sub-101/mri/aseg.auto.mgz...
-corpus callosum segmentation took 0.4 minutes
-#VMPC# mri_cc VmPeak  162336
-mri_cc done
-Reading inputs: /output/Recon/sub-101/mri/aseg.auto.mgz /output/Recon/sub-101/mri/aparc.DKTatlas+aseg.deep.mgz...
-Writing segmentation with corpus callosum to: /output/Recon/sub-101/mri/aparc.DKTatlas+aseg.deep.withCC.mgz
