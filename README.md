@@ -198,23 +198,11 @@ Then re-run the pipeline from step 3 onward. All scripts automatically adapt.
 
 ## Citation
 
-If you use this pipeline, please cite:
-
-```bibtex
-@software{cannabis_deepprep_2025,
-  author = {{Cannabis-DeepPrep Contributors}},
-  title = {Cannabis fMRI Study Using DeepPrep},
-  year = {2026},
-  publisher = {GitHub},
-  url = {https://github.com/Matthewk04/Cannabis-DeepPrep}
-}
-```
-
-And the DeepPrep paper:
+If you use this pipeline, please cite the DeepPrep paper:
 ```bibtex
 @article{deepprep_2025,
   title={DeepPrep: An accelerated, scalable, and robust pipeline for neuroimaging preprocessing},
-  author={...},
+  authors={Jianxun Ren, Ning An, Cong Lin, Youjia Zhang, Zhenyu Sun, Wei Zhang, Shiyi Li, Ning Guo, Weigang Cui, Qingyu Hu, Weiwei Wang, Xuehai Wu, Yinyan Wang, Tao Jiang, Theodore D. Satterthwaite, Danhong Wang & Hesheng Liu},
   journal={Nature Methods},
   year={2025},
   doi={10.1038/s41592-025-02599-1}
