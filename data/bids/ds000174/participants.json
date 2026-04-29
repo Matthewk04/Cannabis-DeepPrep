@@ -1,0 +1,29 @@
+{
+  "participant_id": {
+    "Description": "Participant identifier"
+  },
+  "group": {
+    "Description": "Age in years (TODO - verify) as in the initial session, might not be correct for other sessions"
+  },
+  "gender": {
+    "Description": "self-rated by participant, M for male/F for female (TODO: verify)"
+  },
+  "age at baseline": {
+    "Description": "age"
+  },
+  "age at onset first CB use": {
+    "Description": "age at first cb use"
+  },
+  "age at onset frequent CB use": {
+    "Description": "age at frequent use"
+  },
+  "cudit total baseline": {
+    "Description": "cudit total baseline"
+  },
+  "audit total baseline": {
+    "Description": "audit total baseline"
+  },
+  "audit total follow-up": {
+    "Description": "audit total follow-up"
+  }
+}

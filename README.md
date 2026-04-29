@@ -23,39 +23,39 @@ This repository contains the complete analysis pipeline for comparing brain stru
 
 ```
 Cannabis-DeepPrep/
-├── code/                           # All analysis code
-│   ├── preprocessing/              # Data acquisition + DeepPrep runs
-│   │   ├── 00_setup.sh
-│   │   ├── 01_download_data.sh
-│   │   ├── 02_run_deepprep_anat.sh
-│   │   └── 02_run_deepprep_bold.sh
-│   ├── analysis/                   # Statistical comparisons
-│   │   ├── 03_group_participants.py
-│   │   ├── 04_structural_analysis.py
-│   │   └── 04_functional_analysis.py
-│   └── visualization/              # Figures
-│       └── 05_visualize_results.py
-├── data/                           # Data (excluded from git via .gitignore)
-│   ├── raw/                        # BIDS input datasets (ds000174)
-│   ├── derivatives/                # DeepPrep outputs
-│   │   └── deepprep/
-│   ├── processed/                  # Analysis outputs
-│   │   ├── structural/
-│   │   ├── functional/
-│   │   └── figures/
+├── scripts/                        # Analysis pipeline scripts
+│   ├── 01_download_data.sh
+│   ├── 02_run_deepprep_anat.sh     # Multi-session structural preprocessing
+│   ├── 02_run_deepprep_bold.sh     # fMRI preprocessing (future)
+│   ├── 03_group_participants.py    # Group assignment
+│   ├── 04_structural_analysis.py   # Statistical comparison
+│   ├── 04_structural_single_subject.py  # Single-subject feature extraction
+│   ├── 05_visualize_results.py     # Group-level figures
+│   ├── 05_visualize_single_subject.py   # Single-subject QC (optional)
+│   └── verify_gpu.sh               # GPU verification utility
+├── data/
+│   ├── bids/
+│   │   └── ds000174/               # OpenNeuro dataset (T1w structural MRI)
 │   └── freesurfer/
-│       └── license.txt             # User-specific (see Setup)
-├── docs/                           # Documentation
-│   ├── methods.md                  # Detailed methods
-│   ├── results.md                  # Results summary (auto-updated)
-│   └── figures/                    # Publication-ready figures
-├── notebooks/                      # Jupyter notebooks for exploration
-│   └── exploratory_analysis.ipynb
-├── env/                            # Environment specifications
-│   ├── requirements.txt            # pip install -r env/requirements.txt
-│   └── conda_environment.yml       # conda env create -f env/conda_environment.yml
-├── logs/                           # DeepPrep run logs (timestamped)
-├── provision_gpu_node.ipynb        # FABRIC GPU slice provisioning notebook
+│       └── license.txt             # FreeSurfer license (required)
+├── outputs/
+│   ├── deepprep/                   # DeepPrep derivatives
+│   │   ├── Recon/                  # FreeSurfer-compatible outputs
+│   │   │   └── sub-XXX_ses-YY/     # Per-session results
+│   │   │       ├── stats/          # ROI statistics (aseg, aparc)
+│   │   │       ├── surf/           # Surface meshes
+│   │   │       └── mri/            # Volumetric images
+│   │   ├── QC/                     # HTML quality control reports
+│   │   └── WorkDir/                # Temporary processing files
+│   └── analysis/
+│       ├── structural/             # Group comparison results
+│       │   ├── group_comparison_ses-BL.csv
+│       │   └── subject_features_ses-BL.csv
+│       ├── functional/             # fMRI analysis (future)
+│       ├── groups.csv              # Group labels (heavy/control)
+│       ├── group_meta.json         # Metadata for analysis scripts
+│       └── pilot_subjects.txt      # Prototype subject list
+├── logs/                           # Timestamped DeepPrep logs
 ├── .gitignore
 ├── LICENSE
 └── README.md
@@ -69,8 +69,8 @@ Cannabis-DeepPrep/
 
 | Attribute | Value |
 |---|---|
-| Heavy cannabis users | N=20 (mean age 20.5, SD=2.1) |
-| Non-using controls | N=22 (mean age 21.6, SD=2.45) |
+| Heavy cannabis users | N=20 |
+| Non-using controls | N=22 |
 | Scanner | 3T Philips Intera |
 | Sequence | T1w TFE (TR/TE/FA: 9.0 ms / 3.5 ms / 8°) |
 | Voxel size | 0.875 × 1.2 × 0.875 mm³ |
@@ -83,9 +83,10 @@ Cannabis-DeepPrep/
 
 ### Prerequisites
 - **Platform**: Ubuntu 22.04 (tested on FABRIC testbed)
+- **GPU**: NVIDIA RTX 6000 (or CPU fallback)
 - **Docker**: ≥ 20.10 with NVIDIA Container Toolkit (GPU) or CPU fallback
 - **RAM**: ≥ 16 GB (32 GB recommended)
-- **Disk**: ≥ 50 GB free
+- **Disk**: ≥ 100 GB free
 - **FreeSurfer license**: Free registration at https://surfer.nmr.mgh.harvard.edu/registration.html
 
 ### Installation
@@ -94,41 +95,53 @@ Cannabis-DeepPrep/
 # Clone the repository
 git clone https://github.com/Matthewk04/Cannabis-DeepPrep.git
 cd Cannabis-DeepPrep
-
-# Install dependencies (Python 3.10)
-pip install -r env/requirements.txt
-# OR create a conda environment:
-conda env create -f env/conda_environment.yml && conda activate cannabis-deepprep
-
-# Run setup (installs Docker, NVIDIA toolkit if needed, pulls DeepPrep image)
-bash code/preprocessing/00_setup.sh
-
+ 
+# Install Python dependencies
+pip install nilearn nibabel pandas numpy scipy statsmodels matplotlib seaborn
+ 
 # Place your FreeSurfer license
 cp /path/to/your/license.txt data/freesurfer/license.txt
+ 
+# Verify GPU is working (RTX 6000)
+bash scripts/verify_gpu.sh
 ```
 
-### Run the Prototype (10 subjects)
-
+### Run the Prototype (1 subject, both sessions)
+ 
 ```bash
-# Download dataset
-bash code/preprocessing/01_download_data.sh
-
-# Select 10-subject prototype subset
-python3 code/analysis/03_group_participants.py
-
-# Run DeepPrep (CPU: ~17 hrs, GPU RTX6000: ~2 hrs)
-# Recommended: use tmux/screen for long runs
-bash code/preprocessing/02_run_deepprep_anat.sh --pilot
-
-# Statistical analysis
-python3 code/analysis/04_structural_analysis.py
-
-# Generate figures
-python3 code/visualization/05_visualize_results.py
+# 1. Download ds000174
+bash scripts/01_download_data.sh
+ 
+# 2. Select prototype subject(s)
+python3 scripts/03_group_participants.py
+ 
+# 3. Run DeepPrep on one subject (both ses-BL and ses-FU)
+#    Expected runtime: ~18 min on RTX 6000 (~9 min per session)
+bash scripts/02_run_deepprep_anat.sh sub-101
+ 
+# 4. Extract structural features
+python3 scripts/04_structural_single_subject.py
+ 
+# 5. View DeepPrep QC report
+firefox outputs/deepprep/QC/sub-101_ses-BL.html
 ```
-
-**Outputs**: `data/processed/structural/group_comparison_structural.csv`, `data/processed/figures/*.png`
-
+### Run Group Comparison (when you have multiple subjects)
+ 
+```bash
+# After running DeepPrep on pilot subjects
+bash scripts/02_run_deepprep_anat.sh --pilot
+ 
+# Statistical analysis (uses ses-BL by default)
+python3 scripts/04_structural_analysis.py
+ 
+# Generate group comparison figures
+python3 scripts/05_visualize_results.py
+```
+ 
+**Outputs**:
+- `outputs/analysis/structural/group_comparison_ses-BL.csv` — t-tests, p-values, Cohen's d
+- `outputs/figures/effect_sizes_ses-BL.png` — Forest plot
+- `outputs/figures/group_means_ses-BL.png` — Bar chart
 ---
 
 ## Methods
@@ -142,58 +155,112 @@ python3 code/visualization/05_visualize_results.py
 | SUGAR | Surface registration (→ fsaverage) | ~2 min |
 | SynthMorph | Spatial normalization (→ MNI152) | ~1 min |
 
-**Command**:
+**Key parameters**:
 ```bash
-docker run --gpus all --shm-size 8g \
-  -v /data/raw:/input:ro \
-  -v /data/derivatives:/output \
-  pbfslab/deepprep:25.1.0 \
-  /input /output participant --anat_only \
-  --fs_license_file /license.txt --cpus 10 --memory 20
+--anat_only              # Structural preprocessing only
+--session_label BL       # Process baseline session
+--fs_license_file        # FreeSurfer license
+--cpus 10                # CPU cores
+--memory 20              # RAM in GB
+--skip_bids_validation   # Bypass BIDS validator
 ```
-
+ 
 ### Statistical Analysis
-- **ROIs**: Cannabis-relevant regions (hippocampus, amygdala, striatum, frontal/temporal cortex) from FreeSurfer `aseg.stats` + `aparc.stats`
-- **Test**: Welch's t-test (unequal variances)
+- **Session used**: Baseline (ses-BL) for cross-sectional comparison
+- **ROIs**: Cannabis-relevant regions from FreeSurfer parcellation:
+  - Subcortical: hippocampus, amygdala, caudate, putamen, nucleus accumbens
+  - Cortical: superior frontal, rostral middle frontal, superior temporal, insula
+- **Test**: Welch's t-test (does not assume equal variances)
 - **Correction**: Benjamini-Hochberg FDR (q < 0.05)
 - **Effect size**: Cohen's d (small: 0.2, medium: 0.5, large: 0.8)
-
 ---
-
-## Results
-
-See `docs/results.md` for detailed results (auto-updated after running analysis scripts).
-
-### Prototype Results (n=5/group)
-With small sample size, p-values have limited validity. **Cohen's d is the primary metric**:
-- |d| ≥ 0.8 → large effect, worth investigating at full n
-- |d| ≥ 0.5 → medium effect
-- |d| < 0.2 → negligible
-
-Scaling to full dataset (n=20/22) provides ~4× more statistical power.
-
----
-
+ 
 ## GPU vs. CPU Performance
-
-| Platform | Time/subject | Total (42 subj) |
+ 
+| Hardware | Time per session | Total (1 subject, 2 sessions) |
 |---|---|---|
-| **CPU** (10 cores) | ~100 min | ~70 hours |
-| **GPU Tesla T4** (16 GB) | ~14 min | ~10 hours |
-| **GPU RTX 6000** (48 GB) | ~9 min | ~6 hours |
-
-**Recommendation**: Use FABRIC GPU node (see `provision_gpu_node.ipynb`)
-
+| **RTX 6000** (48 GB VRAM) | ~9 min | ~18 min |
+| **Tesla T4** (16 GB VRAM) | ~14 min | ~28 min |
+| **CPU** (10 cores) | ~100 min | ~200 min |
+ 
+RTX 6000 is **11× faster** than CPU for this workload.
+ 
 ---
-
-## Scaling to Full Dataset
-
-Change one line in `code/analysis/03_group_participants.py`:
-```python
-N_PER_GROUP = 20   # was 5
+ 
+## Multi-Session Handling
+ 
+ds000174 has **two sessions per subject**. DeepPrep will crash if you don't specify which session to process.
+ 
+### Process both sessions (default):
+```bash
+bash scripts/02_run_deepprep_anat.sh sub-101
+# Processes ses-BL, then ses-FU sequentially
 ```
-Then re-run the pipeline from step 3 onward. All scripts automatically adapt.
-
+ 
+### Process one session only:
+```bash
+bash scripts/02_run_deepprep_anat.sh sub-101 BL   # baseline only
+bash scripts/02_run_deepprep_anat.sh sub-101 FU   # follow-up only
+```
+ 
+### For group analysis:
+The analysis script uses **ses-BL (baseline)** by default. To change:
+```python
+# In 04_structural_analysis.py:
+SESSION_FOR_ANALYSIS = "FU"   # change from "BL" to "FU"
+```
+ 
+---
+ 
+## DeepPrep Outputs
+ 
+### 1. FreeSurfer-Compatible Derivatives (`outputs/deepprep/Recon/`)
+Each processed session produces:
+```
+sub-101_ses-BL/
+├── stats/
+│   ├── aseg.stats          # Subcortical volumes
+│   ├── brainvol.stats      # Global brain metrics
+│   ├── lh.aparc.stats      # Left hemisphere cortical parcellation
+│   └── rh.aparc.stats      # Right hemisphere cortical parcellation
+├── surf/
+│   ├── lh.pial             # Left hemisphere pial surface
+│   ├── lh.white            # Left hemisphere white matter surface
+│   └── ...
+└── mri/
+    ├── norm.mgz            # Normalized T1w
+    ├── brain.mgz           # Skull-stripped brain
+    └── aseg.mgz            # Tissue segmentation
+```
+ 
+### 2. Quality Control Reports (`outputs/deepprep/QC/`)
+- HTML reports with interactive visualizations
+- View in browser: `firefox outputs/deepprep/QC/sub-101_ses-BL.html`
+- Includes: segmentation, surfaces, normalization, parcellation
+### 3. Analysis Outputs (`outputs/analysis/`)
+- `structural/group_comparison_ses-BL.csv` — Statistical results
+- `structural/subject_features_ses-BL.csv` — Raw per-subject data
+- `groups.csv` — Group assignments (heavy/control)
+---
+ 
+## Troubleshooting
+ 
+### GPU not detected
+```bash
+# Verify GPU
+bash scripts/verify_gpu.sh
+ 
+# If it fails at step 4 (Docker nvidia runtime):
+sudo nvidia-ctk runtime configure --runtime=docker
+sudo systemctl restart docker
+```
+ 
+### DeepPrep crashes during processing
+- **Cause**: Likely tried to process both sessions at once
+- **Fix**: Run with `--session_label BL` flag (script does this automatically)
+### "File not found" errors in analysis scripts
+- Check that DeepPrep outputs exist: `ls outputs/deepprep/Recon/sub-101_ses-BL/stats/`
+- Verify session name: script looks for `ses-BL` by default
 ---
 
 ## Citation
