@@ -1,4 +1,4 @@
-# Cannabis fMRI Study Using DeepPrep
+# Cannabis MRI Study Using DeepPrep
 
 **Comparing Brain Structural Changes in Heavy vs. Non-Cannabis Users via Accelerated Neuroimaging Preprocessing**
 
@@ -54,6 +54,8 @@ Cannabis-DeepPrep/
 │   ├── fix_participants_tsv.py             # Helper: add `sub-` prefix to participants.tsv
 │   ├── generate_aseg.sh                    # Helper: post-hoc mri_segstats for missing aseg.stats
 │   └── verify_gpu.sh                       # GPU + Docker + DeepPrep image sanity check
+├── notebook/                               # FABRIC multi-node cluster workflow (see below)
+│   └── Cannabis_DeepPrep_Cluster.ipynb     # End-to-end notebook: provisions cluster, runs pipeline in parallel
 ├── data/
 │   ├── bids/
 │   │   └── ds000174/                       # OpenNeuro dataset (downloaded by 01_download_data.sh)
@@ -187,6 +189,89 @@ bash scripts/02_run_deepprep_anat.sh --pilot   # processes everyone in pilot_sub
 ```
 
 Expect ~75-85 hours of single-node GPU time for ~84 (subject, session) jobs.
+
+---
+
+## FABRIC Cluster Notebook
+
+The `notebook/Cannabis_DeepPrep_Cluster.ipynb` Jupyter notebook is an alternative end-to-end workflow that provisions a multi-node GPU cluster on the [NSF FABRIC testbed](https://portal.fabric-testbed.net/) and runs the same DeepPrep pipeline in parallel across worker nodes. It produces the same outputs as the single-node scripts (`Recon/`, `aseg.stats`, `longitudinal_change.csv`, the five figures), just much faster on large jobs.
+
+### When to Use the Notebook vs. Single-Node Scripts
+
+| You should use…              | Why                                                                                         |
+|------------------------------|---------------------------------------------------------------------------------------------|
+| **Single-node scripts**      | You have one workstation/server with an NVIDIA GPU. Running ≤ 10 subjects. No FABRIC access.|
+| **FABRIC cluster notebook**  | You need to scale to 20+ subjects, want 2-3× wall-clock speedup, or you're producing a reproducible cyberinfrastructure demo. |
+
+For the n=10 pilot, the notebook finishes in about **4 hours** wall-clock vs. **~13 hours** on a single RTX 6000 — roughly a **2.5× speedup** from spreading BL and FU jobs across 3 worker GPUs.
+
+### What the Notebook Does Differently
+
+The notebook (58 cells) automates everything the single-node scripts assume is already done. The key differences:
+
+| Step                          | Single-node scripts                         | Cluster notebook                                                              |
+|-------------------------------|---------------------------------------------|-------------------------------------------------------------------------------|
+| **Compute provisioning**      | You SSH into one machine yourself.          | `fablib.new_slice()` provisions 4 nodes (1 master + 3 GPU workers) at a chosen FABRIC site. |
+| **Networking**                | One host's networking is already set up.    | Configures NAT64 for IPv6-only nodes, builds an internal cluster subnet, distributes SSH keys for passwordless inter-node access. |
+| **Software install**          | `00_setup.sh` runs once locally.            | Same setup script is uploaded and executed in parallel on every node.         |
+| **Dataset distribution**      | Local disk; one copy.                       | Downloaded once on Node2, then rsync'd to all workers; FreeSurfer license distributed. |
+| **Per-subject processing**    | One `02_run_deepprep_anat.sh` invocation per subject, sequential. | Each worker is assigned a subset of subjects and runs `02_run_deepprep_session.sh BL` and `... FU` in parallel. The launcher uses `setsid` + `disown` to fully detach from SSH so paramiko buffers don't fill up and hang. |
+| **Output consolidation**      | Outputs already on local disk.              | After processing, runs `chown -R ubuntu` on each worker (Docker writes as root), then rsyncs all `Recon/`, `QC/`, and `stats/` to Node2 for analysis. |
+| **Result download**           | Files already local.                        | Cell 20 copies `longitudinal_change.csv`, `subject_features_all.csv`, and the five PNGs from Node2 back to the FABRIC JupyterHub workspace. |
+| **Cleanup**                   | N/A.                                        | Cell 22 has a commented-out `slice.delete()` for releasing FABRIC resources after the run. |
+
+The actual DeepPrep invocation, voxel-mismatch session-hiding workaround, post-hoc `mri_segstats`, and longitudinal analysis logic are **identical** to the single-node version — they're the same scripts, just run on remote workers.
+
+### Prerequisites for the Notebook
+
+- **FABRIC account** — apply at https://portal.fabric-testbed.net/. Need a project with sufficient core-hours and GPU allocations.
+- **fablib configured** — your FABRIC bastion key, sliver key, and `fabric_rc` set up locally (or in JupyterHub's `~/.fabric/`).
+- **JupyterHub or local Python** — with `fabrictestbed-extensions` installed.
+- **FreeSurfer license** — the notebook uploads it to Node2 from a local path you set in Cell 1.
+
+### Running the Notebook
+
+1. Open `notebook/Cannabis_DeepPrep_Cluster.ipynb` in JupyterHub (or a local Jupyter with fablib).
+2. Edit **Cell 1** (Configuration):
+
+   ```python
+   SLICE_NAME    = 'Cannabis_DeepPrep'
+   SITE          = 'CERN'        # or any FABRIC site with GPU resources
+   N_WORKERS     = 3             # 1-4 GPU workers
+   DATASET_ID    = 'ds000174'
+   N_PER_GROUP   = 5             # bump to 22 for the full dataset
+   FS_LICENSE    = '/home/fabric/work/license.txt'  # your local FS license path
+   ```
+
+3. Run cells **1–10** to provision the cluster, install the software stack, and download/distribute the dataset. (~30 min the first time; idempotent on re-run.)
+4. Run **Cell 11** to validate everything with a single-subject pilot test (~10 min).
+5. Run **Cells 12–17** for the parallel processing (~3-4 hr for n=10, longer for full dataset).
+6. Run **Cells 18–21** for analysis, figures, and download to the FABRIC workspace.
+7. Optional: **Cell 22** deletes the slice when you're done (uncomment the `slice.delete()` line).
+
+### Reconnecting After Closing the Notebook
+
+The notebook is robust to closure — FABRIC slice state and node disk state both persist when you close JupyterHub, even though the in-memory Python state is lost. To resume:
+
+1. Run cells **1, 2, 3** in order. Cell 3 detects the existing slice via `fablib.get_slice(SLICE_NAME)`.
+2. Run **Cell 13** to rebuild the worker `assignments` dict from `group_meta.json` on Node2.
+3. Skip ahead to whichever cell you were working on. Earlier cells are idempotent so re-running them is safe.
+
+### Notebook ↔ Scripts Equivalence
+
+The notebook embeds the same script content the `scripts/` directory ships:
+
+| Notebook cell                             | Equivalent file in `scripts/`                                                               |
+|-------------------------------------------|---------------------------------------------------------------------------------------------|
+| Cell 7 (`DEEPPREP_SETUP_SCRIPT`)          | `00_setup.sh` (with extra cluster-distribution logic)                                       |
+| Cells 9, 9.1, 9.2 (download + verify + tsv fix) | `01_download_data.sh` + `fix_participants_tsv.py`                                       |
+| Cell 10 (`GROUP_PARTICIPANTS_SCRIPT`)     | `03_group_participants.py`                                                                  |
+| Cell 12 (`PROCESSING_SCRIPT`)             | `02_run_deepprep_anat.sh` (cluster version takes assignments via `ASSIGNED_SUBJECTS` env)   |
+| Cell 16 (`GENERATE_ASEG_SCRIPT`)          | `generate_aseg.sh`                                                                          |
+| Cell 18 (`ANALYSIS_SCRIPT`)               | `04_structural_analysis_longitudinal.py`                                                    |
+| Cell 19 (`VIZ_SCRIPT`)                    | `05_visualize_longitudinal.py`                                                              |
+
+If you want to inspect or modify the logic, **edit the script in `scripts/` and re-run the corresponding cell** — both are kept in sync.
 
 ---
 
