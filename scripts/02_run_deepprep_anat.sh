@@ -1,177 +1,174 @@
 #!/usr/bin/env bash
+# ─────────────────────────────────────────────────────────────────────────
+# 02_run_deepprep_anat.sh — Run DeepPrep structural preprocessing
+#
+# Runs DeepPrep one (subject, session) at a time on the local Docker host,
+# using the "session hiding" workaround for ds000174's voxel-size mismatch
+# between BL (1×1×1 mm) and FU (0.88×1.2×0.88 mm).
+#
+# Usage:
+#   bash scripts/02_run_deepprep_anat.sh sub-101            # both BL and FU
+#   bash scripts/02_run_deepprep_anat.sh sub-101 BL         # baseline only
+#   bash scripts/02_run_deepprep_anat.sh sub-101 FU         # follow-up only
+#   bash scripts/02_run_deepprep_anat.sh --pilot            # all pilot subjects, both sessions
+#
+# Outputs:
+#   outputs/deepprep/Recon/sub-NNN_ses-XX/   — FreeSurfer-compatible derivatives
+#   outputs/deepprep/QC/sub-NNN_ses-XX.html  — interactive QC report
+#
+# Bugs handled:
+#   • Voxel-size mismatch between sessions (DeepPrep 25.1.0 has no --session_label flag)
+#   • DeepPrep's --participant_label only accepts one subject (others must be hidden)
+#   • Output directories are renamed to include _ses-XX so both sessions can co-exist
+# ─────────────────────────────────────────────────────────────────────────
 set -euo pipefail
 
-DEEPPREP_IMAGE="pbfslab/deepprep:25.1.0"
 PROJ_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-BIDS_DIR="$PROJ_DIR/data/bids/ds000174"
+DATASET_ID="${DATASET_ID:-ds000174}"
+BIDS_DIR="$PROJ_DIR/data/bids/$DATASET_ID"
 OUTPUT_DIR="$PROJ_DIR/outputs/deepprep"
 FS_LICENSE="$PROJ_DIR/data/freesurfer/license.txt"
-CPUS=4
-MEMORY_GB=16
+LOG_DIR="$PROJ_DIR/logs"
+DEEPPREP_IMAGE="${DEEPPREP_IMAGE:-pbfslab/deepprep:25.1.0}"
+DOCKER_CPUS="${DOCKER_CPUS:-8}"
+DOCKER_MEMORY_GB="${DOCKER_MEMORY_GB:-12}"
 
-if [ ! -d "$BIDS_DIR" ]; then
-  echo "❌ BIDS dataset not found"
-  exit 1
-fi
-if [ ! -f "$FS_LICENSE" ]; then
-  echo "❌ FreeSurfer license not found"
-  exit 1
-fi
-mkdir -p "$OUTPUT_DIR" "$PROJ_DIR/logs"
-
-SESSIONS=("BL" "FU")
-SUBJECT_LIST=()
-
-if [ "${1:-}" = "--pilot" ]; then
-  PILOT_FILE="$PROJ_DIR/outputs/analysis/pilot_subjects.txt"
-  readarray -t SUBJECT_LIST < "$PILOT_FILE"
-  echo "[deepprep] Pilot mode: ${SUBJECT_LIST[*]}"
-fi
-
-GPU_FLAG=""
-if command -v nvidia-smi &>/dev/null && nvidia-smi &>/dev/null 2>&1; then
-  if docker info 2>/dev/null | grep -qi "nvidia"; then
-    GPU_FLAG="--gpus all"
-    echo "[deepprep] ✓ GPU detected"
-  fi
-fi
-
-echo ""
-echo "============================================================"
-echo " DeepPrep 25.1.0 — Session-Separated Processing"
-echo "   Subjects: ${#SUBJECT_LIST[@]}"
-echo "   Sessions: ${SESSIONS[*]}"
-echo "============================================================"
-echo ""
-
-# Restore any hidden sessions from previous runs
-echo "[SETUP] Restoring any previously hidden sessions..."
-for subj in "${SUBJECT_LIST[@]}"; do
-  subj=$(echo "$subj" | xargs)
-  for ses in BL FU; do
-    if [ -d "$BIDS_DIR/sub-${subj}/ses-${ses}.HIDDEN" ]; then
-      sudo mv "$BIDS_DIR/sub-${subj}/ses-${ses}.HIDDEN" "$BIDS_DIR/sub-${subj}/ses-${ses}"
-    fi
-  done
-done
-
-# Function to hide sessions
-hide_sessions() {
-  local session_to_hide=$1
-  echo "[SESSION] Hiding all ses-${session_to_hide}..."
-  for subj in "${SUBJECT_LIST[@]}"; do
-    subj=$(echo "$subj" | xargs)
-    local ses_dir="$BIDS_DIR/sub-${subj}/ses-${session_to_hide}"
-    if [ -d "$ses_dir" ]; then
-      sudo mv "$ses_dir" "${ses_dir}.HIDDEN"
-    fi
-  done
-}
-
-# Function to restore sessions
-restore_sessions() {
-  local session_to_restore=$1
-  echo "[SESSION] Restoring all ses-${session_to_restore}..."
-  for subj in "${SUBJECT_LIST[@]}"; do
-    subj=$(echo "$subj" | xargs)
-    local hidden_dir="$BIDS_DIR/sub-${subj}/ses-${session_to_restore}.HIDDEN"
-    if [ -d "$hidden_dir" ]; then
-      sudo mv "$hidden_dir" "$BIDS_DIR/sub-${subj}/ses-${session_to_restore}"
-    fi
-  done
-}
-
-# Process each session separately
-for SESSION in "${SESSIONS[@]}"; do
-  echo ""
-  echo "════════════════════════════════════════════════════════════"
-  echo " PROCESSING: ses-${SESSION}"
-  echo "════════════════════════════════════════════════════════════"
-  
-  # Hide the OTHER session
-  if [ "$SESSION" = "BL" ]; then
-    hide_sessions "FU"
-  else
-    hide_sessions "BL"
-  fi
-  
-  # Build subject list
-  SUBJECTS_FOR_DOCKER=""
-  for subj in "${SUBJECT_LIST[@]}"; do
-    subj=$(echo "$subj" | xargs)
-    SUBJECTS_FOR_DOCKER="${SUBJECTS_FOR_DOCKER}${subj} "
-  done
-  
-  LOG_FILE="$PROJ_DIR/logs/deepprep_ses-${SESSION}_$(date +%Y%m%d_%H%M%S).log"
-  
-  echo "Subjects: ${SUBJECTS_FOR_DOCKER}"
-  echo "Log: $LOG_FILE"
-  echo ""
-  
-  # Run DeepPrep
-  docker run --rm \
-    ${GPU_FLAG} \
-    -v "${BIDS_DIR}:/input:ro" \
-    -v "${OUTPUT_DIR}:/output" \
-    -v "${FS_LICENSE}:/fs_license.txt:ro" \
-    "$DEEPPREP_IMAGE" \
-    /input /output participant \
-    --anat_only \
-    --participant_label ${SUBJECTS_FOR_DOCKER} \
-    --fs_license_file /fs_license.txt \
-    --cpus "${CPUS}" \
-    --memory "${MEMORY_GB}" \
-    --skip_bids_validation \
-    2>&1 | tee "$LOG_FILE"
-  
-  if [ ${PIPESTATUS[0]} -ne 0 ]; then
-    echo "❌ ses-${SESSION} failed"
-    restore_sessions "BL"
-    restore_sessions "FU"
+# ── Argument parsing ─────────────────────────────────────────────────
+if [ $# -lt 1 ]; then
+    echo "Usage: $0 <sub-NNN | --pilot> [BL|FU]"
+    echo ""
+    echo "  sub-NNN   Process this subject (defaults to BOTH sessions)"
+    echo "  --pilot   Process every subject in outputs/analysis/pilot_subjects.txt"
+    echo "  BL | FU   Optional: process only this session"
     exit 1
-  fi
-  
-  # Rename outputs to preserve them with session labels
-  echo ""
-  echo "[OUTPUT] Renaming to include session labels..."
-  for subj in "${SUBJECT_LIST[@]}"; do
-    subj=$(echo "$subj" | xargs)
-    
-    # Rename Recon outputs
-    if [ -d "$OUTPUT_DIR/Recon/sub-${subj}" ]; then
-      sudo mv "$OUTPUT_DIR/Recon/sub-${subj}" "$OUTPUT_DIR/Recon/sub-${subj}_ses-${SESSION}"
-      echo "  ✓ Recon: sub-${subj} → sub-${subj}_ses-${SESSION}"
-    fi
-    
-    # Rename QC outputs
-    if [ -d "$OUTPUT_DIR/QC/sub-${subj}" ]; then
-      sudo mv "$OUTPUT_DIR/QC/sub-${subj}" "$OUTPUT_DIR/QC/sub-${subj}_ses-${SESSION}"
-      echo "  ✓ QC:    sub-${subj} → sub-${subj}_ses-${SESSION}"
-    fi
-  done
-  
-  # Restore the hidden session
-  if [ "$SESSION" = "BL" ]; then
-    restore_sessions "FU"
-  else
-    restore_sessions "BL"
-  fi
-  
-  echo "✅ ses-${SESSION} complete"
+fi
+
+SUBJECT_ARG="$1"
+SESSIONS=("${2:-BL}" "${2:-FU}")
+# Dedupe sessions if user passed only BL or only FU
+if [ -n "${2:-}" ]; then
+    SESSIONS=("$2")
+fi
+
+# ── Sanity checks ────────────────────────────────────────────────────
+[ -d "$BIDS_DIR" ] || { echo "ERROR: BIDS dir not found: $BIDS_DIR"; exit 1; }
+[ -f "$FS_LICENSE" ] || { echo "ERROR: FreeSurfer license not found: $FS_LICENSE"; exit 1; }
+mkdir -p "$OUTPUT_DIR" "$LOG_DIR"
+
+# Build list of subjects to process
+if [ "$SUBJECT_ARG" == "--pilot" ]; then
+    PILOT_TXT="$PROJ_DIR/outputs/analysis/pilot_subjects.txt"
+    [ -f "$PILOT_TXT" ] || { echo "ERROR: $PILOT_TXT not found. Run 03_group_participants.py first."; exit 1; }
+    SUBJECTS=()
+    while IFS= read -r line; do
+        line="${line//[$'\t\r\n ']/}"
+        [ -n "$line" ] && SUBJECTS+=("sub-$line")
+    done < "$PILOT_TXT"
+else
+    SUBJECTS=("$SUBJECT_ARG")
+fi
+
+echo "═══════════════════════════════════════════════════════════════"
+echo "  DeepPrep run on $(hostname)"
+echo "  Dataset:  $DATASET_ID"
+echo "  Subjects: ${SUBJECTS[*]}"
+echo "  Sessions: ${SESSIONS[*]}"
+echo "═══════════════════════════════════════════════════════════════"
+
+# ── Cleanup trap — restore any hidden directories on exit ────────────
+restore_hidden() {
+    for d in "$BIDS_DIR"/sub-*.NOTPILOT; do
+        [ -d "$d" ] && sudo mv "$d" "${d%.NOTPILOT}"
+    done
+    for sub_dir in "$BIDS_DIR"/sub-*; do
+        [ -d "$sub_dir" ] || continue
+        for ses in BL FU; do
+            [ -d "$sub_dir/ses-${ses}.HIDDEN" ] && sudo mv "$sub_dir/ses-${ses}.HIDDEN" "$sub_dir/ses-${ses}"
+        done
+    done
+}
+trap restore_hidden EXIT
+
+# ── Main loop ────────────────────────────────────────────────────────
+for SUB_FULL in "${SUBJECTS[@]}"; do
+    SUB_NUM="${SUB_FULL#sub-}"
+    [ -d "$BIDS_DIR/$SUB_FULL" ] || { echo "[skip] $SUB_FULL: BIDS directory not found"; continue; }
+
+    for SESSION in "${SESSIONS[@]}"; do
+        OUT_DIR_NAME="${SUB_FULL}_ses-${SESSION}"
+        OTHER_SESSION="FU"; [ "$SESSION" == "FU" ] && OTHER_SESSION="BL"
+
+        # Skip if already done
+        if [ -f "$OUTPUT_DIR/Recon/$OUT_DIR_NAME/stats/lh.aparc.stats" ]; then
+            echo "[skip] $OUT_DIR_NAME already processed"
+            continue
+        fi
+
+        # Skip if subject has no valid T1w in this session
+        if ! find "$BIDS_DIR/$SUB_FULL/ses-$SESSION/anat" -name "*T1w.nii.gz" 2>/dev/null | grep -q .; then
+            echo "[skip] $SUB_FULL ses-$SESSION: no T1w file"
+            continue
+        fi
+
+        echo ""
+        echo ">>> Processing $SUB_FULL ses-$SESSION at $(date) <<<"
+        LOGFILE="$LOG_DIR/deepprep_anat_${SUB_FULL}_ses-${SESSION}_$(date +%Y%m%d_%H%M%S).log"
+
+        # Hide other session for this subject (prevents anat_motioncor voxel mismatch)
+        if [ -d "$BIDS_DIR/$SUB_FULL/ses-$OTHER_SESSION" ]; then
+            sudo mv "$BIDS_DIR/$SUB_FULL/ses-$OTHER_SESSION" "$BIDS_DIR/$SUB_FULL/ses-${OTHER_SESSION}.HIDDEN"
+        fi
+
+        # Hide all other subjects (DeepPrep --participant_label only takes one)
+        for sub_dir in "$BIDS_DIR"/sub-*; do
+            [ -d "$sub_dir" ] || continue
+            sn=$(basename "$sub_dir")
+            if [ "$sn" != "$SUB_FULL" ] && [[ "$sn" != *.HIDDEN ]] && [[ "$sn" != *.NOTPILOT ]]; then
+                sudo mv "$sub_dir" "${sub_dir}.NOTPILOT"
+            fi
+        done
+
+        # Run DeepPrep (anatomical only)
+        sudo docker run --rm --gpus all --shm-size 4g \
+            -v "$BIDS_DIR:/input:ro" \
+            -v "$OUTPUT_DIR:/output" \
+            -v "$FS_LICENSE:/fs_license.txt:ro" \
+            "$DEEPPREP_IMAGE" \
+            /input /output participant \
+            --participant_label "$SUB_NUM" \
+            --anat_only \
+            --fs_license_file /fs_license.txt \
+            --cpus "$DOCKER_CPUS" --memory "$DOCKER_MEMORY_GB" \
+            --skip_bids_validation 2>&1 | tee "$LOGFILE" | tail -10
+
+        # Restore everything we hid
+        restore_hidden
+
+        # Rename output to include session label
+        if [ -d "$OUTPUT_DIR/Recon/$OUT_DIR_NAME" ]; then
+            sudo mv "$OUTPUT_DIR/Recon/$OUT_DIR_NAME" "$OUTPUT_DIR/Recon/${OUT_DIR_NAME}.old_$(date +%s)"
+        fi
+        if [ -d "$OUTPUT_DIR/Recon/$SUB_FULL" ]; then
+            sudo mv "$OUTPUT_DIR/Recon/$SUB_FULL" "$OUTPUT_DIR/Recon/$OUT_DIR_NAME"
+        fi
+        if [ -d "$OUTPUT_DIR/QC/$SUB_FULL" ]; then
+            sudo mv "$OUTPUT_DIR/QC/$SUB_FULL" "$OUTPUT_DIR/QC/$OUT_DIR_NAME"
+        fi
+
+        echo ">>> Completed $SUB_FULL ses-$SESSION at $(date) <<<"
+    done
 done
 
+# Fix ownership of outputs (Docker writes as root)
+sudo chown -R "$USER:$USER" "$OUTPUT_DIR" 2>/dev/null || true
+
 echo ""
-echo "════════════════════════════════════════════════════════════"
-echo "✅ All sessions processed successfully!"
-echo "════════════════════════════════════════════════════════════"
+echo "═══════════════════════════════════════════════════════════════"
+echo " ✅ All processing complete on $(hostname)"
+echo "═══════════════════════════════════════════════════════════════"
 echo ""
-echo "Recon outputs (for analysis):"
-ls -d "$OUTPUT_DIR/Recon/sub-"* 2>/dev/null || echo "  (none yet)"
+echo "  Next step: generate aseg.stats files (DeepPrep doesn't run mri_segstats):"
+echo "    bash scripts/generate_aseg.sh"
 echo ""
-echo "QC reports (review before analysis):"
-ls -d "$OUTPUT_DIR/QC/sub-"* 2>/dev/null || echo "  (none yet)"
-echo ""
-echo "Next steps:"
-echo "  1. Review QC reports: open outputs/deepprep/QC/sub-*_ses-*/sub-*.html"
-echo "  2. Exclude any failed scans"
-echo "  3. Extract stats: python3 scripts/04_structural_analysis.py"
+echo "  Then run analysis:"
+echo "    python3 scripts/04_structural_analysis_longitudinal.py"

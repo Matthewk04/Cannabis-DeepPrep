@@ -1,86 +1,87 @@
 #!/usr/bin/env bash
-# =============================================================================
-# verify_gpu.sh — Verify GPU is available and accessible from Docker
-# Run this BEFORE starting DeepPrep to confirm your RTX 6000 is working
-# =============================================================================
-set -euo pipefail
+# ─────────────────────────────────────────────────────────────────────────
+# verify_gpu.sh — Verify NVIDIA GPU + Docker pipeline before running DeepPrep
+#
+# Checks (in order):
+#   1. nvidia-smi works on the host
+#   2. nvidia-container-toolkit is installed
+#   3. CDI spec exists
+#   4. `docker run --gpus all` can see the GPU
+#   5. DeepPrep image is pulled and usable
+#
+# Usage:
+#   bash scripts/verify_gpu.sh
+# ─────────────────────────────────────────────────────────────────────────
+set -uo pipefail
 
-echo "════════════════════════════════════════════════════════════"
-echo " GPU Verification for DeepPrep on FABRIC Testbed"
-echo "════════════════════════════════════════════════════════════"
+DEEPPREP_IMAGE="${DEEPPREP_IMAGE:-pbfslab/deepprep:25.1.0}"
+PASS=0
+FAIL=0
+
+check() {
+    local name="$1"; shift
+    if "$@" > /tmp/_check.out 2>&1; then
+        echo "  ✓ $name"
+        PASS=$((PASS+1))
+    else
+        echo "  ✗ $name"
+        sed 's/^/      /' /tmp/_check.out
+        FAIL=$((FAIL+1))
+    fi
+}
+
+echo "═══════════════════════════════════════════════════════════════"
+echo "  GPU + Docker Verification"
+echo "═══════════════════════════════════════════════════════════════"
+
+# 1. nvidia-smi on host
 echo ""
-
-# ── 1. Check if nvidia-smi exists on host ─────────────────────────────────────
-echo "[1/5] Checking for NVIDIA driver on host..."
+echo "[1/5] Host NVIDIA driver..."
 if command -v nvidia-smi &>/dev/null; then
-  echo "      ✅ nvidia-smi found"
-  nvidia-smi --query-gpu=name,driver_version,memory.total --format=csv
+    nvidia-smi --query-gpu=name,driver_version,memory.total --format=csv,noheader 2>&1 | sed 's/^/      /'
+    check "nvidia-smi works" nvidia-smi -L
 else
-  echo "      ❌ nvidia-smi not found"
-  echo "      Install driver: sudo apt install nvidia-driver-535"
-  exit 1
+    echo "  ✗ nvidia-smi not found — install NVIDIA driver first (run 00_setup.sh)"
+    FAIL=$((FAIL+1))
 fi
-echo ""
 
-# ── 2. Check Docker is installed ──────────────────────────────────────────────
-echo "[2/5] Checking Docker installation..."
-if command -v docker &>/dev/null; then
-  DOCKER_VER=$(docker version --format '{{.Server.Version}}' 2>/dev/null || echo "unknown")
-  echo "      ✅ Docker version $DOCKER_VER"
+# 2. nvidia-container-toolkit
+echo ""
+echo "[2/5] nvidia-container-toolkit..."
+check "nvidia-ctk binary present" command -v nvidia-ctk
+
+# 3. CDI spec
+echo ""
+echo "[3/5] CDI specification..."
+if [ -f /etc/cdi/nvidia.yaml ]; then
+    echo "  ✓ /etc/cdi/nvidia.yaml exists"
+    PASS=$((PASS+1))
 else
-  echo "      ❌ Docker not found"
-  exit 1
+    echo "  ✗ /etc/cdi/nvidia.yaml not found"
+    echo "      Fix: sudo nvidia-ctk cdi generate --output=/etc/cdi/nvidia.yaml"
+    FAIL=$((FAIL+1))
 fi
-echo ""
 
-# ── 3. Check nvidia-container-toolkit ────────────────────────────────────────
-echo "[3/5] Checking nvidia-container-toolkit..."
-if dpkg -l | grep -q nvidia-container-toolkit; then
-  echo "      ✅ nvidia-container-toolkit installed"
+# 4. Docker GPU passthrough
+echo ""
+echo "[4/5] Docker GPU passthrough (this pulls a small CUDA image once)..."
+check "docker run --gpus all sees GPU" \
+    sudo docker run --rm --gpus all nvidia/cuda:12.0.0-base-ubuntu22.04 nvidia-smi -L
+
+# 5. DeepPrep image
+echo ""
+echo "[5/5] DeepPrep image..."
+if sudo docker image inspect "$DEEPPREP_IMAGE" &>/dev/null; then
+    echo "  ✓ $DEEPPREP_IMAGE present"
+    PASS=$((PASS+1))
 else
-  echo "      ❌ nvidia-container-toolkit not installed"
-  echo "      Install: see code/preprocessing/00_setup.sh"
-  exit 1
+    echo "  ✗ $DEEPPREP_IMAGE not pulled yet"
+    echo "      Fix: sudo docker pull $DEEPPREP_IMAGE"
+    FAIL=$((FAIL+1))
 fi
-echo ""
 
-# ── 4. Check Docker daemon nvidia runtime ─────────────────────────────────────
-echo "[4/5] Checking Docker daemon nvidia runtime..."
-if docker info 2>/dev/null | grep -qi "nvidia\|Runtimes.*nvidia"; then
-  echo "      ✅ Docker daemon configured with nvidia runtime"
-else
-  echo "      ⚠️  Docker daemon NOT configured for nvidia runtime"
-  echo "      Fix:"
-  echo "        sudo nvidia-ctk runtime configure --runtime=docker"
-  echo "        sudo systemctl restart docker"
-  echo ""
-  exit 1
-fi
 echo ""
-
-# ── 5. GPU smoke test inside Docker ───────────────────────────────────────────
-echo "[5/5] Testing GPU access inside Docker container..."
-if docker run --rm --gpus all nvidia/cuda:12.1.0-base-ubuntu22.04 nvidia-smi 2>/dev/null; then
-  echo "      ✅ GPU accessible inside Docker containers"
-else
-  echo "      ❌ GPU test failed"
-  echo "      Troubleshoot:"
-  echo "        sudo nvidia-ctk runtime configure --runtime=docker"
-  echo "        sudo systemctl restart docker"
-  echo "        docker run --rm --gpus all nvidia/cuda:12.1.0-base-ubuntu22.04 nvidia-smi"
-  exit 1
-fi
-echo ""
-
-# ── Summary ───────────────────────────────────────────────────────────────────
-echo "════════════════════════════════════════════════════════════"
-echo " ✅ GPU verification complete"
-echo "════════════════════════════════════════════════════════════"
-echo ""
-echo "Your RTX 6000 is ready for DeepPrep."
-echo ""
-echo "Expected DeepPrep performance:"
-echo "  • ~9 minutes per subject (structural only, --anat_only)"
-echo "  • ~12 minutes per subject (full fMRI pipeline)"
-echo ""
-echo "Next: bash scripts/02_run_deepprep_anat.sh --pilot"
+echo "═══════════════════════════════════════════════════════════════"
+echo "  Result: $PASS passed, $FAIL failed"
+echo "═══════════════════════════════════════════════════════════════"
+[ $FAIL -eq 0 ] && exit 0 || exit 1

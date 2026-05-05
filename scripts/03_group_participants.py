@@ -2,131 +2,124 @@
 """
 03_group_participants.py
 ────────────────────────
-Reads group labels from ds000174/participants.tsv and selects prototype subset.
- 
-ds000174 uses:
-  - Numeric IDs: sub-101, sub-103, etc.
-  - Group column in participants.tsv: "CB" (cannabis) vs "HC" (healthy control)
- 
-Outputs:
-  outputs/analysis/groups.csv
-  outputs/analysis/group_meta.json
-  outputs/analysis/pilot_subjects.txt
+Select pilot subjects with VALID T1w data (>5 MB) in BOTH BL and FU sessions,
+then split into heavy users (CB) and controls (HC).
+
+Why the size check? The OpenNeuro `openneuro-py` downloader has a known issue
+where it silently produces Git-LFS pointer files (~400-800 KB) instead of the
+actual binary MRI data (~6-10 MB). Filtering by size catches these so the
+pipeline doesn't fail later with cryptic Nextflow errors.
+
+Outputs (in outputs/analysis/):
+    group_meta.json     — full pilot metadata (heavy / control lists)
+    pilot_subjects.txt  — newline-separated list of subject numbers (no sub- prefix)
+
+Environment variables (optional):
+    PROJ_DIR     — project root (default: parent of this script's dir)
+    DATASET_ID   — BIDS dataset ID (default: ds000174)
+    N_PER_GROUP  — subjects per group (default: 5)
 """
- 
-import os, json, re
+import json
+import os
 from pathlib import Path
+
 import pandas as pd
- 
-# ── Paths ─────────────────────────────────────────────────────────────────────
-PROJ_DIR = Path(__file__).resolve().parent.parent
-BIDS_DIR = PROJ_DIR / "data" / "bids" / "ds000174"
-OUT_DIR  = PROJ_DIR / "outputs" / "analysis"
+
+PROJ_DIR = Path(os.environ.get("PROJ_DIR", Path(__file__).resolve().parent.parent))
+DATASET_ID = os.environ.get("DATASET_ID", "ds000174")
+N_PER_GROUP = int(os.environ.get("N_PER_GROUP", "5"))
+
+BIDS_DIR = PROJ_DIR / "data" / "bids" / DATASET_ID
+OUT_DIR = PROJ_DIR / "outputs" / "analysis"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
- 
-# ── Prototype config ──────────────────────────────────────────────────────────
-N_PER_GROUP = 5   # ← change to 5, 10, 20 when scaling up
- 
-# ── Load participants.tsv ─────────────────────────────────────────────────────
-tsv_path = BIDS_DIR / "participants.tsv"
-if not tsv_path.exists():
-    print(f"❌ participants.tsv not found: {tsv_path}")
-    print("   Run: bash scripts/01_download_data.sh")
-    raise SystemExit(1)
- 
-df = pd.read_csv(tsv_path, sep="\t")
-print(f"[groups] {len(df)} total subjects found in participants.tsv")
-print(f"[groups] Columns: {list(df.columns)}")
- 
-# ── Map group labels from participants.tsv ────────────────────────────────────
-# ds000174 uses "CB" for cannabis users, "HC" for healthy controls
- 
+
+MIN_T1W_BYTES = 5 * 1024 * 1024  # 5 MB — filters out Git LFS pointers
+
+df = pd.read_csv(BIDS_DIR / "participants.tsv", sep="\t")
+print(f"[groups] {len(df)} subjects in participants.tsv")
+
+# Map CB → heavy, HC → control. Look for the column under any common name.
 group_col = next(
-    (c for c in ["group", "diagnosis", "cannabis_group", "condition"]
-     if c in df.columns), None
+    (c for c in ["group", "diagnosis", "cannabis_group"] if c in df.columns),
+    None,
 )
- 
-if group_col:
-    print(f"[groups] Found group column: '{group_col}'")
-    print(f"[groups] Unique values: {df[group_col].unique()}")
-    
-    # Map CB → heavy, HC → control
-    def map_group(val):
-        val_str = str(val).strip().upper()
-        if val_str == "CB" or "CANNABIS" in val_str or "USER" in val_str:
-            return "heavy"
-        elif val_str == "HC" or "CONTROL" in val_str or "HEALTHY" in val_str:
-            return "control"
-        else:
-            print(f"[groups] ⚠️  Unrecognized group value: '{val}' — treating as unknown")
-            return "unknown"
-    
-    df["cannabis_group"] = df[group_col].apply(map_group)
-    print(f"[groups] Group mapping:")
-    print(df.groupby("cannabis_group")["participant_id"].count())
-else:
-    print("[groups] ❌ No group column found in participants.tsv")
-    print(f"[groups]    Available columns: {list(df.columns)}")
-    raise SystemExit(1)
- 
-# ── Prototype subset selection ────────────────────────────────────────────────
-heavy_all   = df[df["cannabis_group"] == "heavy"]["participant_id"].tolist()
-control_all = df[df["cannabis_group"] == "control"]["participant_id"].tolist()
- 
-if len(heavy_all) < N_PER_GROUP or len(control_all) < N_PER_GROUP:
-    print(f"⚠  Not enough subjects — found {len(heavy_all)} heavy, "
-          f"{len(control_all)} controls. Reduce N_PER_GROUP.")
-    raise SystemExit(1)
- 
-# Take the first N from each group (sorted alphabetically for reproducibility)
-pilot_heavy   = sorted(heavy_all)[:N_PER_GROUP]
-pilot_control = sorted(control_all)[:N_PER_GROUP]
-pilot_all     = pilot_heavy + pilot_control
- 
-print()
-print(f"[groups] ── Prototype subset ({N_PER_GROUP} + {N_PER_GROUP} = {len(pilot_all)} subjects) ──")
-print(f"[groups]   Heavy users (CB):  {pilot_heavy}")
-print(f"[groups]   Controls (HC):     {pilot_control}")
-print()
-print(f"[groups]   Full dataset has {len(heavy_all)} CB + "
-      f"{len(control_all)} HC — increase N_PER_GROUP when scaling up.")
- 
-# ── Save outputs ──────────────────────────────────────────────────────────────
-# groups.csv — full dataset with labels
-out_cols = ["participant_id", "cannabis_group"]
-for opt in ["age at baseline", "gender", "cudit total baseline"]:
-    if opt in df.columns:
-        out_cols.append(opt)
-df[[c for c in out_cols if c in df.columns]].to_csv(
-    OUT_DIR / "groups.csv", index=False
+if group_col is None:
+    raise SystemExit(
+        f"[groups] ERROR: no group column found. Expected one of "
+        f"['group', 'diagnosis', 'cannabis_group']. Got: {list(df.columns)}"
+    )
+
+df["cannabis_group"] = df[group_col].apply(
+    lambda v: "heavy" if str(v).strip().upper() == "CB"
+    else ("control" if str(v).strip().upper() == "HC" else "unknown")
 )
- 
-# group_meta.json — consumed by analysis scripts
+
+
+def has_valid_session(sid: str, session: str) -> bool:
+    """True if subject has a T1w file >= MIN_T1W_BYTES in the given session."""
+    anat_dir = BIDS_DIR / sid / f"ses-{session}" / "anat"
+    if not anat_dir.exists():
+        return False
+    return any(t1w.stat().st_size >= MIN_T1W_BYTES for t1w in anat_dir.glob("*T1w.nii.gz"))
+
+
+def has_both_real_sessions(sid: str) -> bool:
+    return has_valid_session(sid, "BL") and has_valid_session(sid, "FU")
+
+
+df["has_both"] = df["participant_id"].apply(has_both_real_sessions)
+valid_df = df[df["has_both"]]
+print(f"[groups] {len(valid_df)} subjects have VALID T1w data (>5MB) in both BL and FU")
+if len(valid_df) < len(df):
+    print(f"[groups] (Skipping {len(df) - len(valid_df)} subjects with missing or undersized T1w files)")
+
+heavy_all = sorted(valid_df[valid_df["cannabis_group"] == "heavy"]["participant_id"].tolist())
+ctrl_all = sorted(valid_df[valid_df["cannabis_group"] == "control"]["participant_id"].tolist())
+print(f"[groups] Available: {len(heavy_all)} heavy, {len(ctrl_all)} controls")
+
+# Adapt N_PER_GROUP if not enough valid subjects
+max_per_group = min(len(heavy_all), len(ctrl_all))
+if max_per_group < N_PER_GROUP:
+    print(f"\n[groups] WARNING: requested {N_PER_GROUP}/group but only {max_per_group} available.")
+    print(f"[groups]    Using N_PER_GROUP={max_per_group} instead.")
+    N_PER_GROUP = max_per_group
+
+if N_PER_GROUP < 2:
+    raise SystemExit("[groups] Not enough subjects with valid data — re-run S3 sync to get more.")
+
+pilot_heavy = heavy_all[:N_PER_GROUP]
+pilot_ctrl = ctrl_all[:N_PER_GROUP]
+pilot_all = pilot_heavy + pilot_ctrl
+
+print(f"\n[groups] Selected pilot ({len(pilot_all)} subjects):")
+print(f"  Heavy:   {pilot_heavy}")
+print(f"  Control: {pilot_ctrl}")
+
 meta = {
-    "heavy_users":      pilot_heavy,
-    "controls":         pilot_control,
-    "n_heavy":          len(pilot_heavy),
-    "n_controls":       len(pilot_control),
-    "pilot_subjects":   pilot_all,
-    "n_per_group":      N_PER_GROUP,
-    "prototype_mode":   N_PER_GROUP < 10,
-    "full_heavy":       heavy_all,
-    "full_controls":    control_all,
+    "heavy_users":    pilot_heavy,
+    "controls":       pilot_ctrl,
+    "n_heavy":        len(pilot_heavy),
+    "n_controls":     len(pilot_ctrl),
+    "pilot_subjects": pilot_all,
+    "n_per_group":    N_PER_GROUP,
+    "full_heavy":     heavy_all,
+    "full_controls":  ctrl_all,
 }
-with open(OUT_DIR / "group_meta.json", "w") as fh:
-    json.dump(meta, fh, indent=2)
- 
-# pilot_subjects.txt — one ID per line (strip "sub-" prefix for DeepPrep)
-pilot_txt = OUT_DIR / "pilot_subjects.txt"
-pilot_txt.write_text("\n".join(str(s).replace("sub-", "") for s in pilot_all) + "\n")
- 
-print(f"[groups] ✅ Saved:")
-print(f"         outputs/analysis/groups.csv")
-print(f"         outputs/analysis/group_meta.json")
-print(f"         outputs/analysis/pilot_subjects.txt")
-print()
-if N_PER_GROUP < 10:
-    print("[groups] ⚠  Prototype mode: Small sample gives low statistical power.")
-    print("         Effect sizes (Cohen's d) are most informative at n<10/group.")
-print()
-print("[groups] Next: bash scripts/02_run_deepprep_anat.sh --pilot")
+with open(OUT_DIR / "group_meta.json", "w") as f:
+    json.dump(meta, f, indent=2)
+
+with open(OUT_DIR / "pilot_subjects.txt", "w") as f:
+    for s in pilot_all:
+        f.write(s.replace("sub-", "") + "\n")
+
+# Also write groups.csv (handy summary)
+groups_df = pd.DataFrame(
+    [{"participant_id": s, "group": "heavy"} for s in pilot_heavy]
+    + [{"participant_id": s, "group": "control"} for s in pilot_ctrl]
+)
+groups_df.to_csv(OUT_DIR / "groups.csv", index=False)
+
+print(f"\n[groups] ✅ Saved:")
+print(f"   {OUT_DIR / 'group_meta.json'}")
+print(f"   {OUT_DIR / 'pilot_subjects.txt'}")
+print(f"   {OUT_DIR / 'groups.csv'}")

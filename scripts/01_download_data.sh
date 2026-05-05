@@ -1,93 +1,121 @@
 #!/usr/bin/env bash
-# =============================================================================
-# 01_download_data.sh — Download ds000174 from OpenNeuro (AWS S3)
+# ─────────────────────────────────────────────────────────────────────────
+# 01_download_data.sh — Download and verify the BIDS dataset
 #
-# ds000174: "T1-weighted structural MRI study of cannabis users"
-#   Heavy users N=20, Controls N=22, 3T Philips Intera
-#   License: CC BY-NC 4.0
-#   NOTE: This dataset contains T1w STRUCTURAL MRI only (no BOLD/fMRI).
-#         Use --anat_only flag in DeepPrep (script 02_run_deepprep_anat.sh).
-# =============================================================================
+# 1. Syncs ds000174 from OpenNeuro's S3 bucket (idempotent — skips files
+#    already present at the correct size).
+# 2. Verifies every T1w file is at least 5 MB (catches Git-LFS-pointer
+#    truncation issues that openneuro-py would silently produce).
+# 3. Adds the `sub-` prefix to participant_id in participants.tsv if needed
+#    (some OpenNeuro datasets store bare numeric IDs).
+#
+# Usage:
+#   bash scripts/01_download_data.sh           # downloads ds000174
+#   DATASET_ID=ds000999 bash scripts/01_download_data.sh   # custom dataset
+#
+# Output: data/bids/$DATASET_ID/
+# ─────────────────────────────────────────────────────────────────────────
 set -euo pipefail
 
 PROJ_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-BIDS_DIR="$PROJ_DIR/data/bids"
-DATASET="ds000174"
-S3_PREFIX="s3://openneuro.org/${DATASET}"
+DATASET_ID="${DATASET_ID:-ds000174}"
+BIDS_DIR="$PROJ_DIR/data/bids/$DATASET_ID"
+MIN_SIZE_KB=5000  # 5 MB minimum for a real T1w file
 
-echo "============================================================"
-echo " Downloading ${DATASET} from OpenNeuro"
-echo " Destination: $BIDS_DIR"
-echo "============================================================"
-
-# ── Method 1: AWS CLI (fastest — no auth required for OpenNeuro) ──────────────
-if command -v aws &>/dev/null; then
-  echo "[download] Using AWS CLI (no-sign-request)..."
-  aws s3 sync \
-    --no-sign-request \
-    --exclude "*.git*" \
-    "$S3_PREFIX" \
-    "$BIDS_DIR/${DATASET}/"
-  echo "[download] ✓ AWS CLI sync complete."
-
-# ── Method 2: DataLad ─────────────────────────────────────────────────────────
-elif command -v datalad &>/dev/null; then
-  echo "[download] Using DataLad..."
-  cd "$BIDS_DIR"
-  datalad install -r "https://github.com/OpenNeuroDatasets/${DATASET}.git"
-  cd "${DATASET}"
-  datalad get .
-  echo "[download] ✓ DataLad download complete."
-
-# ── Method 3: openneuro-py ────────────────────────────────────────────────────
-elif python -c "import openneuro" &>/dev/null 2>&1; then
-  echo "[download] Using openneuro-py..."
-  python - <<'PYEOF'
-import openneuro, os, sys
-dest = os.path.join(os.environ.get("BIDS_DIR", "."), "ds000174")
-openneuro.download(dataset="ds000174", target_dir=dest)
-PYEOF
-  echo "[download] ✓ openneuro-py download complete."
-
-# ── Method 4: curl fallback (tarball) ────────────────────────────────────────
-else
-  echo "[download] Falling back to direct tarball download..."
-  TARBALL="$PROJ_DIR/data/ds174_R1.0.0_all_data.tgz"
-  curl -L \
-    "http://openfmri.s3.amazonaws.com/tarballs/ds174_R1.0.0_all_data.tgz" \
-    -o "$TARBALL"
-  echo "[download] Extracting tarball..."
-  mkdir -p "$BIDS_DIR/${DATASET}"
-  tar -xzf "$TARBALL" -C "$BIDS_DIR/${DATASET}" --strip-components=1
-  rm "$TARBALL"
-  echo "[download] ✓ Tarball download and extraction complete."
+# ── 0. Prerequisites ─────────────────────────────────────────────────
+if ! command -v aws &>/dev/null; then
+  echo "[download] Installing AWS CLI..."
+  sudo apt-get install -y awscli 2>&1 | tail -3
 fi
 
-# ── Validate BIDS ─────────────────────────────────────────────────────────────
-echo ""
-echo "[download] Checking BIDS structure..."
-BIDS_PATH="$BIDS_DIR/${DATASET}"
+mkdir -p "$BIDS_DIR"
+cd "$BIDS_DIR"
 
-if [ -f "$BIDS_PATH/dataset_description.json" ]; then
-  echo "[download] ✓ dataset_description.json found"
-else
-  echo "[download] ⚠ dataset_description.json missing — BIDS may be incomplete"
+# ── 1. Sync from OpenNeuro S3 ────────────────────────────────────────
+echo "[download] Syncing $DATASET_ID from OpenNeuro S3 (incremental)..."
+echo "[download] This will only download missing or changed files."
+echo ""
+
+# AWS S3 sync is incremental and verifies via checksums.
+# --no-sign-request lets us access the public OpenNeuro bucket.
+aws s3 sync --no-sign-request "s3://openneuro.org/$DATASET_ID" . 2>&1 | tail -10
+
+echo ""
+echo "[download] Final state:"
+echo "  Path: $BIDS_DIR"
+echo "  Total disk: $(du -sh . | cut -f1)"
+echo "  Subjects: $(ls -d sub-* 2>/dev/null | wc -l)"
+
+# ── 2. Verify integrity ──────────────────────────────────────────────
+echo ""
+echo "[verify] Checking every T1w file is >= ${MIN_SIZE_KB} KB..."
+BL_VALID=0; BL_TOTAL=0; FU_VALID=0; FU_TOTAL=0
+INVALID_SUBS=()
+
+for sub_dir in sub-*; do
+  [ -d "$sub_dir" ] || continue
+  for ses in BL FU; do
+    t1w=$(find "$sub_dir/ses-$ses/anat" -name "*T1w.nii.gz" 2>/dev/null | head -1)
+    if [ -n "$t1w" ] && [ -f "$t1w" ]; then
+      size_kb=$(du -k "$t1w" | cut -f1)
+      if [ "$ses" == "BL" ]; then
+        BL_TOTAL=$((BL_TOTAL+1))
+        [ "$size_kb" -gt $MIN_SIZE_KB ] && BL_VALID=$((BL_VALID+1)) || INVALID_SUBS+=("$sub_dir/ses-$ses ($size_kb KB)")
+      else
+        FU_TOTAL=$((FU_TOTAL+1))
+        [ "$size_kb" -gt $MIN_SIZE_KB ] && FU_VALID=$((FU_VALID+1)) || INVALID_SUBS+=("$sub_dir/ses-$ses ($size_kb KB)")
+      fi
+    fi
+  done
+done
+
+echo "[verify] BL session: $BL_VALID/$BL_TOTAL subjects have valid T1w (>5MB)"
+echo "[verify] FU session: $FU_VALID/$FU_TOTAL subjects have valid T1w (>5MB)"
+
+if [ ${#INVALID_SUBS[@]} -gt 0 ]; then
+  echo ""
+  echo "[verify] WARNING: ${#INVALID_SUBS[@]} session(s) with undersized T1w files:"
+  for s in "${INVALID_SUBS[@]}"; do echo "    $s"; done
+  echo ""
+  echo "[verify] Re-running S3 sync to fix incomplete files..."
+  aws s3 sync --no-sign-request "s3://openneuro.org/$DATASET_ID" . 2>&1 | tail -10
+  echo ""
+  echo "[verify] Re-checking after sync..."
+
+  BL_VALID=0; FU_VALID=0
+  for sub_dir in sub-*; do
+    [ -d "$sub_dir" ] || continue
+    for ses in BL FU; do
+      t1w=$(find "$sub_dir/ses-$ses/anat" -name "*T1w.nii.gz" 2>/dev/null | head -1)
+      if [ -n "$t1w" ] && [ -f "$t1w" ]; then
+        size_kb=$(du -k "$t1w" | cut -f1)
+        if [ "$size_kb" -gt $MIN_SIZE_KB ]; then
+          [ "$ses" == "BL" ] && BL_VALID=$((BL_VALID+1)) || FU_VALID=$((FU_VALID+1))
+        fi
+      fi
+    done
+  done
+  echo "[verify] After re-sync: BL=$BL_VALID, FU=$FU_VALID valid"
 fi
 
-if [ -d "$BIDS_PATH/sub-01" ] || [ -d "$BIDS_PATH/sub-control01" ]; then
-  echo "[download] ✓ Subject directories found"
-  echo "[download]   Subjects: $(ls -d "$BIDS_PATH"/sub-* 2>/dev/null | wc -l)"
-else
-  echo "[download] ⚠ No sub-* directories found yet — check download"
-fi
-
-# ── Show modalities available ─────────────────────────────────────────────────
+# Count subjects with valid data in BOTH sessions
+BOTH=$(
+  comm -12 \
+    <(for f in sub-*/ses-BL/anat/*T1w.nii.gz; do [ -f "$f" ] && [ "$(du -k "$f" | cut -f1)" -gt $MIN_SIZE_KB ] && echo "$f" | cut -d/ -f1; done | sort -u) \
+    <(for f in sub-*/ses-FU/anat/*T1w.nii.gz; do [ -f "$f" ] && [ "$(du -k "$f" | cut -f1)" -gt $MIN_SIZE_KB ] && echo "$f" | cut -d/ -f1; done | sort -u)
+)
+BOTH_COUNT=$(echo "$BOTH" | grep -c . || true)
 echo ""
-echo "[download] Modalities in dataset:"
-find "$BIDS_PATH" -name "*.nii.gz" 2>/dev/null | \
-  grep -oP '(?<=_)[a-zA-Z0-9]+(?=\.nii\.gz)' | sort | uniq -c | sort -rn | head -20 || true
+echo "[verify] $BOTH_COUNT subjects have valid T1w data in BOTH BL and FU sessions"
+echo "[verify]    Total disk: $(du -sh . | cut -f1)"
+
+# ── 3. Fix participants.tsv format ───────────────────────────────────
+echo ""
+echo "[fix-tsv] Ensuring participant_id column has sub- prefix..."
+PROJ_DIR="$PROJ_DIR" DATASET_ID="$DATASET_ID" \
+  python3 "$(dirname "${BASH_SOURCE[0]}")/fix_participants_tsv.py"
 
 echo ""
-echo "[download] ✅ Download complete."
-echo "   Dataset path: $BIDS_PATH"
-echo "   Next: bash scripts/02_run_deepprep_anat.sh"
+echo "═══════════════════════════════════════════════════════════════"
+echo " ✅ Dataset $DATASET_ID ready at $BIDS_DIR"
+echo "═══════════════════════════════════════════════════════════════"
