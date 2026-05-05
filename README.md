@@ -1,21 +1,40 @@
 # Cannabis fMRI Study Using DeepPrep
 
-**Comparing Brain Structure in Heavy vs. Non-Cannabis Users via Accelerated Neuroimaging Preprocessing**
+**Comparing Brain Structural Changes in Heavy vs. Non-Cannabis Users via Accelerated Neuroimaging Preprocessing**
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXXX)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![DeepPrep](https://img.shields.io/badge/DeepPrep-25.1.0-blue)](https://deepprep.readthedocs.io/)
+[![Dataset](https://img.shields.io/badge/Dataset-OpenNeuro%20ds000174-green)](https://openneuro.org/datasets/ds000174)
 
 ---
 
 ## Overview
 
-This repository contains the complete analysis pipeline for comparing brain structural measures between heavy cannabis users and non-using controls using the DeepPrep neuroimaging preprocessing framework. DeepPrep leverages GPU-accelerated deep learning (FastSurfer, SynthMorph) to provide 10×+ faster preprocessing than traditional pipelines while maintaining accuracy and robustness.
+This repository contains the analysis pipeline for comparing brain structural measures between heavy cannabis users and non-using controls using the [DeepPrep](https://github.com/pBFSLab/DeepPrep) neuroimaging preprocessing framework. DeepPrep leverages GPU-accelerated deep learning (FastSurferCNN, FastCSR, SUGAR, SynthMorph) to provide 7×+ faster preprocessing than traditional FreeSurfer pipelines while maintaining accuracy and robustness.
+
+The pipeline uses a **longitudinal change-score** design: each subject is scanned at baseline (BL) and ~3-year follow-up (FU), and the analysis compares cannabis-related *change* in regional brain measures rather than cross-sectional differences. This is more statistically powerful at small sample sizes because each subject acts as their own control.
 
 ### Key Features
-- **Reproducible**: BIDS-compliant dataset, containerized preprocessing (Docker), version-controlled analysis code
-- **Scalable**: Prototype mode (n=5/group) scales to full dataset (n=20/22) with one config change
-- **Platform-tested**: Ubuntu 22.04 (Jammy), FABRIC testbed, CPU + GPU workflows
-- **Transparent**: All preprocessing parameters, statistical methods, and exclusion criteria documented
+
+- **Reproducible** — BIDS-compliant dataset, containerized preprocessing (Docker), version-controlled analysis code.
+- **Single-node** — Runs on one Ubuntu 22.04 machine with an NVIDIA GPU. No cluster orchestration required.
+- **Scalable** — Pilot mode (n=5/group) scales to the full dataset (n=20 heavy / n=22 control) with one config change.
+- **Robust to known pitfalls** — Handles voxel-size mismatch between sessions, AWS S3 incremental sync (fixes openneuro-py partial-download bug), post-hoc `mri_segstats` for missing aseg.stats.
+
+---
+
+## Headline Result (Pilot, n=5/group)
+
+In the pilot run, the most pronounced longitudinal effect was a **blunted growth of the Left Putamen** in heavy cannabis users over 3 years:
+
+| Region            | Heavy %Δ | Control %Δ | Cohen's d | p (uncorrected) |
+|-------------------|---------:|-----------:|----------:|----------------:|
+| **Left Putamen**  |   +2.3 % |    +4.9 %  | **−1.53** |     **0.043**   |
+| Right Putamen     |   +5.3 % |    +3.4 %  |     +1.17 |       0.116     |
+| Right Amygdala    |  +20.5 % |   +11.9 %  |     +1.06 |       0.144     |
+| Right Insula thk  |  −11.3 % |    −9.1 %  |     −0.97 |       0.167     |
+
+Three additional regions reached **|d| ≥ 0.8** ("large") effect sizes. None survived FDR correction at this pilot scale — see [Sample Size & Power](#sample-size--power) below. The full result set is in [`outputs/analysis/structural/longitudinal_change.csv`](outputs/analysis/structural/longitudinal_change.csv).
 
 ---
 
@@ -23,39 +42,47 @@ This repository contains the complete analysis pipeline for comparing brain stru
 
 ```
 Cannabis-DeepPrep/
-├── scripts/                        # Analysis pipeline scripts
-│   ├── 01_download_data.sh
-│   ├── 02_run_deepprep_anat.sh     # Multi-session structural preprocessing
-│   ├── 02_run_deepprep_bold.sh     # fMRI preprocessing (future)
-│   ├── 03_group_participants.py    # Group assignment
-│   ├── 04_structural_analysis.py   # Statistical comparison
-│   ├── 04_structural_single_subject.py  # Single-subject feature extraction
-│   ├── 05_visualize_results.py     # Group-level figures
-│   ├── 05_visualize_single_subject.py   # Single-subject QC (optional)
-│   └── verify_gpu.sh               # GPU verification utility
+├── scripts/                                # Pipeline scripts (run in order)
+│   ├── 00_setup.sh                         # Single-node Docker + NVIDIA + DeepPrep install
+│   ├── 01_download_data.sh                 # AWS S3 sync + integrity check + tsv fix
+│   ├── 02_run_deepprep_anat.sh             # Structural preprocessing (per-subject, per-session)
+│   ├── 02_run_deepprep_bold.sh             # fMRI preprocessing (placeholder — future work)
+│   ├── 03_group_participants.py            # Pilot subject selection + group assignment
+│   ├── 04_structural_analysis_longitudinal.py  # PRIMARY analysis: BL→FU change-score comparison
+│   ├── 04_functional_analysis.py           # fMRI analysis (placeholder — future work)
+│   ├── 05_visualize_longitudinal.py        # Forest plot, trajectories, box plots, summary table
+│   ├── fix_participants_tsv.py             # Helper: add `sub-` prefix to participants.tsv
+│   ├── generate_aseg.sh                    # Helper: post-hoc mri_segstats for missing aseg.stats
+│   └── verify_gpu.sh                       # GPU + Docker + DeepPrep image sanity check
 ├── data/
 │   ├── bids/
-│   │   └── ds000174/               # OpenNeuro dataset (T1w structural MRI)
+│   │   └── ds000174/                       # OpenNeuro dataset (downloaded by 01_download_data.sh)
 │   └── freesurfer/
-│       └── license.txt             # FreeSurfer license (required)
+│       └── license.txt                     # FreeSurfer license (user-supplied, gitignored)
 ├── outputs/
-│   ├── deepprep/                   # DeepPrep derivatives
-│   │   ├── Recon/                  # FreeSurfer-compatible outputs
-│   │   │   └── sub-XXX_ses-YY/     # Per-session results
-│   │   │       ├── stats/          # ROI statistics (aseg, aparc)
-│   │   │       ├── surf/           # Surface meshes
-│   │   │       └── mri/            # Volumetric images
-│   │   ├── QC/                     # HTML quality control reports
-│   │   └── WorkDir/                # Temporary processing files
-│   └── analysis/
-│       ├── structural/             # Group comparison results
-│       │   ├── group_comparison_ses-BL.csv
-│       │   └── subject_features_ses-BL.csv
-│       ├── functional/             # fMRI analysis (future)
-│       ├── groups.csv              # Group labels (heavy/control)
-│       ├── group_meta.json         # Metadata for analysis scripts
-│       └── pilot_subjects.txt      # Prototype subject list
-├── logs/                           # Timestamped DeepPrep logs
+│   ├── deepprep/                           # DeepPrep derivatives (gitignored, large)
+│   │   ├── Recon/sub-NNN_ses-XX/
+│   │   │   ├── stats/                      # aseg.stats, lh.aparc.stats, rh.aparc.stats
+│   │   │   ├── surf/                       # Cortical surface meshes
+│   │   │   └── mri/                        # Volumetric images (T1w, aseg, brainmask)
+│   │   ├── QC/                             # HTML quality control reports
+│   │   └── WorkDir/                        # Nextflow temporary work
+│   ├── analysis/
+│   │   ├── group_meta.json                 # Pilot group assignments
+│   │   ├── pilot_subjects.txt              # Newline list of subject numbers
+│   │   ├── groups.csv                      # participant_id → heavy/control
+│   │   └── structural/                     # Statistical results (CSVs tracked in git)
+│   │       ├── longitudinal_change.csv             ← PRIMARY RESULT
+│   │       ├── group_comparison_ses-BL.csv
+│   │       ├── group_comparison_ses-FU.csv
+│   │       └── subject_features_all.csv
+│   └── figures/                            # Generated plots (gitignored, large)
+│       ├── 01_forest_plot.png
+│       ├── 02_trajectories.png
+│       ├── 03_pct_change.png
+│       ├── 04_boxplots.png
+│       └── 05_summary_table.png
+├── logs/                                   # Timestamped DeepPrep logs (gitignored)
 ├── .gitignore
 ├── LICENSE
 └── README.md
@@ -65,230 +92,276 @@ Cannabis-DeepPrep/
 
 ## Dataset
 
-**ds000174** — T1-weighted structural MRI study of cannabis users from OpenNeuro
+**[ds000174](https://openneuro.org/datasets/ds000174)** — T1-weighted longitudinal MRI of cannabis users.
 
-| Attribute | Value |
-|---|---|
-| Heavy cannabis users | N=20 |
-| Non-using controls | N=22 |
-| Scanner | 3T Philips Intera |
-| Sequence | T1w TFE (TR/TE/FA: 9.0 ms / 3.5 ms / 8°) |
-| Voxel size | 0.875 × 1.2 × 0.875 mm³ |
+| Attribute              | Value                                       |
+|------------------------|---------------------------------------------|
+| Heavy cannabis users   | N = 20                                      |
+| Non-using controls     | N = 22                                      |
+| Sessions               | Baseline (BL) + 3-year follow-up (FU)       |
+| Scanner                | 3 T Philips Intera                          |
+| Sequence (T1w TFE)     | TR/TE/FA: 9.0 ms / 3.5 ms / 8°              |
+| Voxel size (BL / FU)   | 1.0 × 1.0 × 1.0 mm³ / 0.875 × 1.2 × 0.875 mm³ |
 
-> ⚠️ **Note**: ds000174 contains only structural MRI (T1w). For functional connectivity analysis (Track B), substitute with an fMRI dataset such as ds003702.
+> ⚠️ **Note**: ds000174 contains only structural MRI (T1w). For functional connectivity analysis, substitute a BIDS dataset with BOLD data.
 
 ---
 
 ## Quick Start
 
 ### Prerequisites
-- **Platform**: Ubuntu 22.04 (tested on FABRIC testbed)
-- **GPU**: NVIDIA RTX 6000 (or CPU fallback)
-- **Docker**: ≥ 20.10 with NVIDIA Container Toolkit (GPU) or CPU fallback
-- **RAM**: ≥ 16 GB (32 GB recommended)
-- **Disk**: ≥ 100 GB free
-- **FreeSurfer license**: Free registration at https://surfer.nmr.mgh.harvard.edu/registration.html
+
+- **OS** — Ubuntu 22.04 LTS
+- **GPU** — NVIDIA RTX 6000 / A100 / 4090 / 3090 (or T4 / V100; CPU fallback is much slower)
+- **Docker** — ≥ 20.10 with NVIDIA Container Toolkit
+- **RAM** — ≥ 16 GB (32 GB recommended)
+- **Disk** — ≥ 100 GB free
+- **FreeSurfer license** — free registration at https://surfer.nmr.mgh.harvard.edu/registration.html
 
 ### Installation
 
 ```bash
-# Clone the repository
+# 1. Clone
 git clone https://github.com/Matthewk04/Cannabis-DeepPrep.git
 cd Cannabis-DeepPrep
- 
-# Install Python dependencies
-pip install nilearn nibabel pandas numpy scipy statsmodels matplotlib seaborn
- 
-# Place your FreeSurfer license
+
+# 2. Install full software stack (Java 17, NVIDIA driver, Docker, DeepPrep, Nextflow, Python)
+sudo bash scripts/00_setup.sh
+
+# 3. Drop in your FreeSurfer license
 cp /path/to/your/license.txt data/freesurfer/license.txt
- 
-# Verify GPU is working (RTX 6000)
+
+# 4. Verify GPU + Docker pipeline
 bash scripts/verify_gpu.sh
 ```
 
-### Run the Prototype (1 subject, both sessions)
- 
+### Running the Pilot (n=5/group, both sessions)
+
 ```bash
-# 1. Download ds000174
+# 1. Download ds000174 and verify integrity
 bash scripts/01_download_data.sh
- 
-# 2. Select prototype subject(s)
+
+# 2. Select pilot subjects with valid T1w in both sessions
 python3 scripts/03_group_participants.py
- 
-# 3. Run DeepPrep on one subject (both ses-BL and ses-FU)
-#    Expected runtime: ~18 min on RTX 6000 (~9 min per session)
-bash scripts/02_run_deepprep_anat.sh sub-101
- 
-# 4. Extract structural features
-python3 scripts/04_structural_single_subject.py
- 
-# 5. View DeepPrep QC report
-firefox outputs/deepprep/QC/sub-101_ses-BL.html
-```
-### Run Group Comparison (when you have multiple subjects)
- 
-```bash
-# After running DeepPrep on pilot subjects
+
+# 3. Preprocess all pilot subjects, both BL and FU
+#    (~40 min/session on RTX 6000 → ~13 hr for 10 subjects × 2 sessions)
 bash scripts/02_run_deepprep_anat.sh --pilot
- 
-# Statistical analysis (uses ses-BL by default)
-python3 scripts/04_structural_analysis.py
- 
-# Generate group comparison figures
-python3 scripts/05_visualize_results.py
+
+# 4. Generate aseg.stats (DeepPrep doesn't run mri_segstats automatically)
+bash scripts/generate_aseg.sh
+
+# 5. Run longitudinal change-score analysis
+python3 scripts/04_structural_analysis_longitudinal.py
+
+# 6. Generate publication-quality figures
+python3 scripts/05_visualize_longitudinal.py
 ```
- 
+
 **Outputs**:
-- `outputs/analysis/structural/group_comparison_ses-BL.csv` — t-tests, p-values, Cohen's d
-- `outputs/figures/effect_sizes_ses-BL.png` — Forest plot
-- `outputs/figures/group_means_ses-BL.png` — Bar chart
+- `outputs/analysis/structural/longitudinal_change.csv` — primary result (effect sizes per ROI)
+- `outputs/analysis/structural/group_comparison_ses-{BL,FU}.csv` — cross-sectional comparisons
+- `outputs/analysis/structural/subject_features_all.csv` — per-subject BL / FU / change values
+- `outputs/figures/01_forest_plot.png` … `05_summary_table.png`
+
+### Running on a Single Subject
+
+```bash
+# Both sessions
+bash scripts/02_run_deepprep_anat.sh sub-101
+
+# Only baseline
+bash scripts/02_run_deepprep_anat.sh sub-101 BL
+
+# Only follow-up
+bash scripts/02_run_deepprep_anat.sh sub-101 FU
+```
+
+### Scaling to the Full Dataset
+
+The pipeline scales linearly. To run the full dataset (n=20 heavy, n=22 control):
+
+```bash
+N_PER_GROUP=22 python3 scripts/03_group_participants.py
+bash scripts/02_run_deepprep_anat.sh --pilot   # processes everyone in pilot_subjects.txt
+```
+
+Expect ~75-85 hours of single-node GPU time for ~84 (subject, session) jobs.
+
 ---
 
 ## Methods
 
-### Preprocessing (DeepPrep 25.1.0)
+### Preprocessing — DeepPrep 25.1.0
 
-| Module | Function | Time (GPU) |
-|---|---|---|
-| FastSurferCNN | Brain tissue segmentation | ~3 min |
-| FastCSR | Cortical surface reconstruction | ~4 min |
-| SUGAR | Surface registration (→ fsaverage) | ~2 min |
-| SynthMorph | Spatial normalization (→ MNI152) | ~1 min |
+| Module        | Function                              | Time on RTX 6000 |
+|---------------|---------------------------------------|-----------------:|
+| FastSurferCNN | Brain tissue segmentation             |        ~3 min    |
+| FastCSR       | Cortical surface reconstruction       |        ~4 min    |
+| SUGAR         | Surface registration → fsaverage      |        ~2 min    |
+| SynthMorph    | Spatial normalization → MNI152        |        ~1 min    |
 
-**Key parameters**:
+Key invocation parameters (set automatically by `02_run_deepprep_anat.sh`):
+
 ```bash
 --anat_only              # Structural preprocessing only
---session_label BL       # Process baseline session
---fs_license_file        # FreeSurfer license
---cpus 10                # CPU cores
---memory 20              # RAM in GB
---skip_bids_validation   # Bypass BIDS validator
+--participant_label NNN  # One subject at a time (DeepPrep limitation)
+--fs_license_file ...    # FreeSurfer license
+--cpus 8 --memory 12     # Per-container resource limits
+--skip_bids_validation   # We've already verified upstream
 ```
- 
+
 ### Statistical Analysis
-- **Session used**: Baseline (ses-BL) for cross-sectional comparison
-- **ROIs**: Cannabis-relevant regions from FreeSurfer parcellation:
-  - Subcortical: hippocampus, amygdala, caudate, putamen, nucleus accumbens
-  - Cortical: superior frontal, rostral middle frontal, superior temporal, insula
-- **Test**: Welch's t-test (does not assume equal variances)
-- **Correction**: Benjamini-Hochberg FDR (q < 0.05)
-- **Effect size**: Cohen's d (small: 0.2, medium: 0.5, large: 0.8)
+
+The analysis script computes both cross-sectional and longitudinal comparisons.
+
+**Cross-sectional** (per session): Welch's t-test on regional volumes between heavy and control groups at BL and FU separately. Outputs to `group_comparison_ses-{BL,FU}.csv`.
+
+**Longitudinal** (primary): for each subject, compute Δ = FU − BL per ROI; then Welch's t-test on Δ between groups. Outputs to `longitudinal_change.csv`.
+
+| Step             | Method                                           |
+|------------------|--------------------------------------------------|
+| Test             | Welch's t-test (does not assume equal variances) |
+| Effect size      | Cohen's d (small 0.2, medium 0.5, large 0.8)     |
+| Multiple tests   | Benjamini–Hochberg FDR (q < 0.05)                |
+
+**ROIs** (cannabis-relevant a priori regions):
+
+- **Subcortical** (`aseg.stats`): hippocampus, amygdala, caudate, putamen, nucleus accumbens (bilateral)
+- **Cortical thickness** (`{lh,rh}.aparc.stats`): superior frontal, rostral middle frontal, superior temporal, insula, caudal anterior cingulate (bilateral)
+
+### Sample Size & Power
+
+The pilot uses n = 5 per group, which gives ~25 % power to detect a large effect (d = 0.8) at α = 0.05. **Effect size, not p-value, is the primary metric at this scale** — uncorrected p-values are reported for transparency, but only an n ≈ 26/group full-dataset run would be powered to survive FDR correction.
+
+| Goal                | n / group | Cluster time (RTX 6000)     |
+|---------------------|----------:|-----------------------------|
+| Pilot               |         5 | ~13 hr                       |
+| 80 % power @ d=0.8  |        26 | ~60 hr                      |
+| Full dataset        |     20/22 | ~75-85 hr                   |
+
 ---
- 
+
 ## GPU vs. CPU Performance
- 
-| Hardware | Time per session | Total (1 subject, 2 sessions) |
-|---|---|---|
-| **RTX 6000** (48 GB VRAM) | ~9 min | ~18 min |
-| **Tesla T4** (16 GB VRAM) | ~14 min | ~28 min |
-| **CPU** (10 cores) | ~100 min | ~200 min |
- 
-RTX 6000 is **11× faster** than CPU for this workload.
- 
+
+| Hardware                  | Time per session | 1 subject (BL + FU) |
+|---------------------------|-----------------:|--------------------:|
+| **RTX 6000** (48 GB VRAM) |         ~18 min   |             ~36 min |
+| **Tesla T4** (16 GB VRAM) |        ~23 min   |             ~46 min |
+| **CPU only** (10 cores)   |       ~125 min   |            ~250 min |
+
+The RTX 6000 is roughly **7× faster** than CPU for this workload.
+
 ---
- 
+
 ## Multi-Session Handling
- 
-ds000174 has **two sessions per subject**. DeepPrep will crash if you don't specify which session to process.
- 
-### Process both sessions (default):
-```bash
-bash scripts/02_run_deepprep_anat.sh sub-101
-# Processes ses-BL, then ses-FU sequentially
-```
- 
-### Process one session only:
-```bash
-bash scripts/02_run_deepprep_anat.sh sub-101 BL   # baseline only
-bash scripts/02_run_deepprep_anat.sh sub-101 FU   # follow-up only
-```
- 
-### For group analysis:
-The analysis script uses **ses-BL (baseline)** by default. To change:
-```python
-# In 04_structural_analysis.py:
-SESSION_FOR_ANALYSIS = "FU"   # change from "BL" to "FU"
-```
- 
+
+ds000174 has BL and FU sessions per subject, with **different voxel sizes** between sessions. DeepPrep 25.1.0 has no `--session_label` flag and will fail with `mri_robust_template` errors if both sessions are present. The runner script works around this by:
+
+1. Hiding the other session (`mv ses-FU/ ses-FU.HIDDEN/`) before each docker run
+2. Restoring it afterward via an EXIT trap
+3. Renaming the output directory to include the session suffix (`Recon/sub-101` → `Recon/sub-101_ses-BL`)
+
+If your dataset only has one session, the `OTHER_SESSION` hide step is a no-op — the script handles both cases.
+
 ---
- 
-## DeepPrep Outputs
- 
-### 1. FreeSurfer-Compatible Derivatives (`outputs/deepprep/Recon/`)
-Each processed session produces:
-```
-sub-101_ses-BL/
-├── stats/
-│   ├── aseg.stats          # Subcortical volumes
-│   ├── brainvol.stats      # Global brain metrics
-│   ├── lh.aparc.stats      # Left hemisphere cortical parcellation
-│   └── rh.aparc.stats      # Right hemisphere cortical parcellation
-├── surf/
-│   ├── lh.pial             # Left hemisphere pial surface
-│   ├── lh.white            # Left hemisphere white matter surface
-│   └── ...
-└── mri/
-    ├── norm.mgz            # Normalized T1w
-    ├── brain.mgz           # Skull-stripped brain
-    └── aseg.mgz            # Tissue segmentation
-```
- 
-### 2. Quality Control Reports (`outputs/deepprep/QC/`)
-- HTML reports with interactive visualizations
-- View in browser: `firefox outputs/deepprep/QC/sub-101_ses-BL.html`
-- Includes: segmentation, surfaces, normalization, parcellation
-### 3. Analysis Outputs (`outputs/analysis/`)
-- `structural/group_comparison_ses-BL.csv` — Statistical results
-- `structural/subject_features_ses-BL.csv` — Raw per-subject data
-- `groups.csv` — Group assignments (heavy/control)
+
+## Known Pitfalls Handled by This Pipeline
+
+These are issues the pipeline was hardened against during the pilot run. You should not need to deal with them, but documenting them so they don't bite a future replication attempt:
+
+1. **`openneuro-py` produces partial downloads** — the official downloader silently leaves some files as Git LFS pointers (~400-800 KB) instead of the actual binaries. We use `aws s3 sync --no-sign-request` instead, which verifies via checksums.
+2. **`participants.tsv` lacks `sub-` prefix** — ds000174 stores bare numeric IDs while BIDS dirs use `sub-NNN`. `fix_participants_tsv.py` patches this idempotently.
+3. **DeepPrep doesn't generate `aseg.stats`** — `aseg.mgz` is produced but `mri_segstats` is never invoked. `generate_aseg.sh` runs it post-hoc inside the same container.
+4. **Voxel mismatch between sessions** — see "Multi-Session Handling" above.
+5. **`nvidia-container-toolkit ≥ 1.18` requires CDI spec** — `00_setup.sh` runs `nvidia-ctk cdi generate` after install.
+6. **Java 11 default on Ubuntu 22** — Nextflow needs Java 17. `00_setup.sh` installs OpenJDK 17 and sets it as system default.
+7. **Docker outputs are root-owned** — every script that writes to `outputs/deepprep/` ends with `sudo chown -R $USER:$USER`.
+
 ---
- 
+
 ## Troubleshooting
- 
-### GPU not detected
+
+**`docker run --gpus all` fails with "no known GPU vendor found"**
+You're missing the CDI spec. Run:
 ```bash
-# Verify GPU
-bash scripts/verify_gpu.sh
- 
-# If it fails at step 4 (Docker nvidia runtime):
-sudo nvidia-ctk runtime configure --runtime=docker
-sudo systemctl restart docker
+sudo nvidia-ctk cdi generate --output=/etc/cdi/nvidia.yaml
 ```
- 
-### DeepPrep crashes during processing
-- **Cause**: Likely tried to process both sessions at once
-- **Fix**: Run with `--session_label BL` flag (script does this automatically)
-### "File not found" errors in analysis scripts
-- Check that DeepPrep outputs exist: `ls outputs/deepprep/Recon/sub-101_ses-BL/stats/`
-- Verify session name: script looks for `ses-BL` by default
+
+**DeepPrep fails in `anat_motioncor` with template registration error**
+You're trying to process both sessions at once. The runner script (`02_run_deepprep_anat.sh`) handles this — make sure you're using it rather than calling docker directly.
+
+**"File not found" errors in analysis scripts**
+Verify aseg.stats files exist:
+```bash
+ls outputs/deepprep/Recon/sub-101_ses-BL/stats/aseg.stats
+```
+If missing, run `bash scripts/generate_aseg.sh`.
+
+**`03_group_participants.py` reports "0 subjects with valid data"**
+Check T1w file sizes:
+```bash
+find data/bids/ds000174 -name "*T1w.nii.gz" -size -5M
+```
+If any T1w files are < 5 MB, re-run `bash scripts/01_download_data.sh` to fix them.
+
+---
+
+## Future Work
+
+The repository scaffolds two BOLD/functional placeholder scripts for an obvious extension to functional connectivity analysis:
+
+- `scripts/02_run_deepprep_bold.sh` — DeepPrep BOLD preprocessing (drop `--anat_only`, add fMRI QC).
+- `scripts/04_functional_analysis.py` — Resting-state or task-based connectivity comparison.
+
+Doing this would require swapping in a BIDS dataset with BOLD runs (e.g., an ABCD subset). The structural pipeline is unaffected.
+
+Other natural extensions:
+
+- Scale to the full ds000174 dataset (n = 20/22) for adequate statistical power
+- Add cortical-thickness-specific ROIs from the Glasser 360 parcellation
+- Apply the same pipeline to other cannabis datasets for replication
+
 ---
 
 ## Citation
 
-If you use this pipeline, please cite the DeepPrep paper:
+If you use this pipeline, please cite the underlying tools:
+
 ```bibtex
 @article{deepprep_2025,
-  title={DeepPrep: An accelerated, scalable, and robust pipeline for neuroimaging preprocessing},
-  authors={Jianxun Ren, Ning An, Cong Lin, Youjia Zhang, Zhenyu Sun, Wei Zhang, Shiyi Li, Ning Guo, Weigang Cui, Qingyu Hu, Weiwei Wang, Xuehai Wu, Yinyan Wang, Tao Jiang, Theodore D. Satterthwaite, Danhong Wang & Hesheng Liu},
-  journal={Nature Methods},
-  year={2025},
-  doi={10.1038/s41592-025-02599-1}
+  title   = {DeepPrep: An accelerated, scalable, and robust pipeline for neuroimaging preprocessing empowered by deep learning},
+  author  = {Ren, Jianxun and An, Ning and Lin, Cong and Zhang, Youjia and others},
+  journal = {Nature Methods},
+  year    = {2025},
+  doi     = {10.1038/s41592-025-02599-1}
+}
+
+@article{freesurfer_2012,
+  title   = {FreeSurfer},
+  author  = {Fischl, Bruce},
+  journal = {NeuroImage},
+  volume  = {62},
+  number  = {2},
+  pages   = {774--781},
+  year    = {2012}
 }
 ```
+
+Dataset citation (ds000174): see https://openneuro.org/datasets/ds000174.
 
 ---
 
 ## License
 
-This project is licensed under the MIT License — see [LICENSE](LICENSE) for details.
+MIT — see [LICENSE](LICENSE).
 
 ---
 
 ## Acknowledgments
 
-- **Dataset**: ds000174 contributors and OpenNeuro
-- **Pipeline**: DeepPrep development team (pbFSLab)
-- **Platform**: NSF FABRIC testbed
+- **Dataset** — ds000174 contributors and OpenNeuro
+- **Pipeline** — DeepPrep development team (pBFSLab)
 - **References**:
   - Cannabis neuroimaging review: https://pmc.ncbi.nlm.nih.gov/articles/PMC7071506/
   - DeepPrep paper: https://www.nature.com/articles/s41592-025-02599-1
@@ -298,4 +371,4 @@ This project is licensed under the MIT License — see [LICENSE](LICENSE) for de
 
 ## Contact
 
-Questions? Open an [issue](https://github.com/Matthewk04/Cannabis-DeepPrep/issues) or email the maintainer.
+Questions? Open an [issue](https://github.com/Matthewk04/Cannabis-DeepPrep/issues) on GitHub.

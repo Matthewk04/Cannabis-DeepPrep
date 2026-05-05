@@ -25,7 +25,7 @@ OUT_DIR  = PROJ_DIR / "outputs" / "analysis"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
  
 # ── Prototype config ──────────────────────────────────────────────────────────
-N_PER_GROUP = 1   # ← change to 5, 10, 20 when scaling up
+N_PER_GROUP = 5   # ← change to 5, 10, 20 when scaling up
  
 # ── Load participants.tsv ─────────────────────────────────────────────────────
 tsv_path = BIDS_DIR / "participants.tsv"
@@ -118,7 +118,7 @@ with open(OUT_DIR / "group_meta.json", "w") as fh:
  
 # pilot_subjects.txt — one ID per line (strip "sub-" prefix for DeepPrep)
 pilot_txt = OUT_DIR / "pilot_subjects.txt"
-pilot_txt.write_text("\n".join(s.replace("sub-", "") for s in pilot_all) + "\n")
+pilot_txt.write_text("\n".join(str(s).replace("sub-", "") for s in pilot_all) + "\n")
  
 print(f"[groups] ✅ Saved:")
 print(f"         outputs/analysis/groups.csv")

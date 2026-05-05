@@ -1,21 +1,4 @@
 #!/usr/bin/env bash
-# =============================================================================
-# 02_run_deepprep_anat.sh
-# DeepPrep 25.1.0 — Multi-session structural preprocessing
-#
-# ds000174 has TWO sessions per subject:
-#   - ses-BL  (baseline)
-#   - ses-FU  (follow-up)
-#
-# DeepPrep will crash if you don't specify which session to process.
-# This script processes BOTH sessions separately (default) or one at a time.
-#
-# Usage:
-#   bash scripts/02_run_deepprep_anat.sh --pilot           # all pilot subjects, both sessions
-#   bash scripts/02_run_deepprep_anat.sh --pilot BL        # pilot subjects, baseline only
-#   bash scripts/02_run_deepprep_anat.sh sub-101 FU        # single subject, follow-up only
-#   bash scripts/02_run_deepprep_anat.sh sub-101           # single subject, both sessions
-# =============================================================================
 set -euo pipefail
 
 DEEPPREP_IMAGE="pbfslab/deepprep:25.1.0"
@@ -23,153 +6,172 @@ PROJ_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 BIDS_DIR="$PROJ_DIR/data/bids/ds000174"
 OUTPUT_DIR="$PROJ_DIR/outputs/deepprep"
 FS_LICENSE="$PROJ_DIR/data/freesurfer/license.txt"
-CPUS=10
-MEMORY_GB=20
+CPUS=4
+MEMORY_GB=16
 
-# ── Input validation ──────────────────────────────────────────────────────────
 if [ ! -d "$BIDS_DIR" ]; then
-  echo "❌ BIDS dataset not found: $BIDS_DIR"
-  echo "   Run: bash scripts/01_download_data.sh"
+  echo "❌ BIDS dataset not found"
   exit 1
 fi
 if [ ! -f "$FS_LICENSE" ]; then
-  echo "❌ FreeSurfer license not found: $FS_LICENSE"
+  echo "❌ FreeSurfer license not found"
   exit 1
 fi
 mkdir -p "$OUTPUT_DIR" "$PROJ_DIR/logs"
 
-# ── Parse arguments ───────────────────────────────────────────────────────────
-MODE=""
-PARTICIPANT_FLAG=""
-SESSIONS=("BL" "FU")   # default: process both sessions
-
-# Check if second argument specifies a session
-if [ "${2:-}" = "BL" ] || [ "${2:-}" = "FU" ]; then
-  SESSIONS=("${2}")
-  echo "[deepprep] Session filter: ses-${2} only"
-fi
+SESSIONS=("BL" "FU")
+SUBJECT_LIST=()
 
 if [ "${1:-}" = "--pilot" ]; then
   PILOT_FILE="$PROJ_DIR/outputs/analysis/pilot_subjects.txt"
-  if [ ! -f "$PILOT_FILE" ]; then
-    echo "❌ pilot_subjects.txt not found."
-    echo "   Run first: python3 scripts/03_group_participants.py"
-    exit 1
-  fi
-  PILOT_IDS=$(tr '\n' ' ' < "$PILOT_FILE" | sed 's/[[:space:]]*$//')
-  PARTICIPANT_FLAG="--participant_label '${PILOT_IDS}'"
-  MODE="pilot"
-  echo "[deepprep] Pilot mode: subjects ${PILOT_IDS}"
-
-elif [ -n "${1:-}" ] && [ "${1}" != "--pilot" ]; then
-  SUB_LABEL="${1#sub-}"
-  PARTICIPANT_FLAG="--participant_label ${SUB_LABEL}"
-  MODE="single"
-  echo "[deepprep] Single-subject mode: sub-${SUB_LABEL}"
-
-else
-  N_SUBS=$(ls -d "$BIDS_DIR"/sub-* 2>/dev/null | wc -l)
-  MODE="all"
-  echo "[deepprep] Batch mode: all ${N_SUBS} subjects"
+  readarray -t SUBJECT_LIST < "$PILOT_FILE"
+  echo "[deepprep] Pilot mode: ${SUBJECT_LIST[*]}"
 fi
 
-# ── GPU detection ─────────────────────────────────────────────────────────────
 GPU_FLAG=""
-COMPUTE_MODE=""
-
 if command -v nvidia-smi &>/dev/null && nvidia-smi &>/dev/null 2>&1; then
-  if docker info 2>/dev/null | grep -qi "nvidia\|Runtimes.*nvidia"; then
+  if docker info 2>/dev/null | grep -qi "nvidia"; then
     GPU_FLAG="--gpus all"
-    COMPUTE_MODE="GPU"
-    echo "[deepprep] ✓ GPU detected — using GPU acceleration"
-    nvidia-smi --query-gpu=name,memory.total --format=csv,noheader | sed 's/^/             /'
-    echo "[deepprep]   Expected runtime: ~9 min/subject on RTX 6000"
-  else
-    echo "[deepprep] ⚠  GPU hardware found but Docker nvidia runtime not configured"
-    echo "[deepprep]   Fix: sudo nvidia-ctk runtime configure --runtime=docker"
-    echo "[deepprep]        sudo systemctl restart docker"
-    echo "[deepprep]   Falling back to CPU mode"
-    COMPUTE_MODE="CPU"
+    echo "[deepprep] ✓ GPU detected"
   fi
-else
-  echo "[deepprep] No GPU detected — using CPU mode"
-  echo "[deepprep]   Expected runtime: ~100 min/subject"
-  COMPUTE_MODE="CPU"
 fi
 
-# ── Process each session separately ───────────────────────────────────────────
 echo ""
 echo "============================================================"
-echo " DeepPrep 25.1.0 — Multi-session structural preprocessing"
-echo "   Mode:     $MODE"
+echo " DeepPrep 25.1.0 — Session-Separated Processing"
+echo "   Subjects: ${#SUBJECT_LIST[@]}"
 echo "   Sessions: ${SESSIONS[*]}"
-echo "   Compute:  $COMPUTE_MODE"
-echo "   Input:    $BIDS_DIR"
-echo "   Output:   $OUTPUT_DIR"
 echo "============================================================"
-
-# ── GPU smoke test (if GPU mode) ──────────────────────────────────────────────
-if [ "$COMPUTE_MODE" = "GPU" ]; then
-  echo ""
-  echo "[deepprep] Testing GPU access inside Docker container..."
-  if docker run --rm --gpus all nvidia/cuda:12.1.0-base-ubuntu22.04 nvidia-smi -L 2>/dev/null; then
-    echo "[deepprep] ✅ GPU confirmed accessible inside Docker"
-  else
-    echo "[deepprep] ⚠️  GPU test failed — falling back to CPU"
-    GPU_FLAG=""
-    COMPUTE_MODE="CPU"
-  fi
-fi
-
 echo ""
 
+# Restore any hidden sessions from previous runs
+echo "[SETUP] Restoring any previously hidden sessions..."
+for subj in "${SUBJECT_LIST[@]}"; do
+  subj=$(echo "$subj" | xargs)
+  for ses in BL FU; do
+    if [ -d "$BIDS_DIR/sub-${subj}/ses-${ses}.HIDDEN" ]; then
+      sudo mv "$BIDS_DIR/sub-${subj}/ses-${ses}.HIDDEN" "$BIDS_DIR/sub-${subj}/ses-${ses}"
+    fi
+  done
+done
+
+# Function to hide sessions
+hide_sessions() {
+  local session_to_hide=$1
+  echo "[SESSION] Hiding all ses-${session_to_hide}..."
+  for subj in "${SUBJECT_LIST[@]}"; do
+    subj=$(echo "$subj" | xargs)
+    local ses_dir="$BIDS_DIR/sub-${subj}/ses-${session_to_hide}"
+    if [ -d "$ses_dir" ]; then
+      sudo mv "$ses_dir" "${ses_dir}.HIDDEN"
+    fi
+  done
+}
+
+# Function to restore sessions
+restore_sessions() {
+  local session_to_restore=$1
+  echo "[SESSION] Restoring all ses-${session_to_restore}..."
+  for subj in "${SUBJECT_LIST[@]}"; do
+    subj=$(echo "$subj" | xargs)
+    local hidden_dir="$BIDS_DIR/sub-${subj}/ses-${session_to_restore}.HIDDEN"
+    if [ -d "$hidden_dir" ]; then
+      sudo mv "$hidden_dir" "$BIDS_DIR/sub-${subj}/ses-${session_to_restore}"
+    fi
+  done
+}
+
+# Process each session separately
 for SESSION in "${SESSIONS[@]}"; do
-  SESSION_FLAG="--session_label ${SESSION}"
-  LOG_FILE="$PROJ_DIR/logs/deepprep_anat_ses-${SESSION}_$(date +%Y%m%d_%H%M%S).log"
-
   echo ""
-  echo "────────────────────────────────────────────────────────────"
-  echo " Processing session: ses-${SESSION}"
-  echo " Log: $LOG_FILE"
-  echo "────────────────────────────────────────────────────────────"
+  echo "════════════════════════════════════════════════════════════"
+  echo " PROCESSING: ses-${SESSION}"
+  echo "════════════════════════════════════════════════════════════"
+  
+  # Hide the OTHER session
+  if [ "$SESSION" = "BL" ]; then
+    hide_sessions "FU"
+  else
+    hide_sessions "BL"
+  fi
+  
+  # Build subject list
+  SUBJECTS_FOR_DOCKER=""
+  for subj in "${SUBJECT_LIST[@]}"; do
+    subj=$(echo "$subj" | xargs)
+    SUBJECTS_FOR_DOCKER="${SUBJECTS_FOR_DOCKER}${subj} "
+  done
+  
+  LOG_FILE="$PROJ_DIR/logs/deepprep_ses-${SESSION}_$(date +%Y%m%d_%H%M%S).log"
+  
+  echo "Subjects: ${SUBJECTS_FOR_DOCKER}"
+  echo "Log: $LOG_FILE"
   echo ""
-
-  # Note: --gpus all is sufficient for GPU use; DeepPrep auto-detects CUDA
-  # No --device flag needed — causes conflicts with --gpus all
-  eval docker run --rm \
-    ${GPU_FLAG:-} \
-    --shm-size 8g \
-    --ulimit nofile=65536:65536 \
+  
+  # Run DeepPrep
+  docker run --rm \
+    ${GPU_FLAG} \
     -v "${BIDS_DIR}:/input:ro" \
     -v "${OUTPUT_DIR}:/output" \
     -v "${FS_LICENSE}:/fs_license.txt:ro" \
     "$DEEPPREP_IMAGE" \
     /input /output participant \
     --anat_only \
-    ${SESSION_FLAG} \
+    --participant_label ${SUBJECTS_FOR_DOCKER} \
     --fs_license_file /fs_license.txt \
     --cpus "${CPUS}" \
     --memory "${MEMORY_GB}" \
     --skip_bids_validation \
-    ${PARTICIPANT_FLAG:-} \
     2>&1 | tee "$LOG_FILE"
-
-  EXIT_CODE=${PIPESTATUS[0]}
-
-  if [ $EXIT_CODE -eq 0 ]; then
-    echo "✅ ses-${SESSION} complete"
-  else
-    echo "❌ ses-${SESSION} failed (exit code $EXIT_CODE)"
-    echo "   Check log: $LOG_FILE"
-    exit $EXIT_CODE
+  
+  if [ ${PIPESTATUS[0]} -ne 0 ]; then
+    echo "❌ ses-${SESSION} failed"
+    restore_sessions "BL"
+    restore_sessions "FU"
+    exit 1
   fi
+  
+  # Rename outputs to preserve them with session labels
+  echo ""
+  echo "[OUTPUT] Renaming to include session labels..."
+  for subj in "${SUBJECT_LIST[@]}"; do
+    subj=$(echo "$subj" | xargs)
+    
+    # Rename Recon outputs
+    if [ -d "$OUTPUT_DIR/Recon/sub-${subj}" ]; then
+      sudo mv "$OUTPUT_DIR/Recon/sub-${subj}" "$OUTPUT_DIR/Recon/sub-${subj}_ses-${SESSION}"
+      echo "  ✓ Recon: sub-${subj} → sub-${subj}_ses-${SESSION}"
+    fi
+    
+    # Rename QC outputs
+    if [ -d "$OUTPUT_DIR/QC/sub-${subj}" ]; then
+      sudo mv "$OUTPUT_DIR/QC/sub-${subj}" "$OUTPUT_DIR/QC/sub-${subj}_ses-${SESSION}"
+      echo "  ✓ QC:    sub-${subj} → sub-${subj}_ses-${SESSION}"
+    fi
+  done
+  
+  # Restore the hidden session
+  if [ "$SESSION" = "BL" ]; then
+    restore_sessions "FU"
+  else
+    restore_sessions "BL"
+  fi
+  
+  echo "✅ ses-${SESSION} complete"
 done
 
 echo ""
-echo "✅ All sessions processed successfully"
+echo "════════════════════════════════════════════════════════════"
+echo "✅ All sessions processed successfully!"
+echo "════════════════════════════════════════════════════════════"
 echo ""
-echo "DeepPrep outputs:"
-echo "  FreeSurfer recon: $OUTPUT_DIR/Recon/sub-XXX_ses-YY/"
-echo "  QC reports:       $OUTPUT_DIR/QC/sub-XXX_ses-YY.html"
+echo "Recon outputs (for analysis):"
+ls -d "$OUTPUT_DIR/Recon/sub-"* 2>/dev/null || echo "  (none yet)"
 echo ""
-echo "Next: python3 scripts/04_structural_analysis.py"
+echo "QC reports (review before analysis):"
+ls -d "$OUTPUT_DIR/QC/sub-"* 2>/dev/null || echo "  (none yet)"
+echo ""
+echo "Next steps:"
+echo "  1. Review QC reports: open outputs/deepprep/QC/sub-*_ses-*/sub-*.html"
+echo "  2. Exclude any failed scans"
+echo "  3. Extract stats: python3 scripts/04_structural_analysis.py"
